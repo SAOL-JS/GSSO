@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSSO — Global Structural Safety Observatory</title>
+<meta name="description" content="An independent, non-profit record of earthquakes and structural failures — worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<!-- 헤드라인·본문 영문 IBM Plex Sans / 데이터 IBM Plex Mono / 영문 병기 Source Serif 4 -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<!-- 한글 · Pretendard -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* =====================================================================
+   토큰 · Design tokens
+   ===================================================================== */
+:root{
+  /* ▼ 배경 이미지: assets/hero.jpg 업로드 후 아래 줄의 주석을 푸세요. */
+  /* --hero-image: url("assets/hero.jpg"); */
+
+  --ink:#0B0F12; --ink2:#111A20; --panel:#141C22; --panel2:#1A242B;
+  --line:#26313A; --line2:#1D262C;
+  --fg:#E8EDEB; --dim:#94A3AB; --faint:#63737C;
+  --amber:#E5A93C; --red:#D25A46; --teal:#4FA893; --blue:#5B92C7;
+
+  --sans: "IBM Plex Sans", "Pretendard Variable", Pretendard, -apple-system, "Noto Sans KR", sans-serif;
+  --serif: "Source Serif 4", "Times New Roman", Times, serif;   /* 영문 병기 전용 */
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --max:1180px; --gut:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.72;
+     -webkit-font-smoothing:antialiased;
+     background:
+       radial-gradient(1200px 620px at 78% -8%, rgba(91,146,199,.13), transparent 62%),
+       radial-gradient(900px 520px at 4% 12%, rgba(79,168,147,.07), transparent 60%),
+       linear-gradient(180deg, var(--ink2) 0%, var(--ink) 46%, var(--ink) 100%);
+     background-attachment:fixed}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+
+/* 영문 병기 · English gloss — 세리프 이탤릭 */
+.en{display:block;font-family:var(--serif);font-style:italic;font-size:13.5px;line-height:1.55;
+    color:var(--faint);font-weight:400}
+
+/* =====================================================================
+   상단 바 · Top bar  (본문 목차와 번호를 맞춤)
+   ===================================================================== */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(11,15,18,.74);
+        backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line2)}
+.topbar .wrap{display:flex;align-items:center;gap:24px;height:66px}
+.mark{font-size:17px;font-weight:600;letter-spacing:.24em;text-decoration:none;white-space:nowrap}
+.mark i{font-style:normal;color:var(--amber)}
+.menu{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.menu::-webkit-scrollbar{display:none}
+.menu a{text-decoration:none;padding:7px 12px;white-space:nowrap;color:var(--dim);
+        font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;border-radius:3px;
+        display:flex;align-items:baseline;gap:7px}
+.menu a em{font-style:normal;color:var(--faint);font-size:9.5px;letter-spacing:.1em}
+.menu a small{font-family:var(--sans);font-size:11.5px;letter-spacing:0;color:var(--faint)}
+.menu a:hover{color:var(--fg);background:rgba(255,255,255,.045)}
+.menu a:hover em,.menu a:hover small{color:var(--dim)}
+.menu a[aria-current="page"]{color:var(--fg);box-shadow:inset 0 -2px 0 var(--amber)}
+.menu a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* =====================================================================
+   히어로 배경 · Hero backdrop
+   ===================================================================== */
+.herowrap{position:relative;isolation:isolate;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hero-bg .photo{position:absolute;inset:0;background-image:var(--hero-image,none);
+  background-size:cover;background-position:center 28%;
+  opacity:.30;filter:grayscale(.55) contrast(1.06) brightness(.85);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,transparent 88%);
+          mask-image:linear-gradient(180deg,#000 0%,#000 46%,transparent 88%)}
+.hero-bg .grid{position:absolute;inset:0;opacity:.5;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.028) 0 1px, transparent 1px 56px);
+  -webkit-mask-image:radial-gradient(120% 78% at 62% 22%, #000 12%, transparent 74%);
+          mask-image:radial-gradient(120% 78% at 62% 22%, #000 12%, transparent 74%)}
+.hero-bg svg{position:absolute;top:-14%;right:-8%;width:min(1180px,118%);height:auto;
+  -webkit-mask-image:radial-gradient(70% 70% at 62% 30%, #000 8%, transparent 76%);
+          mask-image:radial-gradient(70% 70% at 62% 30%, #000 8%, transparent 76%)}
+.hero-bg svg g{transform-origin:660px 300px;animation:breathe 18s ease-in-out infinite alternate}
+@keyframes breathe{from{transform:scale(.97);opacity:.85}to{transform:scale(1.05);opacity:.4}}
+.hero-bg .veil{position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(11,15,18,.15) 0%, rgba(11,15,18,.55) 58%, var(--ink) 96%)}
+
+/* =====================================================================
+   히어로 · Hero   (큰 영문 = IBM Plex Sans 로 복구)
+   ===================================================================== */
+.hero{padding:104px 0 24px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+         color:var(--faint);margin:0 0 30px}
+.wordmark{font-family:var(--sans);font-size:clamp(58px,11vw,128px);font-weight:600;
+          letter-spacing:.05em;line-height:.94;margin:0;
+          background:linear-gradient(168deg,#FFFFFF 4%, #D8E2E6 42%, #94A3AB 100%);
+          -webkit-background-clip:text;background-clip:text;color:transparent}
+.wordmark i{font-style:normal;
+  background:linear-gradient(168deg,#F3C871 6%, var(--amber) 62%, #A6741F 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.expand{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;color:var(--dim);
+        margin:20px 0 46px;text-transform:uppercase}
+.slogan{font-family:var(--sans);font-size:clamp(30px,5vw,46px);font-weight:600;
+        letter-spacing:-.02em;margin:0;max-width:22ch;line-height:1.22}
+.slogan .ko{display:block;font-size:.5em;font-weight:500;color:var(--dim);margin-top:12px;
+            letter-spacing:-.01em}
+.lede{margin:26px 0 0;max-width:58ch;color:var(--dim);font-size:15.5px}
+
+/* 최종 갱신 · Last updated */
+.stamp{margin-top:52px;padding:22px 0;display:flex;flex-wrap:wrap;gap:16px 56px;align-items:baseline;
+       border-top:1px solid transparent;border-bottom:1px solid transparent;
+       border-image:linear-gradient(90deg, var(--amber), var(--line) 46%, transparent) 1}
+.stamp .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--faint);
+            text-transform:uppercase;display:block;margin-bottom:2px}
+.stamp time{font-family:var(--mono);font-size:clamp(26px,5vw,40px);font-weight:500;
+            letter-spacing:-.02em;display:block;line-height:1.1}
+.stamp time span{color:var(--faint);font-weight:400;font-size:.5em;letter-spacing:.1em}
+.pulse{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;
+       letter-spacing:.16em;color:var(--teal);padding-top:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--teal);
+     box-shadow:0 0 0 0 rgba(79,168,147,.55);animation:beat 2.6s infinite}
+@keyframes beat{70%{box-shadow:0 0 0 11px rgba(79,168,147,0)}100%{box-shadow:0 0 0 0 rgba(79,168,147,0)}}
+
+/* =====================================================================
+   시그니처: 기록지 · Recorder strip
+   ===================================================================== */
+.heli{margin:44px 0 0;border:1px solid var(--line);padding:22px 20px 14px;
+      background:linear-gradient(180deg, rgba(26,36,43,.92), rgba(16,23,28,.92));
+      backdrop-filter:blur(3px)}
+.heli-head{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;
+           font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--faint);
+           text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;
+           border-bottom:1px solid var(--line2)}
+.heli-head b{color:var(--dim);font-weight:400;letter-spacing:.01em;text-transform:none;
+             font-family:var(--sans);font-size:12.5px}
+.heli svg{display:block;width:100%;height:auto}
+.heli-foot{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:10px;
+           padding-top:10px;border-top:1px solid var(--line2);
+           display:flex;flex-wrap:wrap;gap:4px 20px}
+.heli-foot em{font-style:normal;color:var(--red)}
+
+/* 라이브 지표 · Live indicators */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+       border:1px solid var(--line);border-top:0;
+       background:linear-gradient(180deg, rgba(20,28,34,.92), rgba(13,19,23,.92))}
+.cell{padding:22px 22px 20px;border-right:1px solid var(--line2)}
+.cell:last-child{border-right:0}
+.cell .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--faint);
+           text-transform:uppercase;display:block;margin-bottom:6px}
+.cell .val{font-family:var(--mono);font-size:34px;font-weight:500;letter-spacing:-.03em;
+           line-height:1.1;display:block;margin-bottom:6px}
+.cell .sub{font-size:12.5px;color:var(--dim);display:block;line-height:1.5}
+
+/* =====================================================================
+   섹션 · Sections
+   ===================================================================== */
+section{padding:96px 0}
+.band{border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);
+      background:linear-gradient(180deg, rgba(255,255,255,.022), rgba(255,255,255,0))}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 22px;
+          padding-bottom:16px;margin-bottom:36px;border-bottom:1px solid transparent;
+          border-image:linear-gradient(90deg, var(--fg), var(--line) 38%, transparent) 1}
+.sec-head h2{font-size:26px;font-weight:600;margin:0;letter-spacing:-.02em}
+.sec-head h2 .en{margin-top:3px;font-size:14px}
+.sec-head .idx{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--amber)}
+.sec-head .more{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--blue);
+                text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.sec-head .more:hover{border-bottom-color:var(--blue)}
+.flag{font-family:var(--mono);font-size:10px;color:var(--dim);border:1px dashed var(--line);
+      padding:3px 9px;border-radius:2px}
+.lead-in{margin:-16px 0 34px;max-width:60ch;color:var(--dim);font-size:15.5px}
+
+/* 분석 카드 · Analysis cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.card{border:1px solid var(--line);padding:30px 26px 28px;display:flex;flex-direction:column;
+      gap:14px;text-decoration:none;position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008));
+      transition:border-color .18s, transform .18s}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+      background:linear-gradient(90deg, var(--amber), transparent 72%);opacity:0;transition:opacity .18s}
+.card:hover{border-color:var(--faint);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+.card:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.card .meta{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--faint);
+            display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.card h3{margin:0;font-size:19px;font-weight:600;line-height:1.48;letter-spacing:-.015em}
+.card p{margin:0;font-size:14px;color:var(--dim);line-height:1.7}
+.card .go{margin-top:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+          color:var(--amber);padding-top:6px}
+
+/* 태그 · Tags */
+.tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;padding:3px 8px;
+     border-radius:2px;border:1px solid;white-space:nowrap}
+.t-red{color:#F0A79A;border-color:#6B2F26;background:#2A1815}
+.t-amber{color:#F2CE8A;border-color:#6B5320;background:#241D10}
+.t-teal{color:#93D6C6;border-color:#255248;background:#12241F}
+.t-gray{color:var(--dim);border-color:var(--line);background:var(--panel)}
+
+/* 모니터 미리보기 · Monitor preview */
+.rows{border-top:1px solid var(--line)}
+.mrow{display:grid;grid-template-columns:110px 78px 1fr auto;gap:22px;align-items:center;
+      padding:22px 4px;border-bottom:1px solid var(--line2);text-decoration:none}
+.mrow:hover{background:rgba(255,255,255,.035)}
+.mrow:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.mrow .d{font-family:var(--mono);font-size:12px;color:var(--dim)}
+.mrow .m{font-family:var(--mono);text-align:right}
+.mrow .m b{display:block;font-size:25px;font-weight:500;letter-spacing:-.03em;line-height:1.05}
+.mrow .m span{display:block;font-size:9.5px;letter-spacing:.1em;color:var(--faint);margin-top:3px}
+.mrow .p b{display:block;font-weight:600;font-size:16px;letter-spacing:-.01em}
+.mrow .p span{display:block;font-size:13px;color:var(--dim)}
+
+/* =====================================================================
+   공학 지식 · Engineering primer  (요약 카드 → 상세 페이지 링크)
+   ===================================================================== */
+.engrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;
+        background:var(--line2);border:1px solid var(--line)}
+.ecard{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.005));
+       padding:30px 26px 26px;display:flex;flex-direction:column;gap:12px;text-decoration:none;
+       position:relative;transition:background .18s}
+.ecard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+       background:linear-gradient(180deg, var(--amber), transparent 78%);opacity:0;transition:opacity .18s}
+.ecard:hover{background:rgba(255,255,255,.055)}
+.ecard:hover::before{opacity:1}
+.ecard:focus-visible{outline:2px solid var(--blue);outline-offset:-2px}
+.ecard .no{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--amber)}
+.ecard h3{margin:0;font-size:19px;font-weight:600;letter-spacing:-.015em}
+.ecard h3 .en{margin-top:2px;font-size:13px}
+.ecard p{margin:0;font-size:14px;color:var(--dim);line-height:1.68}
+.ecard .keys{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.03em;
+       line-height:1.7;border-top:1px solid var(--line2);padding-top:12px}
+.ecard .go{margin-top:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+       color:var(--amber);padding-top:4px}
+
+/* 원칙 · Principles (ABOUT 내부) */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:44px 40px}
+.grid4 h3{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+          color:var(--amber);margin:0 0 12px;font-weight:500;padding-bottom:10px;
+          border-bottom:1px solid var(--line)}
+.grid4 p{margin:0;font-size:14.5px;color:var(--dim);line-height:1.76}
+.subhead{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--faint);
+         text-transform:uppercase;margin:64px 0 26px;padding-bottom:10px;
+         border-bottom:1px solid var(--line2);font-weight:400}
+
+footer{border-top:1px solid var(--line);padding:40px 0 84px;font-size:13px;color:var(--dim);
+       background:linear-gradient(180deg, rgba(255,255,255,.015), transparent)}
+footer .fx{display:flex;flex-wrap:wrap;gap:8px 30px;font-family:var(--mono);font-size:10px;
+           letter-spacing:.14em;margin-bottom:20px;color:var(--faint)}
+footer a{color:var(--blue)}
+
+@media (max-width:680px){
+  :root{--gut:18px}
+  .hero{padding:60px 0 12px}
+  section{padding:62px 0}
+  .menu a small{display:none}
+  .mrow{grid-template-columns:84px 64px 1fr;gap:12px;padding:18px 2px}
+  .mrow .m b{font-size:20px}
+  .cell{padding:18px}
+  .ecard{padding:26px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .dot,.hero-bg svg g{animation:none}
+  .card,.ecard{transition:none}
+  .card:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 상단 바 · Top bar ================= -->
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#top">GSS<i>O</i></a>
+    <nav class="menu" aria-label="주 메뉴 Main menu">
+      <a href="#top" aria-current="page">HOME <small>홈</small></a>
+      <a href="#analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+      <a href="#monitor"><em>02</em>MONITOR <small>모니터</small></a>
+      <a href="#engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+      <a href="#about"><em>04</em>ABOUT <small>소개</small></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= 히어로 · Hero ================= -->
+<div class="herowrap">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="photo"></div>
+    <div class="grid"></div>
+    <svg viewBox="0 0 1320 700" xmlns="http://www.w3.org/2000/svg">
+      <g fill="none" stroke="#5B92C7">
+        <circle cx="660" cy="300" r="42"  stroke-opacity=".34" stroke-width="1.2"/>
+        <circle cx="660" cy="300" r="108" stroke-opacity=".28" stroke-width="1.1"/>
+        <circle cx="660" cy="300" r="182" stroke-opacity=".22" stroke-width="1"/>
+        <circle cx="660" cy="300" r="264" stroke-opacity=".17" stroke-width="1"/>
+        <circle cx="660" cy="300" r="352" stroke-opacity=".13" stroke-width="1"/>
+        <circle cx="660" cy="300" r="446" stroke-opacity=".10" stroke-width="1"/>
+        <circle cx="660" cy="300" r="546" stroke-opacity=".07" stroke-width="1"/>
+        <circle cx="660" cy="300" r="652" stroke-opacity=".05" stroke-width="1"/>
+        <line x1="660" y1="140" x2="660" y2="460" stroke-opacity=".12"/>
+        <line x1="500" y1="300" x2="820" y2="300" stroke-opacity=".12"/>
+      </g>
+    </svg>
+    <div class="veil"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <p class="eyebrow">Global Structural Safety Observatory · 세계 건축구조 안전 관측소</p>
+      <h1 class="wordmark">GSS<i>O</i></h1>
+      <p class="expand">Global · Structural · Safety · Observatory</p>
+
+      <p class="slogan">Evidence before opinion.
+        <span class="ko">근거가 의견보다 먼저.</span>
+      </p>
+
+      <p class="lede">
+        지진과 건축구조 붕괴 사고를 관측 자료에 근거해 기록하고 분석합니다. 비영리 개인 프로젝트이며, 모든 내용은 출처와 함께 공개됩니다.
+        <span class="en">An independent, non-profit record of earthquakes and structural failures — worldwide. Every entry is published with its source.</span>
+      </p>
+
+      <div class="stamp">
+        <div>
+          <span class="lbl">Last updated · 최종 갱신</span>
+          <time id="lastUpdated" datetime="">— <span>KST</span></time>
+        </div>
+        <div>
+          <span class="lbl">Feed · 자료원</span>
+          <span class="pulse"><span class="dot" id="statusDot"></span><span id="statusText">CONNECTING</span></span>
+        </div>
+      </div>
+
+      <div class="heli">
+        <div class="heli-head">
+          <span>24-hour seismic record</span>
+          <b>최근 24시간 전지구 지진 기록지 · M2.5 이상</b>
+        </div>
+        <svg id="heli" viewBox="0 0 900 246" role="img"
+             aria-label="최근 24시간 전지구 지진 기록지 24-hour global seismic record strip"></svg>
+        <div class="heli-foot">
+          <span id="heliNote">Loading feed…</span>
+          <span>Source: USGS Earthquake Hazards Program — 2.5_day.geojson</span>
+        </div>
+      </div>
+
+      <div class="strip">
+        <div class="cell">
+          <span class="lbl">M5.0+ / 24h</span>
+          <span class="val" id="s1">—</span>
+          <span class="sub">전지구 발생 건수 <span class="en">Global count</span></span>
+        </div>
+        <div class="cell">
+          <span class="lbl">Largest / 24h</span>
+          <span class="val" id="s2">—</span>
+          <span class="sub" id="s2sub">최대 규모 <span class="en">Largest magnitude</span></span>
+        </div>
+        <div class="cell">
+          <span class="lbl">PAGER alert</span>
+          <span class="val" id="s3">—</span>
+          <span class="sub">경보 발령 건수 <span class="en">Events with an alert level</span></span>
+        </div>
+        <div class="cell">
+          <span class="lbl">Tsunami flag</span>
+          <span class="val" id="s4">—</span>
+          <span class="sub">쓰나미 통보 기준 충족 <span class="en">Meets notification criteria</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 01 분석 · Analysis ================= -->
+<div class="wrap">
+  <section id="analysis">
+    <div class="sec-head">
+      <span class="idx">01</span>
+      <h2>최신 분석<span class="en">Latest analysis</span></h2>
+      <span class="flag">예시 3건 — 실제 글로 교체 필요 / placeholder</span>
+      <a class="more" href="#analysis">전체 보기 All →</a>
+    </div>
+    <div class="cards">
+      <a class="card" href="#analysis">
+        <span class="meta"><span>2026-08-15</span><span class="tag t-red">Mww 7.7</span><span class="tag t-gray">L2</span></span>
+        <h3>플로레스 Mww 7.7 — 얕은 지각지진에서 항만 터미널이 먼저 무너진 이유
+          <span class="en">Flores Mww 7.7: why the port terminal failed first</span></h3>
+        <p>MMI 8.2 구간의 비보강 조적조 분포와 관측 피해를 대조합니다.
+          <span class="en">Reported damage compared against the unreinforced-masonry stock in the MMI 8.2 band.</span></p>
+        <span class="go">READ →</span>
+      </a>
+      <a class="card" href="#analysis">
+        <span class="meta"><span>2026-08-02</span><span class="tag t-amber">국내 KR</span><span class="tag t-gray">L3</span></span>
+        <h3>서소문고가도로 — 해체 공정을 취약도 시나리오로 다뤄야 하는 이유
+          <span class="en">Seosomun overpass: demolition as a fragility scenario</span></h3>
+        <p>철거 단계의 하중 재분배가 만드는 취약 경로를 정리합니다.
+          <span class="en">Load redistribution during demolition creates failure paths that design checks do not cover.</span></p>
+        <span class="go">READ →</span>
+      </a>
+      <a class="card" href="#analysis">
+        <span class="meta"><span>2026-07-30</span><span class="tag t-teal">방법론</span><span class="tag t-gray">METHOD</span></span>
+        <h3>Mww 6.8인데 MJMA 7.1 — 규모 척도가 다르면 무엇을 비교할 수 없는가
+          <span class="en">Mww 6.8 vs MJMA 7.1: what stops being comparable</span></h3>
+        <p>구마모토 사례로 본 규모 병기 원칙과 임의 환산 금지 규칙.
+          <span class="en">The Kumamoto case, and why this site never converts between magnitude scales.</span></p>
+        <span class="go">READ →</span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- ================= 02 모니터 · Monitor ================= -->
+<div class="band">
+  <div class="wrap">
+    <section id="monitor">
+      <div class="sec-head">
+        <span class="idx">02</span>
+        <h2>모니터<span class="en">Monitor — recorded events</span></h2>
+        <a class="more" href="#monitor">콘솔 열기 Open console →</a>
+      </div>
+      <p class="lead-in">
+        규모는 발표 기관이 사용한 척도를 그대로 표기합니다. Mww는 모멘트규모(W-phase 해), MJMA는 일본 기상청 규모이며, 척도가 확인되지 않은 값은 M으로만 적고 환산하지 않습니다.
+        <span class="en">Magnitudes carry the scale used by the reporting agency. Unverified scales are written as plain M and never converted.</span>
+      </p>
+      <div class="rows">
+        <a class="mrow" href="#monitor">
+          <span class="d">2026-08-14</span>
+          <span class="m"><b style="color:var(--red)">7.7</b><span>Mww</span></span>
+          <span class="p"><b>인도네시아 플로레스 — Ende 북북서 68 km</b>
+            <span>모멘트규모 Mww 7.7 · 심도 10 km · 쓰나미경보 발령 후 해제
+              <span class="en">Moment magnitude Mww 7.7 · depth 10 km · tsunami warning issued, later lifted</span></span></span>
+          <span class="tag t-amber">PAGER Yellow</span>
+        </a>
+        <a class="mrow" href="#monitor">
+          <span class="d">2026-08-10</span>
+          <span class="m"><b style="color:var(--red)">7.4</b><span>M · 척도미확인</span></span>
+          <span class="p"><b>콜롬비아 서부 — San José del Palmar 남쪽</b>
+            <span>매체 표기 M 7.4 — 척도 미확인 · 사망 285명 · 주택 84,000동 이상 피해
+              <span class="en">Reported as M 7.4; scale not confirmed · 285 deaths · 84,000+ homes damaged</span></span></span>
+          <span class="tag t-red">국가재난 선포</span>
+        </a>
+        <a class="mrow" href="#monitor">
+          <span class="d">2026-08-09</span>
+          <span class="m"><b style="font-size:15px;color:var(--faint)">KR</b><span>비지진</span></span>
+          <span class="p"><b>전남광주 봉선동 — 아파트 옥상 난간 붕괴</b>
+            <span>지진 무관 구조 사고 · 약 25 m 구간 · 인명피해 없음
+              <span class="en">Non-seismic structural failure · ~25 m of parapet · no casualties</span></span></span>
+          <span class="tag t-gray">원인 조사 중</span>
+        </a>
+        <a class="mrow" href="#monitor">
+          <span class="d">2026-07-28</span>
+          <span class="m"><b style="color:var(--red)">6.8</b><span>Mww · MJMA 7.1</span></span>
+          <span class="p"><b>일본 구마모토현 남부</b>
+            <span>모멘트규모 Mww 6.8 / 기상청규모 MJMA 7.1 병기 · JMA 진도 7
+              <span class="en">Mww 6.8 and MJMA 7.1 co-reported · JMA intensity 7</span></span></span>
+          <span class="tag t-amber">진도 7</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= 03 공학 지식 · Engineering ================= -->
+<div class="wrap">
+  <section id="engineering">
+    <div class="sec-head">
+      <span class="idx">03</span>
+      <h2>공학 지식<span class="en">Engineering primer</span></h2>
+      <a class="more" href="#engineering">전체 문서 All notes →</a>
+    </div>
+    <p class="lead-in">
+      이 사이트의 기록을 읽는 데 필요한 최소한의 공학 개념입니다.
+      <span class="en">The minimum set of concepts needed to read this record.</span>
+    </p>
+
+    <div class="engrid">
+
+      <a class="ecard" href="engineering/structural.html">
+        <span class="no">3.1</span>
+        <h3>구조공학<span class="en">Structural engineering</span></h3>
+        <p>하중이 지반까지 전달되는 경로와, 그 경로가 끊겼을 때 벌어지는 일.</p>
+        <span class="keys">하중경로 · 부정정성 · 연성 · 연쇄붕괴</span>
+        <span class="go">자세히 보기 →</span>
+      </a>
+
+      <a class="ecard" href="engineering/earthquake.html">
+        <span class="no">3.2</span>
+        <h3>내진공학<span class="en">Earthquake engineering</span></h3>
+        <p>지반운동을 수치로 정의하고, 그 값에 대한 목표 성능을 정하는 분야.</p>
+        <span class="keys">IM · EDP · 규모와 진도 · PBEE</span>
+        <span class="go">자세히 보기 →</span>
+      </a>
+
+      <a class="ecard" href="engineering/fragility.html">
+        <span class="no">3.3</span>
+        <h3>취약도함수<span class="en">Fragility functions</span></h3>
+        <p>지진동 세기가 주어졌을 때 특정 손상상태를 초과할 확률.</p>
+        <span class="keys">손상상태 DS · θ와 β · IDA · IM–DS 쌍</span>
+        <span class="go">자세히 보기 →</span>
+      </a>
+
+      <a class="ecard" href="engineering/resilience.html">
+        <span class="no">3.4</span>
+        <h3>회복탄력성<span class="en">Seismic resilience</span></h3>
+        <p>얼마나 손상됐는가에 더해, 기능이 언제 회복되는가까지 보는 관점.</p>
+        <span class="keys">기능도 Q(t) · robustness · rapidity · 유휴기간</span>
+        <span class="go">자세히 보기 →</span>
+      </a>
+
+    </div>
+  </section>
+</div>
+
+<!-- ================= 04 소개 · About ================= -->
+<div class="band">
+  <div class="wrap">
+    <section id="about">
+      <div class="sec-head">
+        <span class="idx">04</span>
+        <h2>이 사이트에 대하여<span class="en">About this record</span></h2>
+      </div>
+
+      <div class="grid4">
+        <div>
+          <h3>비영리 Non-profit</h3>
+          <p>개인이 운영하는 비영리 프로젝트입니다. 광고·후원·유료 구독이 없습니다.
+            <span class="en">Run by one person. No advertising, sponsorship, or paid tier.</span></p>
+        </div>
+        <div>
+          <h3>정보공유 Open</h3>
+          <p>모든 항목에 원출처 링크를 답니다. 근거를 찾지 못한 문장은 싣지 않습니다.
+            <span class="en">Every entry links to its source. Statements without a traceable source are not published.</span></p>
+        </div>
+        <div>
+          <h3>한계 Limits</h3>
+          <p>공식 조사기관이 아닙니다. 사고 원인에 대한 판정은 하지 않으며, 조사위원회 발표를 대체하지 않습니다.
+            <span class="en">Not an investigating authority. No cause is determined here; official findings take precedence.</span></p>
+        </div>
+        <div>
+          <h3>데이터 Database</h3>
+          <p>취약도함수 데이터베이스(IM–DS 쌍)는 준비 중입니다.
+            <span class="en">The fragility-function database (IM–DS pairs) is in preparation.</span></p>
+        </div>
+      </div>
+
+      <p class="subhead">기록 원칙 · How this record is kept</p>
+
+      <div class="grid4">
+        <div>
+          <h3>L1 — 계측</h3>
+          <p>규모·심도·좌표·MMI만 확정으로 다룹니다. 피해 원인은 이 층위에서 서술하지 않습니다.
+            <span class="en">Instrumental layer. Magnitude, depth, location, MMI only. No causal statements.</span></p>
+        </div>
+        <div>
+          <h3>L2 — 준실시간</h3>
+          <p>사상자·피해 집계는 갱신 중인 잠정치로 표시하고, 조회시각을 함께 기록합니다.
+            <span class="en">Quasi-real-time. Casualty and damage counts are provisional and stamped with retrieval time.</span></p>
+        </div>
+        <div>
+          <h3>L3 — 사후조사</h3>
+          <p>구조형식별 분류와 취약도 DB 편입은 정식 조사보고서 확보 후에만 수행합니다.
+            <span class="en">Post-event. Structural classification and fragility-database entry require a formal report.</span></p>
+        </div>
+        <div>
+          <h3>규모 표기</h3>
+          <p>발표 기관의 척도를 그대로 적고(Mww·MJMA·ML 등), 확인되지 않은 값은 임의 환산하지 않습니다.
+            <span class="en">The reporting agency's scale is preserved. Unverified values are never converted.</span></p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fx">
+      <span>GSSO — Global Structural Safety Observatory</span>
+      <span>Non-profit · Open record</span>
+      <span id="footStamp">—</span>
+    </div>
+    <p style="margin:0;max-width:80ch">
+      지진 제원은 <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php" target="_blank" rel="noopener">USGS Earthquake Hazards Program</a> 실시간 피드를 인용하며, 값은 재분석에 따라 수정될 수 있습니다. 사상자 수는 잠정치입니다. 국내 건축구조 사고는 언론 보도 기준 요약이며 확정된 원인이 아닙니다.
+      <span class="en">Magnitudes are revised as data are reanalysed; casualty figures are provisional. Domestic incident entries summarise press reporting and do not state a determined cause.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+/* 1) 최종 갱신 시각 · Last updated ---------------------------------- */
+(function(){
+  var d = new Date(document.lastModified);
+  var p = function(n){ return String(n).padStart(2,'0'); };
+  var txt = d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+
+            ' '+p(d.getHours())+':'+p(d.getMinutes());
+  var el = document.getElementById('lastUpdated');
+  el.setAttribute('datetime', d.toISOString());
+  el.innerHTML = txt + ' <span>KST</span>';
+  document.getElementById('footStamp').textContent = 'Page build ' + txt;
+})();
+
+/* 2) 숫자 카운트업 · Count-up ---------------------------------------- */
+function countUp(el, target, decimals){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    el.textContent = target.toFixed(decimals); return;
+  }
+  var start = performance.now(), dur = 700;
+  function step(t){
+    var k = Math.min(1, (t-start)/dur);
+    k = 1 - Math.pow(1-k, 3);
+    el.textContent = (target*k).toFixed(decimals);
+    if(k < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* 3) 24시간 기록지 · Recorder strip ---------------------------------- */
+var HELI = { lanes:6, hours:4, x0:58, w:826, laneH:38, top:16 };
+function seeded(i){ var x = Math.sin(i*127.1)*43758.5453; return x - Math.floor(x); }
+
+function drawHeli(events, endMs){
+  var svg = document.getElementById('heli');
+  var L = HELI, out = [], laneMs = L.hours*3600*1000;
+  var startMs = endMs - L.lanes*laneMs;
+
+  for(var g=0; g<=L.hours; g++){
+    var gx = L.x0 + g*L.w/L.hours;
+    out.push('<line x1="'+gx+'" y1="'+(L.top-4)+'" x2="'+gx+'" y2="'+
+      (L.top + L.lanes*L.laneH - L.laneH/2 + 8)+'" stroke="#1D262C" stroke-width="1"/>');
+    out.push('<text x="'+gx+'" y="'+(L.top + L.lanes*L.laneH - L.laneH/2 + 22)+
+      '" text-anchor="middle" font-family="IBM Plex Mono,ui-monospace,monospace" font-size="9" '+
+      'fill="#4E5C64">+'+g+'h</text>');
+  }
+
+  for(var i=0; i<L.lanes; i++){
+    var baseY = L.top + i*L.laneH + L.laneH/2;
+    var t0 = startMs + i*laneMs;
+    var lt = new Date(t0);
+    var lab = String(lt.getHours()).padStart(2,'0')+':00';
+
+    out.push('<text x="'+(L.x0-12)+'" y="'+(baseY+3.5)+'" text-anchor="end" '+
+      'font-family="IBM Plex Mono,ui-monospace,monospace" font-size="9.5" fill="#63737C">'+lab+'</text>');
+    out.push('<line x1="'+L.x0+'" y1="'+baseY+'" x2="'+(L.x0+L.w)+'" y2="'+baseY+
+      '" stroke="#26313A" stroke-width="1"/>');
+
+    var here = events.filter(function(e){ return e.t >= t0 && e.t < t0+laneMs; });
+    var N = 280, d = 'M'+L.x0+' '+baseY.toFixed(1), maxMag = 0;
+
+    for(var s=1; s<=N; s++){
+      var x = L.x0 + s*L.w/N, frac = s/N;
+      var y = baseY + (seeded(i*N+s)-0.5)*1.5;
+      for(var k=0; k<here.length; k++){
+        var ev = here[k];
+        var ef = (ev.t - t0)/laneMs, dist = (frac - ef)*N;
+        if(dist > -2 && dist < 28){
+          var amp = Math.min(15.5, Math.pow(Math.max(ev.mag,2.5), 2.15)/4.2);
+          var env = Math.exp(-Math.pow(Math.max(dist,0)/9.5, 1.7));
+          y -= Math.sin(dist*1.25) * amp * env;
+          if(ev.mag > maxMag) maxMag = ev.mag;
+        }
+      }
+      d += ' L'+x.toFixed(1)+' '+y.toFixed(1);
+    }
+    var col = maxMag >= 6 ? '#D25A46' : maxMag >= 4.5 ? '#E5A93C' : '#5B92C7';
+    out.push('<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.05" '+
+      'stroke-linejoin="round" opacity="'+(maxMag ? 1 : .5)+'"/>');
+  }
+  svg.innerHTML = out.join('');
+}
+
+/* 4) USGS 실시간 피드 · Live feed ------------------------------------ */
+var FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson';
+
+function setStatus(text, color){
+  document.getElementById('statusText').textContent = text;
+  document.getElementById('statusDot').style.background = color;
+  document.querySelector('.pulse').style.color = color;
+}
+
+fetch(FEED, {cache:'no-store'})
+  .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(function(json){
+    var now = Date.now();
+    var ev = json.features.map(function(f){
+      return { t:f.properties.time, mag:f.properties.mag || 0,
+               magType:f.properties.magType || 'M',
+               alert:f.properties.alert, tsunami:f.properties.tsunami,
+               place:f.properties.place };
+    }).filter(function(e){ return e.t > now - 24*3600*1000; });
+
+    drawHeli(ev, now);
+
+    var m5 = ev.filter(function(e){ return e.mag >= 5; }).length;
+    var big = ev.reduce(function(a,b){ return b.mag > a.mag ? b : a; },
+                        {mag:0, place:'—', magType:''});
+    var alerts = ev.filter(function(e){ return e.alert; }).length;
+    var tsu = ev.filter(function(e){ return e.tsunami === 1; }).length;
+
+    countUp(document.getElementById('s1'), m5, 0);
+    countUp(document.getElementById('s2'), big.mag, 1);
+    countUp(document.getElementById('s3'), alerts, 0);
+    countUp(document.getElementById('s4'), tsu, 0);
+    if(big.place !== '—'){
+      document.getElementById('s2sub').innerHTML =
+        big.magType + ' · ' + big.place +
+        ' <span class="en">Scale as reported by USGS (magType)</span>';
+    }
+    document.getElementById('heliNote').innerHTML =
+      ev.length + ' events · retrieved ' +
+      new Date().toISOString().slice(0,16).replace('T',' ') + ' UTC';
+    setStatus('LIVE · USGS', '#4FA893');
+  })
+  .catch(function(err){
+    drawHeli([], Date.now());
+    ['s1','s2','s3','s4'].forEach(function(id){
+      document.getElementById(id).textContent = 'n/a';
+    });
+    document.getElementById('heliNote').innerHTML =
+      '<em>피드를 불러오지 못했습니다 — 새로고침하거나 잠시 후 다시 시도하세요. ' +
+      'Feed unavailable — reload or try again shortly. (' + err.message + ')</em>';
+    setStatus('OFFLINE', '#D25A46');
+  });
+</script>
+</body>
+</html>
