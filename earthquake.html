@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.2 내진공학 Earthquake engineering — GSSO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="../index.html">GSS<i>O</i></a>
+    <nav class="menu" data-page="engineering" aria-label="주 메뉴 Main menu">
+      <a href="../index.html"       data-key="home">HOME <small>홈</small></a>
+      <a href="../analysis.html"    data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+      <a href="../monitor.html"     data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+      <a href="../engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+      <a href="../about.html"       data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="pagehead">
+    <p class="crumb"><a href="../index.html">HOME</a> / <a href="../engineering.html">03 ENGINEERING</a> / <span>3.2</span></p>
+    <h1>내진공학<span class="en">Earthquake engineering — measuring shaking, setting a target</span></h1>
+    <p class="intro">
+      내진공학은 지반운동을 수치로 정의하고, 그 수치에 대해 구조물이 어떤 상태로 남아야 하는지를 정합니다. 이 사이트가 규모와 진도를 끝까지 구분해 적는 이유도 여기에서 나옵니다.
+      <span class="en">Earthquake engineering turns ground motion into numbers, then states what condition the structure must be left in. This is why magnitude and intensity are never merged here.</span>
+    </p>
+  </div>
+
+  <div class="doc">
+
+    <h2>규모와 진도는 다른 것<span class="en">Magnitude is not intensity</span></h2>
+    <p><strong>규모(magnitude)</strong>는 지진이 방출한 에너지의 크기로, 한 지진에 하나의 값입니다. <strong>진도(intensity)</strong>는 특정 지점에서 관측된 흔들림과 피해의 정도로, 같은 지진이라도 지점마다 값이 다릅니다.
+      <span class="en">Magnitude is one number per earthquake — the energy released. Intensity is what was felt and damaged at a given site, so it varies from place to place.</span></p>
+
+    <h3>규모 척도 · Magnitude scales</h3>
+    <ul>
+      <li><strong>Mw / Mww</strong> — 모멘트규모. 지진모멘트 M₀에서 산정하며, 대규모 지진에서도 포화되지 않습니다. USGS의 Mww는 W-phase 해를 뜻합니다.</li>
+      <li><strong>ML</strong> — 국지규모(리히터). 근거리 관측에 쓰이며 대규모에서 포화됩니다.</li>
+      <li><strong>MJMA</strong> — 일본 기상청 규모. 산정식이 달라 Mw와 같은 값이 아닙니다.</li>
+    </ul>
+    <div class="eq">
+      M<sub>w</sub> &nbsp;<b>=</b>&nbsp; ( 2 / 3 ) · log<sub>10</sub> M<sub>0</sub> &nbsp;<b>−</b>&nbsp; 10.7 &nbsp;&nbsp;( M<sub>0</sub> in dyne·cm )
+    </div>
+    <p class="eqnote">Hanks &amp; Kanamori (1979)의 정의식. M₀는 지진모멘트이며 단위는 dyne·cm입니다.</p>
+    <p>척도가 다르면 같은 지진도 다른 숫자가 됩니다. 그래서 이 사이트는 발표 기관의 척도 코드를 그대로 병기하고, 임의로 환산하지 않습니다.
+      <span class="en">Different scales give different numbers for the same event, so this site records the reporting scale as given and never converts.</span></p>
+
+    <h3>진도 척도 · Intensity scales</h3>
+    <p>MMI(수정 메르칼리 진도)는 I~XII의 12단계로, 사람의 체감·물체의 거동·구조물 피해를 기준으로 정의됩니다. USGS ShakeMap은 계측 지반운동을 이 진도로 환산해 지도로 제공합니다.
+      <span class="en">MMI runs I to XII, defined by what people feel, what objects do, and what structures suffer. ShakeMap maps instrumental motion onto this scale.</span></p>
+
+    <h2>지진동 세기지표 IM<span class="en">Intensity measures</span></h2>
+    <ul>
+      <li><strong>PGA</strong> — 최대지반가속도. 단순하지만 구조물의 주기 정보를 담지 못합니다.</li>
+      <li><strong>PGV</strong> — 최대지반속도. 중·장주기 구조물의 손상과 상관이 비교적 높습니다.</li>
+      <li><strong>Sa(T₁)</strong> — 구조물의 1차 고유주기에서의 스펙트럼가속도. 취약도 해석에서 가장 널리 쓰이는 IM입니다.</li>
+    </ul>
+    <p>IM 선택은 취약도함수의 산포 β를 좌우합니다. 대상 구조물의 응답을 잘 설명하는 IM일수록 β가 작아지고, 이를 «효율적(efficient)» IM이라고 부릅니다.
+      <span class="en">The choice of IM controls the dispersion β of the fragility function; an IM that explains response well is called efficient.</span></p>
+
+    <h2>성능기반 내진설계<span class="en">Performance-based design</span></h2>
+    <p>«무너지지 않는다»만으로는 목표가 될 수 없습니다. PBEE는 지진 수준별로 요구 성능을 나누어 정의합니다. 예컨대 자주 오는 지진에는 즉시입주(IO), 설계지진에는 인명안전(LS), 최대고려지진에는 붕괴방지(CP)를 요구하는 식입니다.
+      <span class="en">"It will not fall down" is not a target. PBEE assigns a performance level to each hazard level — immediate occupancy, life safety, collapse prevention.</span></p>
+
+    <p class="terms">
+      <b>지진모멘트</b> — 단층 면적·평균 미끄러짐·강성률의 곱으로 정의되는 지진 크기 물리량 (seismic moment, M₀).<br>
+      <b>MMI</b> — 수정 메르칼리 진도 (Modified Mercalli Intensity).<br>
+      <b>ShakeMap</b> — 관측·추정 지반운동을 지도로 제공하는 USGS 산출물.<br>
+      <b>PAGER</b> — 예상 인명·경제 피해를 색 등급으로 알리는 USGS 자동 경보 (Prompt Assessment of Global Earthquakes for Response).<br>
+      <b>Sa(T₁)</b> — 1차 모드 주기에서의 스펙트럼가속도 (spectral acceleration at the fundamental period).<br>
+      <b>PBEE</b> — 성능기반 내진공학 (performance-based earthquake engineering).
+    </p>
+
+    <div class="refs">
+      <b style="color:var(--dim)">참고문헌 · References</b>
+      <ol>
+        <li>Hanks, T.C. &amp; Kanamori, H. (1979). A moment magnitude scale. <i>Journal of Geophysical Research</i>, 84(B5), 2348–2350.</li>
+        <li>Wood, H.O. &amp; Neumann, F. (1931). Modified Mercalli intensity scale of 1931. <i>BSSA</i>, 21(4), 277–283.</li>
+        <li>Worden, C.B. &amp; Wald, D.J. (2016). <i>ShakeMap Manual Online</i>. U.S. Geological Survey. <a href="https://usgs.github.io/shakemap/" target="_blank" rel="noopener">usgs.github.io/shakemap</a></li>
+        <li>FEMA (2000). <i>FEMA 356, Prestandard and Commentary for the Seismic Rehabilitation of Buildings</i>.</li>
+      </ol>
+    </div>
+
+    <div class="pager">
+      <a href="structural.html">← 3.1 구조공학 STRUCTURAL</a>
+      <a href="fragility.html">3.3 취약도함수 FRAGILITY →</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fx">
+      <span>GSSO — Global Structural Safety Observatory</span>
+      <span>Non-profit · Open record</span>
+      <span id="footStamp">—</span>
+    </div>
+    <p style="margin:0;max-width:80ch">
+      교육 목적의 요약이며 설계 실무의 근거가 아닙니다.
+      <span class="en">An educational summary, not a design authority.</span>
+    </p>
+    <p class="contact">
+      Operated by <b>Jiseong Yoo</b> · Contact <a href="mailto:paul4831@hanyang.ac.kr">paul4831@hanyang.ac.kr</a><br>
+      Hanyang University, Seoul, Republic of Korea · Independent non-profit project
+    </p>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

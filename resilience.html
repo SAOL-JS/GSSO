@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.4 회복탄력성 Seismic resilience — GSSO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="../index.html">GSS<i>O</i></a>
+    <nav class="menu" data-page="engineering" aria-label="주 메뉴 Main menu">
+      <a href="../index.html"       data-key="home">HOME <small>홈</small></a>
+      <a href="../analysis.html"    data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+      <a href="../monitor.html"     data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+      <a href="../engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+      <a href="../about.html"       data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="pagehead">
+    <p class="crumb"><a href="../index.html">HOME</a> / <a href="../engineering.html">03 ENGINEERING</a> / <span>3.4</span></p>
+    <h1>회복탄력성<span class="en">Seismic resilience — how much, and how long</span></h1>
+    <p class="intro">
+      취약도함수가 «얼마나 손상되는가»를 답한다면, 회복탄력성은 «기능이 언제 돌아오는가»까지 함께 봅니다. 같은 손상이라도 복구가 3일 걸리는 병원과 8개월 걸리는 병원은 전혀 다른 시스템입니다.
+      <span class="en">Fragility answers how much damage. Resilience adds when function returns — and a hospital back in three days is not the same system as one back in eight months.</span>
+    </p>
+  </div>
+
+  <div class="doc">
+
+    <h2>기능도 Q(t)<span class="en">Functionality</span></h2>
+    <p>Bruneau 등(2003)은 시스템의 기능 수준을 시간의 함수 Q(t)로 두고, 지진 발생 시각 t₀에서 Q가 급격히 떨어졌다가 복구 완료 시각 t₁에서 원래 수준으로 돌아온다고 봅니다. 손실은 그 사이의 면적으로 정의됩니다.</p>
+    <div class="eq">
+      R &nbsp;<b>=</b>&nbsp; ∫<sub>t₀</sub><sup>t₁</sup> [ 100 − Q( t ) ] d t
+    </div>
+    <p class="eqnote">
+      Q(t)는 백분율로 표현한 기능도, t₀는 지진 발생 시각, t₁은 복구 완료 시각입니다. R이 작을수록 회복탄력적인 시스템입니다.
+    </p>
+
+    <h3>네 가지 성질 · The four properties</h3>
+    <ul>
+      <li><strong>Robustness 견고성</strong> — 지진 직후 Q가 얼마나 덜 떨어지는가. 그림에서 «떨어진 깊이».</li>
+      <li><strong>Rapidity 신속성</strong> — 회복 구간의 기울기. 단위 시간당 회복량입니다.</li>
+      <li><strong>Resourcefulness 자원동원력</strong> — 인력·자재·자금을 얼마나 빨리 붙일 수 있는가.</li>
+      <li><strong>Redundancy 여유도</strong> — 대체 가능한 요소가 얼마나 있는가.</li>
+    </ul>
+    <p>앞의 두 가지는 곡선에서 직접 읽히고, 뒤의 두 가지는 그 곡선의 모양을 만드는 조건입니다.
+      <span class="en">The first two are read off the curve; the second two are the conditions that shape it.</span></p>
+
+    <h2>유휴기간이 곡선을 지배한다<span class="en">The idle period usually dominates</span></h2>
+    <p>실제 복구 곡선에서 지진 직후 일정 기간은 Q가 거의 오르지 않습니다. 안전점검, 손해사정, 설계·인허가, 시공사 선정처럼 물리적 복구가 시작되기 전에 밟아야 하는 절차 때문입니다. 이 유휴기간은 구조성능과 거의 무관하고, 조직·제도·자금 조달 속도가 결정합니다.
+      <span class="en">For a while after the event the curve is flat — inspection, loss adjustment, permitting, contractor procurement. This idle period is governed by organisation and finance, not by structural capacity.</span></p>
+    <p>따라서 구조물의 취약도만 개선해도 R은 생각만큼 줄지 않을 수 있습니다. 이 사이트가 복구 기록을 «손상»과 «지연»으로 나누어 적으려는 이유입니다.
+      <span class="en">Improving fragility alone may not shrink R as much as expected, which is why recovery is logged here as damage and delay separately.</span></p>
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <section style="padding:56px 0">
+      <div class="heli" style="margin:0">
+        <div class="heli-head">
+          <span>Functionality Q(t)</span>
+          <b>지진 후 기능 회복 곡선 · 개념도</b>
+        </div>
+        <svg id="qPlot" viewBox="0 0 900 360" role="img"
+             aria-label="지진 후 기능도 Q(t) 회복 곡선 개념도 Conceptual post-event functionality recovery curve"></svg>
+        <div class="heli-foot">
+          <span>개념 설명용 그림입니다 — 특정 사례의 실측값이 아닙니다.</span>
+          <span>Illustrative only — not fitted to any real case.</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="doc">
+
+    <h2>취약도함수와의 연결<span class="en">Link back to fragility</span></h2>
+    <p>Q(t) 곡선의 «떨어진 깊이»는 그 사건에서 실현된 손상상태 DS로 결정되고, DS의 확률은 취약도함수가 줍니다. 즉 취약도함수는 회복 곡선의 시작점을 확률적으로 정하는 입력이고, 회복 곡선은 그 시작점 이후의 시간축을 담당합니다.
+      <span class="en">Fragility fixes, in probability, how deep the drop is; the recovery curve takes over from there along the time axis.</span></p>
+
+    <p class="terms">
+      <b>기능도</b> — 시스템이 본래 기능을 수행하는 정도를 백분율로 나타낸 값 (functionality, Q(t)).<br>
+      <b>견고성</b> — 손상에도 기능 수준을 유지하는 능력 (robustness).<br>
+      <b>신속성</b> — 기능을 회복하는 속도 (rapidity).<br>
+      <b>자원동원력</b> — 복구 자원을 식별하고 동원하는 능력 (resourcefulness).<br>
+      <b>여유도</b> — 대체 가능한 구성요소를 갖는 정도 (redundancy).<br>
+      <b>유휴기간</b> — 지진 직후 물리적 복구가 시작되기 전까지의 지연 구간 (idle time / downtime delay).
+    </p>
+
+    <div class="refs">
+      <b style="color:var(--dim)">참고문헌 · References</b>
+      <ol>
+        <li>Bruneau, M., Chang, S.E., Eguchi, R.T., Lee, G.C., O'Rourke, T.D., Reinhorn, A.M., Shinozuka, M., Tierney, K., Wallace, W.A. &amp; von Winterfeldt, D. (2003). A framework to quantitatively assess and enhance the seismic resilience of communities. <i>Earthquake Spectra</i>, 19(4), 733–752.</li>
+        <li>Cimellaro, G.P., Reinhorn, A.M. &amp; Bruneau, M. (2010). Framework for analytical quantification of disaster resilience. <i>Engineering Structures</i>, 32(11), 3639–3649.</li>
+        <li>Comerio, M.C. (2006). Estimating downtime in loss modeling. <i>Earthquake Spectra</i>, 22(2), 349–365.</li>
+      </ol>
+    </div>
+
+    <div class="pager">
+      <a href="fragility.html">← 3.3 취약도함수 FRAGILITY</a>
+      <a href="../engineering.html">목록 ALL NOTES →</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fx">
+      <span>GSSO — Global Structural Safety Observatory</span>
+      <span>Non-profit · Open record</span>
+      <span id="footStamp">—</span>
+    </div>
+    <p style="margin:0;max-width:80ch">
+      교육 목적의 요약이며 설계 실무의 근거가 아닙니다.
+      <span class="en">An educational summary, not a design authority.</span>
+    </p>
+    <p class="contact">
+      Operated by <b>Jiseong Yoo</b> · Contact <a href="mailto:paul4831@hanyang.ac.kr">paul4831@hanyang.ac.kr</a><br>
+      Hanyang University, Seoul, Republic of Korea · Independent non-profit project
+    </p>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+<script>
+/* 기능도 Q(t) 회복 곡선 · Draw the recovery curve (개념도 illustrative) */
+(function () {
+  var svg = document.getElementById('qPlot');
+  if (!svg) return;
+
+  var X0 = 74, Y0 = 280, W = 780, H = 220;
+  var o = [];
+
+  var xOf = function (f) { return X0 + f * W; };          /* f : 0~1 시간축 */
+  var yOf = function (q) { return Y0 - (q / 100) * H; };  /* q : 0~100 기능도 */
+
+  /* 축 · axes */
+  for (var i = 0; i <= 5; i++) {
+    var gy = Y0 - i * H / 5;
+    o.push('<line x1="' + X0 + '" y1="' + gy + '" x2="' + (X0 + W) + '" y2="' + gy +
+           '" stroke="#1D262C"/>');
+    o.push('<text x="' + (X0 - 10) + '" y="' + (gy + 4) + '" text-anchor="end" font-size="10" ' +
+           'font-family="IBM Plex Mono,monospace" fill="#63737C">' + (i * 20) + '</text>');
+  }
+  o.push('<line x1="' + X0 + '" y1="' + Y0 + '" x2="' + (X0 + W) + '" y2="' + Y0 + '" stroke="#26313A"/>');
+  o.push('<line x1="' + X0 + '" y1="' + (Y0 - H) + '" x2="' + X0 + '" y2="' + Y0 + '" stroke="#26313A"/>');
+  o.push('<text x="' + (X0 + W / 2) + '" y="' + (Y0 + 46) + '" text-anchor="middle" font-size="11" ' +
+         'font-family="IBM Plex Mono,monospace" fill="#94A3AB">time  t  →</text>');
+  o.push('<text transform="translate(20,' + (Y0 - H / 2) + ') rotate(-90)" text-anchor="middle" ' +
+         'font-size="11" font-family="IBM Plex Mono,monospace" fill="#94A3AB">Q ( t )  [ % ]</text>');
+
+  /* 구간 정의 · segments */
+  var f0 = 0.16;   /* 지진 발생 t0 */
+  var f1 = 0.44;   /* 유휴기간 종료 */
+  var f2 = 0.86;   /* 복구 완료 t1 */
+  var qDrop = 34;  /* 잔존 기능도 */
+
+  /* 손실 면적 R · loss area */
+  var area = 'M' + xOf(f0) + ' ' + yOf(100) + ' L' + xOf(f0) + ' ' + yOf(qDrop) +
+             ' L' + xOf(f1) + ' ' + yOf(qDrop + 3);
+  for (var n = 0; n <= 60; n++) {
+    var t = n / 60, fx = f1 + (f2 - f1) * t;
+    var q = (qDrop + 3) + (100 - qDrop - 3) * (1 - Math.pow(1 - t, 1.8));
+    area += ' L' + xOf(fx).toFixed(1) + ' ' + yOf(q).toFixed(1);
+  }
+  area += ' L' + xOf(f2) + ' ' + yOf(100) + ' Z';
+  o.push('<path d="' + area + '" fill="rgba(210,90,70,.16)" stroke="none"/>');
+
+  /* Q(t) 곡선 · curve */
+  var d = 'M' + xOf(0) + ' ' + yOf(100) + ' L' + xOf(f0) + ' ' + yOf(100) +
+          ' L' + xOf(f0) + ' ' + yOf(qDrop) + ' L' + xOf(f1) + ' ' + yOf(qDrop + 3);
+  for (var m = 0; m <= 60; m++) {
+    var u = m / 60, gx2 = f1 + (f2 - f1) * u;
+    var q2 = (qDrop + 3) + (100 - qDrop - 3) * (1 - Math.pow(1 - u, 1.8));
+    d += ' L' + xOf(gx2).toFixed(1) + ' ' + yOf(q2).toFixed(1);
+  }
+  d += ' L' + xOf(1) + ' ' + yOf(100);
+  o.push('<path d="' + d + '" fill="none" stroke="#4FA893" stroke-width="2.2" stroke-linejoin="round"/>');
+
+  /* 표시 · annotations */
+  o.push('<line x1="' + X0 + '" y1="' + yOf(100) + '" x2="' + (X0 + W) + '" y2="' + yOf(100) +
+         '" stroke="#63737C" stroke-dasharray="3 4"/>');
+  o.push('<text x="' + (xOf(f0) - 6) + '" y="' + (Y0 + 18) + '" text-anchor="middle" font-size="10.5" ' +
+         'font-family="IBM Plex Mono,monospace" fill="#E5A93C">t0</text>');
+  o.push('<text x="' + xOf(f2) + '" y="' + (Y0 + 18) + '" text-anchor="middle" font-size="10.5" ' +
+         'font-family="IBM Plex Mono,monospace" fill="#E5A93C">t1</text>');
+
+  /* robustness 화살표 */
+  o.push('<line x1="' + (xOf(f0) - 26) + '" y1="' + yOf(100) + '" x2="' + (xOf(f0) - 26) + '" y2="' +
+         yOf(qDrop) + '" stroke="#5B92C7" stroke-width="1.2"/>');
+  o.push('<text x="' + (xOf(f0) - 32) + '" y="' + yOf(70) + '" text-anchor="end" font-size="10.5" ' +
+         'font-family="IBM Plex Mono,monospace" fill="#5B92C7">robustness</text>');
+
+  /* 유휴기간 · idle period */
+  o.push('<line x1="' + xOf(f0) + '" y1="' + (Y0 - H - 14) + '" x2="' + xOf(f1) + '" y2="' + (Y0 - H - 14) +
+         '" stroke="#94A3AB" stroke-width="1"/>');
+  o.push('<text x="' + xOf((f0 + f1) / 2) + '" y="' + (Y0 - H - 22) + '" text-anchor="middle" font-size="10.5" ' +
+         'font-family="IBM Plex Mono,monospace" fill="#94A3AB">idle period 유휴기간</text>');
+
+  /* rapidity · 회복 기울기 */
+  o.push('<line x1="' + xOf(f1) + '" y1="' + (Y0 - H - 14) + '" x2="' + xOf(f2) + '" y2="' + (Y0 - H - 14) +
+         '" stroke="#4FA893" stroke-width="1"/>');
+  o.push('<text x="' + xOf((f1 + f2) / 2) + '" y="' + (Y0 - H - 22) + '" text-anchor="middle" font-size="10.5" ' +
+         'font-family="IBM Plex Mono,monospace" fill="#4FA893">rapidity 회복 구간</text>');
+
+  /* 손실 면적 라벨 */
+  o.push('<text x="' + xOf((f0 + f2) / 2) + '" y="' + yOf(qDrop - 14) + '" text-anchor="middle" font-size="11" ' +
+         'font-family="IBM Plex Mono,monospace" fill="#D25A46">R = &#8747; [100 &#8722; Q(t)] dt</text>');
+
+  svg.innerHTML = o.join('');
+})();
+</script>
+</body>
+</html>

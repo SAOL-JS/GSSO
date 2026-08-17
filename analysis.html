@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>분석 Analysis — GSSO</title>
+<meta name="description" content="Analysis notes on earthquakes and structural failures, published with sources.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="index.html">GSS<i>O</i></a>
+    <nav class="menu" data-page="analysis" aria-label="주 메뉴 Main menu">
+      <a href="index.html"       data-key="home">HOME <small>홈</small></a>
+      <a href="analysis.html"    data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+      <a href="monitor.html"     data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+      <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+      <a href="about.html"       data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="pagehead">
+    <p class="crumb"><a href="index.html">HOME</a> / <span>01 ANALYSIS</span></p>
+    <h1>분석<span class="en">Analysis — notes on recorded events</span></h1>
+    <p class="intro">
+      기록된 사건 가운데 공학적으로 설명할 여지가 있는 건을 골라 정리합니다. 관측 사실과 공학적 추론을 문단 단위로 분리하고, 추론에는 근거 문헌을 답니다.
+      <span class="en">Selected events are written up in full. Observed facts and engineering inference are kept in separate paragraphs, and every inference carries a reference.</span>
+    </p>
+  </div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="sec-head">
+      <span class="idx">01.1</span>
+      <h2>공개된 글<span class="en">Published notes</span></h2>
+      <span class="flag">예시 3건 — 실제 글로 교체 필요 / placeholder</span>
+    </div>
+
+    <div class="cards">
+      <a class="card" href="analysis.html">
+        <span class="meta"><span>2026-08-15</span><span class="tag t-red">Mww 7.7</span><span class="tag t-gray">L2</span></span>
+        <h3>플로레스 Mww 7.7 — 얕은 지각지진에서 항만 터미널이 먼저 무너진 이유
+          <span class="en">Flores Mww 7.7: why the port terminal failed first</span></h3>
+        <p>MMI 8.2 구간의 비보강 조적조 분포와 관측 피해를 대조합니다.
+          <span class="en">Reported damage compared against the unreinforced-masonry stock in the MMI 8.2 band.</span></p>
+        <span class="go">준비 중 IN PREPARATION</span>
+      </a>
+      <a class="card" href="analysis.html">
+        <span class="meta"><span>2026-08-02</span><span class="tag t-amber">국내 KR</span><span class="tag t-gray">L3</span></span>
+        <h3>서소문고가도로 — 해체 공정을 취약도 시나리오로 다뤄야 하는 이유
+          <span class="en">Seosomun overpass: demolition as a fragility scenario</span></h3>
+        <p>철거 단계의 하중 재분배가 만드는 취약 경로를 정리합니다.
+          <span class="en">Load redistribution during demolition creates failure paths that design checks do not cover.</span></p>
+        <span class="go">준비 중 IN PREPARATION</span>
+      </a>
+      <a class="card" href="analysis.html">
+        <span class="meta"><span>2026-07-30</span><span class="tag t-teal">방법론</span><span class="tag t-gray">METHOD</span></span>
+        <h3>Mww 6.8인데 MJMA 7.1 — 규모 척도가 다르면 무엇을 비교할 수 없는가
+          <span class="en">Mww 6.8 vs MJMA 7.1: what stops being comparable</span></h3>
+        <p>구마모토 사례로 본 규모 병기 원칙과 임의 환산 금지 규칙.
+          <span class="en">The Kumamoto case, and why this site never converts between magnitude scales.</span></p>
+        <span class="go">준비 중 IN PREPARATION</span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <section>
+      <div class="sec-head">
+        <span class="idx">01.2</span>
+        <h2>글의 구성 방식<span class="en">How each note is structured</span></h2>
+      </div>
+      <p class="lead-in">
+        분석 글은 아래 네 단계를 순서대로 지킵니다. 단계가 섞이면 관측과 해석의 경계가 사라지기 때문입니다.
+        <span class="en">Every note follows these four steps in order, so that observation and interpretation never blur together.</span>
+      </p>
+      <div class="grid4">
+        <div>
+          <h3>① 관측 Observation</h3>
+          <p>기관이 발표한 제원만 적습니다. 규모·심도·좌표·진도, 그리고 발표 시각.
+            <span class="en">Agency-reported parameters only: magnitude, depth, location, intensity, and the time of release.</span></p>
+        </div>
+        <div>
+          <h3>② 노출 Exposure</h3>
+          <p>흔들림을 받은 지역의 건축물 재고와 구조형식을 정리합니다.
+            <span class="en">The building stock and structural types inside the shaken area.</span></p>
+        </div>
+        <div>
+          <h3>③ 추론 Inference</h3>
+          <p>피해 양상을 취약도 관점에서 해석합니다. 모든 문장에 근거 문헌을 답니다.
+            <span class="en">Damage patterns read through a fragility lens, each statement carrying a reference.</span></p>
+        </div>
+        <div>
+          <h3>④ 미확정 Open questions</h3>
+          <p>정식 조사보고서가 나와야 답할 수 있는 항목을 남깁니다.
+            <span class="en">What cannot be settled until a formal investigation report is available.</span></p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fx">
+      <span>GSSO — Global Structural Safety Observatory</span>
+      <span>Non-profit · Open record</span>
+      <span id="footStamp">—</span>
+    </div>
+    <p style="margin:0;max-width:80ch">
+      분석 글은 개인의 공학적 해석이며, 공식 조사 결과가 아닙니다. 조사위원회의 발표가 나오면 그 내용이 우선합니다.
+      <span class="en">Analysis notes are one engineer's reading of published data, not official findings. Where an investigation report exists, it takes precedence.</span>
+    </p>
+    <p class="contact">
+      Operated by <b>Jiseong Yoo</b> · Contact <a href="mailto:paul4831@hanyang.ac.kr">paul4831@hanyang.ac.kr</a><br>
+      Hanyang University, Seoul, Republic of Korea · Independent non-profit project
+    </p>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
