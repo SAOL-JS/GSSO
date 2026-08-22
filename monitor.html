@@ -13,27 +13,30 @@
 </head>
 <body>
 
+<a class="skip" href="#main">본문 바로가기 <span lang="en">Skip to content</span></a>
+
 <header class="topbar">
   <div class="wrap">
-    <a class="mark" href="index.html">GSS<i>O</i></a>
+    <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="monitor" aria-label="주 메뉴 Main menu">
-      <a href="index.html"       data-key="home">HOME <small>홈</small></a>
-      <a href="analysis.html"    data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
-      <a href="monitor.html"     data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+      <a href="index.html" data-key="home">HOME <small>홈</small></a>
+      <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+      <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
       <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="about.html"       data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+      <a href="data.html" data-key="data"><em>04</em>DATA <small>데이터</small></a>
+      <a href="about.html" data-key="about"><em>05</em>ABOUT <small>소개</small></a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 <div class="wrap">
   <div class="pagehead">
     <p class="crumb"><a href="index.html">HOME</a> / <span>02 MONITOR</span></p>
-    <h1>모니터<span class="en">Monitor — live console and event log</span></h1>
+    <h1>모니터<span class="en" lang="en">Monitor — live console and event log</span></h1>
     <p class="intro">
       위쪽 표는 USGS 실시간 피드에서 최근 24시간의 M2.5 이상 지진을 그대로 받아 표시합니다. 아래쪽 목록은 이 사이트가 별도로 기록·검토한 사건입니다.
-      <span class="en">The table below is read live from the USGS feed (M2.5+, past 24 hours). The log further down holds the events this site has recorded and reviewed by hand.</span>
+      <span class="en" lang="en">The table below is read live from the USGS feed (M2.5+, past 24 hours). The log further down holds the events this site has recorded and reviewed by hand.</span>
     </p>
     <div class="stamp">
       <div>
@@ -49,7 +52,7 @@
   <section>
     <div class="sec-head">
       <span class="idx">02.1</span>
-      <h2>실시간 콘솔<span class="en">Live console — USGS 2.5_day feed</span></h2>
+      <h2>실시간 콘솔<span class="en" lang="en">Live console — USGS 2.5_day feed</span></h2>
     </div>
 
     <div class="filters" role="group" aria-label="규모 필터 Magnitude filter">
@@ -79,7 +82,7 @@
 
     <p class="lead-in" style="margin:20px 0 0">
       규모 옆의 작은 글자(magType)는 USGS가 사용한 척도 코드입니다. 이 표는 그 값을 변환 없이 그대로 보여줍니다.
-      <span class="en">The small label beside each magnitude is the USGS magType field, shown exactly as delivered — no conversion is applied.</span>
+      <span class="en" lang="en">The small label beside each magnitude is the USGS magType field, shown exactly as delivered — no conversion is applied.</span>
     </p>
   </section>
 </div>
@@ -90,11 +93,11 @@
     <section>
       <div class="sec-head">
         <span class="idx">02.2</span>
-        <h2>기록된 사건<span class="en">Recorded events — reviewed by hand</span></h2>
+        <h2>기록된 사건<span class="en" lang="en">Recorded events — reviewed by hand</span></h2>
       </div>
       <p class="lead-in">
         규모는 발표 기관이 사용한 척도를 그대로 표기합니다. Mww는 모멘트규모(W-phase 해), MJMA는 일본 기상청 규모이며, 척도가 확인되지 않은 값은 M으로만 적고 환산하지 않습니다.
-        <span class="en">Magnitudes carry the scale used by the reporting agency. Unverified scales are written as plain M and never converted.</span>
+        <span class="en" lang="en">Magnitudes carry the scale used by the reporting agency. Unverified scales are written as plain M and never converted.</span>
       </p>
       <div class="rows">
         <a class="mrow" href="monitor.html">
@@ -102,7 +105,7 @@
           <span class="m"><b style="color:var(--red)">7.7</b><span>Mww</span></span>
           <span class="p"><b>인도네시아 플로레스 — Ende 북북서 68 km</b>
             <span>모멘트규모 Mww 7.7 · 심도 10 km · 쓰나미경보 발령 후 해제
-              <span class="en">Moment magnitude Mww 7.7 · depth 10 km · tsunami warning issued, later lifted</span></span></span>
+              <span class="en" lang="en">Moment magnitude Mww 7.7 · depth 10 km · tsunami warning issued, later lifted</span></span></span>
           <span class="tag t-amber">PAGER Yellow</span>
         </a>
         <a class="mrow" href="monitor.html">
@@ -110,7 +113,7 @@
           <span class="m"><b style="color:var(--red)">7.4</b><span>M · 척도미확인</span></span>
           <span class="p"><b>콜롬비아 서부 — San José del Palmar 남쪽</b>
             <span>매체 표기 M 7.4 — 척도 미확인 · 사망 285명 · 주택 84,000동 이상 피해
-              <span class="en">Reported as M 7.4; scale not confirmed · 285 deaths · 84,000+ homes damaged</span></span></span>
+              <span class="en" lang="en">Reported as M 7.4; scale not confirmed · 285 deaths · 84,000+ homes damaged</span></span></span>
           <span class="tag t-red">국가재난 선포</span>
         </a>
         <a class="mrow" href="monitor.html">
@@ -118,7 +121,7 @@
           <span class="m"><b style="font-size:15px;color:var(--faint)">KR</b><span>비지진</span></span>
           <span class="p"><b>전남광주 봉선동 — 아파트 옥상 난간 붕괴</b>
             <span>지진 무관 구조 사고 · 약 25 m 구간 · 인명피해 없음
-              <span class="en">Non-seismic structural failure · ~25 m of parapet · no casualties</span></span></span>
+              <span class="en" lang="en">Non-seismic structural failure · ~25 m of parapet · no casualties</span></span></span>
           <span class="tag t-gray">원인 조사 중</span>
         </a>
         <a class="mrow" href="monitor.html">
@@ -126,7 +129,7 @@
           <span class="m"><b style="color:var(--red)">6.8</b><span>Mww · MJMA 7.1</span></span>
           <span class="p"><b>일본 구마모토현 남부</b>
             <span>모멘트규모 Mww 6.8 / 기상청규모 MJMA 7.1 병기 · JMA 진도 7
-              <span class="en">Mww 6.8 and MJMA 7.1 co-reported · JMA intensity 7</span></span></span>
+              <span class="en" lang="en">Mww 6.8 and MJMA 7.1 co-reported · JMA intensity 7</span></span></span>
           <span class="tag t-amber">진도 7</span>
         </a>
       </div>
@@ -150,7 +153,7 @@
     </div>
     <p style="margin:0;max-width:80ch">
       지진 제원은 <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php" target="_blank" rel="noopener">USGS Earthquake Hazards Program</a> 실시간 피드를 인용하며, 값은 재분석에 따라 수정될 수 있습니다. 사상자 수는 잠정치입니다.
-      <span class="en">Magnitudes are revised as data are reanalysed; casualty figures are provisional.</span>
+      <span class="en" lang="en">Magnitudes are revised as data are reanalysed; casualty figures are provisional.</span>
     </p>
     <p class="contact">
       Operated by <b>Jiseong Yoo</b> · Contact <a href="mailto:paul4831@hanyang.ac.kr">paul4831@hanyang.ac.kr</a><br>

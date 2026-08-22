@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>규모 척도가 다르면 무엇을 비교할 수 없는가 — GSSO</title>
+<meta name="description" content="Mww and MJMA measure the same earthquake differently. What that means for comparison, and why this record never converts between scales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">본문 바로가기 <span lang="en">Skip to content</span></a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="../index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
+    <nav class="menu" data-page="analysis" aria-label="주 메뉴 Main menu">
+      <a href="../index.html" data-key="home">HOME <small>홈</small></a>
+      <a href="../analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+      <a href="../monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+      <a href="../engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+      <a href="../data.html" data-key="data"><em>04</em>DATA <small>데이터</small></a>
+      <a href="../about.html" data-key="about"><em>05</em>ABOUT <small>소개</small></a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<div class="wrap">
+  <div class="pagehead">
+    <p class="crumb"><a href="../index.html">HOME</a> / <a href="../analysis.html">01 ANALYSIS</a> / <span>METHOD</span></p>
+    <h1>규모 척도가 다르면 무엇을 비교할 수 없는가
+      <span class="en" lang="en">M<sub>ww</sub> and M<sub>JMA</sub>: what stops being comparable</span></h1>
+    <p class="intro">
+      2016년 구마모토 지진의 규모는 M<sub>JMA</sub> 7.3이자 M<sub>w</sub> 7.0입니다. 두 값 모두 옳습니다. 이 글은 그 차이가 어디에서 오는지, 그리고 이 사이트가 두 값을 하나로 합치지 않는 이유를 정리합니다.
+      <span class="en" lang="en">The 2016 Kumamoto earthquake was M<sub>JMA</sub> 7.3 and also M<sub>w</sub> 7.0. Both are correct. This note explains where the gap comes from, and why this record keeps the two apart.</span>
+    </p>
+  </div>
+
+  <div class="doc">
+
+    <dl class="params">
+      <div><dt>유형 Type</dt><dd>METHOD</dd></div>
+      <div><dt>근거 층위 Level</dt><dd><span class="lv lv-1">L1</span> 계측</dd></div>
+      <div><dt>작성 Written</dt><dd>2026-08-22</dd></div>
+      <div><dt>상태 Status</dt><dd style="color:var(--amber)">초안 DRAFT</dd></div>
+    </dl>
+
+    <!-- ═══════════ 1 ═══════════ -->
+    <h2>1. 문제<span class="en" lang="en">The problem</span></h2>
+
+    <p>지진이 나면 여러 기관이 서로 다른 숫자를 발표합니다. 언론은 대개 그중 하나만 골라 «규모 7.3»이라고 적습니다. 그러나 이 숫자는 «지진의 크기»라는 단일한 물리량을 직접 잰 값이 아닙니다. 기관마다 어떤 지진계로, 지진파의 어느 부분을, 어떤 경험식으로 처리했는지가 다릅니다.</p>
+
+    <p>일본 기상청(JMA)은 이 점을 명시적으로 밝히고 있습니다.</p>
+
+    <div class="pair">
+      <div class="src">
+        <span class="lbl">원문 발췌 · Source excerpt</span>
+        <p lang="ja">「マグニチュードには…国際的に統一された規格はありません」</p>
+        <cite>気象庁, 地震情報等に用いるマグニチュードについて (info_magnitude) · 冒頭 §1</cite>
+      </div>
+      <div class="note">
+        <span class="lbl">해설 · Commentary</span>
+        <p>규모에는 국제적으로 통일된 규격이 없다는 뜻입니다. 즉 «M 7.3»이라는 표기는, 어느 척도로 잰 값인지를 밝히기 전까지는 완결된 정보가 아닙니다. 이것이 이 사이트가 모든 규모 옆에 척도 코드를 붙이는 근거입니다.</p>
+      </div>
+    </div>
+
+    <figure class="fig">
+      <div class="slot">
+        <b>Figure 1 — 그림 자리</b>
+        <span>같은 지진에 대해 기관별로 발표된 규모 값을 나란히 놓은 막대그림.
+          USGS ComCat의 magType별 값(Mww · Mwc · mb · Ms)과 JMA의 M<sub>JMA</sub>를 함께 표시.</span>
+        <span>넣을 때 → <code>&lt;div class="slot"&gt;…&lt;/div&gt;</code> 전체를
+          <code>&lt;img src="fig1-magnitudes.png" alt="…"&gt;</code> 로 교체</span>
+      </div>
+      <figcaption>
+        <b>Figure 1</b>
+        하나의 지진에 붙는 여러 규모 값. 값이 다른 것은 오류가 아니라, 서로 다른 질문에 대한 서로 다른 답입니다.
+        <span class="en" lang="en">Different magnitudes for one earthquake are not errors; they are answers to different questions.</span>
+        <span class="src">그림 출처 · Source: — (작성 시 기입)</span>
+      </figcaption>
+    </figure>
+
+    <!-- ═══════════ 2 ═══════════ -->
+    <h2>2. 두 척도는 무엇을 재는가<span class="en" lang="en">What each scale measures</span></h2>
+
+    <h3>2.1 M<sub>ww</sub> — 모멘트규모(W-phase 해)</h3>
+
+    <p>USGS가 중대형 지진에 대해 기본으로 내놓는 값입니다. 지진파형 전체를 역산해 지진모멘트 M<sub>0</sub>를 구하고, 거기에서 규모를 계산합니다.</p>
+
+    <div class="pair">
+      <div class="src">
+        <span class="lbl">원문 발췌 · Source excerpt</span>
+        <p lang="en">“Authoritative USGS magnitude if computed.”</p>
+        <cite>USGS, Magnitude Types table — row “Mww (Moment W-phase)”, Comments 열</cite>
+      </div>
+      <div class="note">
+        <span class="lbl">해설 · Commentary</span>
+        <p>같은 표에 따르면 M<sub>ww</sub>는 W-phase의 중심 모멘트텐서 역산으로 구하며, 전 세계 M5.0 이상 지진에 대해 계산되고 M5.5 이상에서 안정적입니다. 산정식은 M<sub>W</sub> = (2/3)(log₁₀M<sub>0</sub> − 16.1), 단위는 dyne·cm입니다.</p>
+        <p>이 식은 공학 지식 <a href="../engineering/earthquake.html">3.2 내진공학</a>에 적어 둔 Hanks &amp; Kanamori (1979)의 M<sub>w</sub> = (2/3)log₁₀M<sub>0</sub> − 10.7과 같은 식입니다. (2/3)×16.1 = 10.73이므로 상수를 괄호 안팎 어디에 두느냐의 차이일 뿐입니다.</p>
+      </div>
+    </div>
+
+    <h3>2.2 M<sub>JMA</sub> — 기상청규모</h3>
+
+    <p>일본 기상청이 발표하는 값입니다. 지진파형의 <strong>최대진폭</strong>을 읽고 거리감쇠 보정을 더해 계산합니다. 얕은 지진(H ≤ 60 km)에 쓰는 변위 기반 산정식은 다음과 같습니다.</p>
+
+    <div class="eq">
+      M<sub>J</sub> &nbsp;<b>=</b>&nbsp; ½ log ( A<sub>N</sub>² + A<sub>E</sub>² ) &nbsp;<b>+</b>&nbsp; 1.73 log Δ &nbsp;<b>−</b>&nbsp; 0.83
+    </div>
+    <p class="eqnote">
+      A<sub>N</sub>, A<sub>E</sub>는 남북·동서 성분의 최대변위진폭, Δ는 진앙거리(km)입니다. 坪井 (1954)의 식이며, 기상청 「利用の手引き」에 수록되어 있습니다.
+    </p>
+
+    <p>중요한 차이는 <strong>입력이 다르다</strong>는 점입니다. M<sub>ww</sub>는 파형 전체를 쓰고, M<sub>JMA</sub>는 최대진폭 하나를 씁니다. 그래서 두 값은 애초에 같아질 이유가 없습니다.</p>
+
+    <figure class="fig">
+      <div class="slot">
+        <b>Figure 2 — 그림 자리</b>
+        <span>같은 지진기록 한 개를 두 가지 방식으로 처리하는 과정 비교도.
+          왼쪽: 파형 전체 → CMT 역산 → M₀ → M<sub>w</sub> / 오른쪽: 최대진폭 A → 거리보정 → M<sub>J</sub>.</span>
+        <span>SVG로 직접 그리면 <code>&lt;svg viewBox="0 0 900 320"&gt;</code> 를 <code>.slot</code> 자리에 넣으면 됩니다</span>
+      </div>
+      <figcaption>
+        <b>Figure 2</b>
+        입력이 다른 두 계산 경로. 왼쪽은 파형 전체를, 오른쪽은 진폭 한 점을 씁니다.
+        <span class="en" lang="en">Two computation paths with different inputs: the whole waveform, or a single peak amplitude.</span>
+        <span class="src">그림 출처 · Source: 직접 작성 (개념도)</span>
+      </figcaption>
+    </figure>
+
+    <!-- ═══════════ 3 ═══════════ -->
+    <h2>3. 차이는 규모가 커질수록 벌어진다<span class="en" lang="en">The gap widens with size</span></h2>
+
+    <p>최대진폭을 쓰는 척도에는 «머리가 눌리는» 현상이 있습니다. 지진이 커지면 파의 지속시간과 파장이 함께 길어지는데, 짧은 주기를 보는 지진계는 그 증가분을 담지 못합니다. 기상청도 M<sub>JMA</sub>의 단점으로 이 점을 적고 있습니다.</p>
+
+    <div class="pair">
+      <div class="src">
+        <span class="lbl">원문 발췌 · Source excerpt</span>
+        <p lang="ja">「巨大な地震(M8を超えるものなど)の規模は正しく決められない」</p>
+        <cite>気象庁, info_magnitude — 比較表「短所」欄 (M<sub>j</sub> 열)</cite>
+      </div>
+      <div class="note">
+        <span class="lbl">해설 · Commentary</span>
+        <p>M8을 넘는 거대지진에서는 M<sub>JMA</sub>가 규모를 제대로 결정하지 못한다는 뜻입니다. 실제로 2011년 도호쿠 지방 태평양 앞바다 지진에서 M<sub>JMA</sub>는 최종 8.4였고 M<sub>w</sub>는 9.0이었습니다.</p>
+        <p>반대로 M8보다 작은 지진에서는 M<sub>JMA</sub> &gt; M<sub>w</sub> 가 되는 경우가 많습니다 — 1995년 효고현 남부 M<sub>J</sub> 7.3 / M<sub>w</sub> 6.9, 2016년 구마모토 M<sub>J</sub> 7.3 / M<sub>w</sub> 7.0, 2024년 노토반도 M<sub>J</sub> 7.6 / M<sub>w</sub> 7.5 (減災復興学研究 2026, 研究ノート).</p>
+      </div>
+    </div>
+
+    <p>즉 두 척도의 차이는 상수가 아닙니다. <strong>부호까지 바뀝니다.</strong> «M<sub>JMA</sub>에서 0.3을 빼면 M<sub>w</sub>» 같은 어림셈이 성립하지 않는 이유입니다.</p>
+
+    <figure class="fig">
+      <div class="slot">
+        <b>Figure 3 — 그림 자리</b>
+        <span>가로축 M<sub>JMA</sub>, 세로축 M<sub>JMA</sub> − M<sub>w</sub> 의 산점도.
+          JMA CMT 해 자료로 작성. y = 0 기준선을 넣어 부호가 뒤집히는 구간을 보이게 합니다.</span>
+        <span>MATLAB에서 그린 뒤 <code>print(gcf,'fig3','-dpng','-r200')</code> 로 내보내면 됩니다</span>
+      </div>
+      <figcaption>
+        <b>Figure 3</b>
+        규모대에 따라 차이의 부호가 뒤집힙니다. 단일 환산식이 성립하지 않는다는 뜻입니다.
+        <span class="en" lang="en">The sign of the difference flips with magnitude, so no single conversion holds.</span>
+        <span class="src">그림 출처 · Source: — (자료 확보 후 기입)</span>
+      </figcaption>
+    </figure>
+
+    <!-- ═══════════ 4 ═══════════ -->
+    <h2>4. 그래서 무엇을 비교할 수 없는가<span class="en" lang="en">What stops being comparable</span></h2>
+
+    <p>이 글의 결론은 «규모를 비교하지 말라»가 아닙니다. 비교의 대상을 정확히 좁히자는 것입니다.</p>
+
+    <div class="tablewrap">
+      <table class="eq-table">
+        <thead>
+          <tr><th>비교</th><th>가능 여부</th><th>이유</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pl">같은 척도끼리 (M<sub>ww</sub> ↔ M<sub>ww</sub>)</td>
+            <td><span class="tag t-teal">가능</span></td>
+            <td>동일한 정의와 동일한 산정식</td>
+          </tr>
+          <tr>
+            <td class="pl">다른 척도끼리 (M<sub>ww</sub> ↔ M<sub>JMA</sub>)</td>
+            <td><span class="tag t-red">불가</span></td>
+            <td>입력·산정식이 다르고 차이의 부호가 규모대에 따라 바뀜</td>
+          </tr>
+          <tr>
+            <td class="pl">규모 ↔ 피해 규모</td>
+            <td><span class="tag t-amber">주의</span></td>
+            <td>피해는 규모가 아니라 부지의 흔들림(진도·IM)이 결정</td>
+          </tr>
+          <tr>
+            <td class="pl">환산식을 통한 비교</td>
+            <td><span class="tag t-amber">조건부</span></td>
+            <td>지역·심도별로 서로 다른 식이 제안되어 있어 출처 명시가 필수</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>마지막 항목이 특히 중요합니다. 일본의 장기평가에서도 M<sub>J</sub>→M<sub>W</sub> 변환은 «육역의 얕은 지진»과 «그 외»를 나누어 서로 다른 관계식으로 수행합니다 (地震調査研究推進本部, 확률론적 지진동 예측지도 설명서 §2.2.3). 하나의 식이 모든 경우에 통하지 않는다는 것을 공식 문서가 전제하고 있는 셈입니다.</p>
+
+    <!-- ═══════════ 5 ═══════════ -->
+    <h2>5. 이 사이트의 규칙<span class="en" lang="en">The rule adopted here</span></h2>
+
+    <ul>
+      <li><strong>발표 기관의 척도 코드를 그대로 적습니다.</strong> M<sub>ww</sub>, M<sub>JMA</sub>, M<sub>L</sub>, m<sub>b</sub> 등.</li>
+      <li><strong>척도가 확인되지 않으면 M으로만 적고 «척도 미확인»을 병기합니다.</strong> 추정하지 않습니다.</li>
+      <li><strong>임의 환산을 하지 않습니다.</strong> 환산이 꼭 필요한 경우에는 사용한 관계식과 그 출처, 적용 조건을 함께 적습니다.</li>
+      <li><strong>두 값이 모두 있으면 둘 다 적습니다.</strong> 하나를 고르는 순간 정보가 사라집니다.</li>
+      <li>실시간 콘솔은 USGS 피드의 <code>magType</code> 필드를 변환 없이 그대로 표시합니다.</li>
+    </ul>
+
+    <!-- ═══════════ 6 ═══════════ -->
+    <h2>6. 미확정<span class="en" lang="en">Open questions</span></h2>
+    <ul>
+      <li>M<sub>JMA</sub> − M<sub>w</sub> 의 지역별 경향을 국내 자료(KMA M<sub>L</sub>)에도 적용할 수 있는지는 확인하지 못했습니다.</li>
+      <li>Figure 3의 산점도를 직접 작성하려면 JMA CMT 해 목록의 이용 조건을 먼저 확인해야 합니다.</li>
+    </ul>
+
+    <p class="terms">
+      <b>규모</b> — 지진이 방출한 에너지의 크기를 나타내는 지표. 한 지진에 하나의 값 (magnitude).<br>
+      <b>진도</b> — 특정 지점에서 관측된 흔들림의 정도. 지점마다 값이 다름 (seismic intensity).<br>
+      <b>지진모멘트</b> — 단층면적 × 평균 미끄러짐량 × 강성률로 정의되는 물리량 (seismic moment, M<sub>0</sub>).<br>
+      <b>W-phase</b> — P파와 함께 도달하는 매우 긴 주기의 위상. 대지진의 규모를 빠르게 구하는 데 쓰임 (W phase).<br>
+      <b>CMT 해</b> — 파형을 가장 잘 설명하는 진원 위치·규모·발진기구를 동시에 구하는 해석 (centroid moment tensor solution).<br>
+      <b>포화</b> — 지진이 커져도 척도값이 더 이상 커지지 않는 현상 (magnitude saturation).<br>
+      <b>magType</b> — USGS 피드에서 규모의 산정 방식을 나타내는 코드 필드 (magnitude type).
+    </p>
+
+    <div class="refs">
+      <b style="color:var(--dim)">참고문헌 · References</b>
+      <ol>
+        <li>U.S. Geological Survey. <i>Magnitude Types</i>. <a href="https://www.usgs.gov/programs/earthquake-hazards/magnitude-types" target="_blank" rel="noopener">usgs.gov/programs/earthquake-hazards/magnitude-types</a></li>
+        <li>気象庁. <i>地震情報等に用いるマグニチュードについて</i>. <a href="https://www.jma.go.jp/jma/kishou/know/jishin/joho/info_magnitude.html" target="_blank" rel="noopener">jma.go.jp</a></li>
+        <li>気象庁. <i>震源リスト 利用の手引き</i> — 気象官署マグニチュード M<sub>J</sub> の算出式. <a href="https://www.data.jma.go.jp/eqev/data/bulletin/catalog/notes_j.html" target="_blank" rel="noopener">data.jma.go.jp</a></li>
+        <li>坪井忠二 (1954). 地震動の最大振幅から地震の規模Mを定めることについて. <i>地震 2</i>, 7, 185–193.</li>
+        <li>Hanks, T.C. &amp; Kanamori, H. (1979). A moment magnitude scale. <i>Journal of Geophysical Research</i>, 84(B5), 2348–2350.</li>
+        <li>減災復興学研究 (2026). 日本列島における気象庁マグニチュードとモーメントマグニチュードの差についての予備的検討. <i>減災復興学研究</i>, 3, 33–.</li>
+        <li>地震調査研究推進本部. <i>確率論的地震動予測地図の作成手法</i> §2.2.3 — M<sub>J</sub>–M<sub>W</sub> 変換. <a href="https://jishin.go.jp/main/choukihyoka/04mar_kakuritsu/setsumei_3.pdf" target="_blank" rel="noopener">jishin.go.jp</a></li>
+      </ol>
+    </div>
+
+    <p class="terms" style="margin-top:28px">
+      <b>수정 이력 · Revisions</b><br>
+      2026-08-22 — 초안 작성. Figure 1·3 미삽입, 국내(KMA) 적용 여부 미확인.
+    </p>
+
+    <div class="pager">
+      <a href="../analysis.html">← 목록 ALL NOTES</a>
+      <a href="../engineering/earthquake.html">3.2 내진공학 EARTHQUAKE ENGINEERING →</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fx">
+      <span>GSSO — Global Structural Safety Observatory</span>
+      <span>Non-profit · Open record</span>
+      <span id="footStamp">—</span>
+    </div>
+    <p style="margin:0;max-width:80ch">
+      분석 글은 개인의 공학적 해석이며, 공식 조사 결과가 아닙니다. 인용한 수치는 각 기관의 발표값이며 재분석에 따라 수정될 수 있습니다.
+      <span class="en" lang="en">An individual engineering reading, not an official finding. Cited values are agency figures and may be revised.</span>
+    </p>
+    <p class="contact">
+      Operated by <b>Jiseong Yoo</b> · Contact <a href="mailto:paul4831@hanyang.ac.kr">paul4831@hanyang.ac.kr</a><br>
+      Hanyang University, Seoul, Republic of Korea · Independent non-profit project
+    </p>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

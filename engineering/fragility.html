@@ -12,33 +12,36 @@
 </head>
 <body>
 
+<a class="skip" href="#main">본문 바로가기 <span lang="en">Skip to content</span></a>
+
 <header class="topbar">
   <div class="wrap">
-    <a class="mark" href="../index.html">GSS<i>O</i></a>
+    <a class="mark" href="../index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="engineering" aria-label="주 메뉴 Main menu">
-      <a href="../index.html"       data-key="home">HOME <small>홈</small></a>
-      <a href="../analysis.html"    data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
-      <a href="../monitor.html"     data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+      <a href="../index.html" data-key="home">HOME <small>홈</small></a>
+      <a href="../analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+      <a href="../monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
       <a href="../engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="../about.html"       data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+      <a href="../data.html" data-key="data"><em>04</em>DATA <small>데이터</small></a>
+      <a href="../about.html" data-key="about"><em>05</em>ABOUT <small>소개</small></a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 <div class="wrap">
   <div class="pagehead">
     <p class="crumb"><a href="../index.html">HOME</a> / <a href="../engineering.html">03 ENGINEERING</a> / <span>3.3</span></p>
-    <h1>취약도함수<span class="en">Fragility functions — probability of exceeding a damage state</span></h1>
+    <h1>취약도함수<span class="en" lang="en">Fragility functions — probability of exceeding a damage state</span></h1>
     <p class="intro">
       취약도함수는 «이 정도로 흔들리면 이 구조물이 이만큼 손상될 확률» 하나를 나타내는 곡선입니다. 확정적인 안전 판정 대신 확률을 쓰는 이유는, 같은 IM 값에서도 손상 결과가 갈리기 때문입니다.
-      <span class="en">A fragility function gives the probability that a structure exceeds a damage state at a given level of shaking — probability, because the same IM does not always produce the same outcome.</span>
+      <span class="en" lang="en">A fragility function gives the probability that a structure exceeds a damage state at a given level of shaking — probability, because the same IM does not always produce the same outcome.</span>
     </p>
   </div>
 
   <div class="doc">
 
-    <h2>정의<span class="en">Definition</span></h2>
+    <h2>정의<span class="en" lang="en">Definition</span></h2>
     <div class="eq">
       P( DS ≥ ds<sub>i</sub> | IM = x ) &nbsp;<b>=</b>&nbsp; Φ ( ln( x / θ<sub>i</sub> ) / β<sub>i</sub> )
     </div>
@@ -46,7 +49,7 @@
       Φ 표준정규 누적분포함수 · θᵢ 손상상태 i의 중앙값(median IM) · βᵢ 대수표준편차(logarithmic standard deviation).
     </p>
     <p>즉 취약도함수는 «손상상태 i에 도달하게 만드는 IM»이 대수정규분포를 따른다고 보고, 그 누적분포를 그린 것입니다. θ는 곡선의 좌우 위치(강한 구조일수록 오른쪽), β는 곡선의 완만함(불확실성이 클수록 눕습니다)을 결정합니다.
-      <span class="en">The IM that causes damage state i is treated as lognormal; θ shifts the curve, β flattens it.</span></p>
+      <span class="en" lang="en">The IM that causes damage state i is treated as lognormal; θ shifts the curve, β flattens it.</span></p>
   </div>
 </div>
 
@@ -72,7 +75,7 @@
 <div class="wrap">
   <div class="doc">
 
-    <h2>손상상태<span class="en">Damage states</span></h2>
+    <h2>손상상태<span class="en" lang="en">Damage states</span></h2>
     <p>손상상태는 임의로 정하는 것이 아니라, 관측 가능한 물리적 기준으로 정의해야 재현성이 생깁니다. 흔히 쓰는 4단계 구분은 다음과 같습니다.</p>
     <ul>
       <li><strong>DS1 경미 slight</strong> — 미세균열. 기능 유지.</li>
@@ -81,9 +84,9 @@
       <li><strong>DS4 완전 complete</strong> — 붕괴 또는 복구 불가.</li>
     </ul>
     <p>손상상태는 서로 배타적이지 않고 «초과» 개념이므로, 곡선은 항상 DS1 ≥ DS2 ≥ DS3 ≥ DS4 순서로 위에 놓입니다.
-      <span class="en">Because the curves are exceedance probabilities, they must nest in that order.</span></p>
+      <span class="en" lang="en">Because the curves are exceedance probabilities, they must nest in that order.</span></p>
 
-    <h2>어떻게 만드는가<span class="en">How they are built</span></h2>
+    <h2>어떻게 만드는가<span class="en" lang="en">How they are built</span></h2>
     <ul>
       <li><strong>해석적 analytical</strong> — 지진기록 세트를 점증적으로 키우며 비선형 동적해석을 반복하고(IDA), 각 기록이 손상상태를 넘긴 IM을 모아 대수정규분포를 적합합니다.</li>
       <li><strong>경험적 empirical</strong> — 실제 지진 후 조사된 IM–DS 쌍을 회귀합니다. 표본이 지역·구조형식에 묶이는 한계가 있습니다.</li>
@@ -100,9 +103,9 @@
       IMⱼ는 j번째 지진기록이 해당 손상상태를 유발한 IM 값, n은 기록 수입니다. 자료가 절단(censored)된 경우에는 최대우도추정을 써야 합니다 — Baker (2015).
     </p>
 
-    <h2>이 사이트에서의 쓰임<span class="en">Use in this record</span></h2>
+    <h2>이 사이트에서의 쓰임<span class="en" lang="en">Use in this record</span></h2>
     <p>기록된 사건에서 «관측된 IM»과 «조사된 DS»가 함께 확보되면 그 쌍(IM–DS pair)을 데이터베이스에 넣습니다. 다만 정식 조사보고서로 DS가 확정되기 전에는 넣지 않습니다 — 준실시간 피해 집계는 DS 판정의 근거가 될 수 없기 때문입니다.
-      <span class="en">An IM–DS pair enters the database only once a formal report fixes the damage state; provisional damage counts cannot establish DS.</span></p>
+      <span class="en" lang="en">An IM–DS pair enters the database only once a formal report fixes the damage state; provisional damage counts cannot establish DS.</span></p>
 
     <p class="terms">
       <b>취약도함수</b> — 주어진 IM에서 특정 손상상태를 초과할 확률을 주는 함수 (fragility function).<br>
@@ -140,7 +143,7 @@
     </div>
     <p style="margin:0;max-width:80ch">
       교육 목적의 요약이며 설계 실무의 근거가 아닙니다.
-      <span class="en">An educational summary, not a design authority.</span>
+      <span class="en" lang="en">An educational summary, not a design authority.</span>
     </p>
     <p class="contact">
       Operated by <b>Jiseong Yoo</b> · Contact <a href="mailto:paul4831@hanyang.ac.kr">paul4831@hanyang.ac.kr</a><br>

@@ -11,7 +11,7 @@
 
   --ink:#0B0F12; --ink2:#111A20; --panel:#141C22; --panel2:#1A242B;
   --line:#26313A; --line2:#1D262C;
-  --fg:#E8EDEB; --dim:#94A3AB; --faint:#63737C;
+  --fg:#E8EDEB; --dim:#A3B0B7; --faint:#87959D; --hint:#63737C;
   --amber:#E5A93C; --red:#D25A46; --teal:#4FA893; --blue:#5B92C7;
 
   --sans: "IBM Plex Sans", "Pretendard Variable", Pretendard, -apple-system, "Noto Sans KR", sans-serif;
@@ -352,4 +352,114 @@ footer a{color:var(--blue)}
   .dot,.hero-bg svg g{animation:none}
   .card,.ecard{transition:none}
   .card:hover{transform:none}
+}
+
+/* =====================================================================
+   추가 · Added — 접근성 및 새 컴포넌트
+   Accessibility helpers and new components
+   ===================================================================== */
+
+/* ---------- 본문 바로가기 · Skip link ---------- */
+.skip{position:absolute;left:-9999px;top:0;z-index:60;
+      background:var(--amber);color:#0B0F12;padding:12px 20px;
+      font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-decoration:none}
+.skip:focus{left:0}
+.skip span{font-family:var(--serif);font-style:italic}
+main:focus{outline:none}
+
+/* ---------- 초점 표시 일괄 · Global focus ring ---------- */
+a:focus-visible,button:focus-visible,summary:focus-visible,
+input:focus-visible,select:focus-visible{
+  outline:2px solid var(--blue);outline-offset:2px;border-radius:2px}
+
+/* 터치 목표 최소 크기 · Minimum tap target */
+@media (pointer:coarse){
+  .menu a{padding-top:12px;padding-bottom:12px}
+  .filters button{padding:12px 16px}
+}
+
+/* ---------- 그림 자리 · Figure slot ---------- */
+figure.fig{margin:0 0 26px;border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(26,36,43,.9), rgba(16,23,28,.9))}
+figure.fig img,figure.fig svg{display:block;width:100%;height:auto}
+
+/* 아직 그림을 넣지 않은 상태 · Empty placeholder */
+figure.fig .slot{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;min-height:230px;padding:34px 24px;text-align:center;
+  border:1px dashed var(--line);margin:14px;
+  background:repeating-linear-gradient(135deg,
+    rgba(255,255,255,.018) 0 10px, transparent 10px 20px)}
+figure.fig .slot b{font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  color:var(--amber);text-transform:uppercase;font-weight:400}
+figure.fig .slot span{font-size:13px;color:var(--faint);max-width:46ch;line-height:1.7}
+figure.fig .slot code{font-family:var(--mono);font-size:11.5px;color:var(--dim);
+  background:rgba(255,255,255,.06);padding:2px 7px}
+
+figure.fig figcaption{font-size:13px;color:var(--dim);line-height:1.7;
+  padding:14px 18px;border-top:1px solid var(--line2);margin:0}
+figure.fig figcaption b{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  color:var(--amber);text-transform:uppercase;display:block;margin-bottom:5px;font-weight:400}
+figure.fig figcaption .src{display:block;font-family:var(--mono);font-size:10.5px;
+  color:var(--hint);margin-top:8px;letter-spacing:.04em}
+
+/* ---------- 원문 발췌 / 해설 · Source excerpt vs commentary ---------- */
+.pair{margin:0 0 26px;border:1px solid var(--line)}
+.pair .src{background:rgba(229,169,60,.05);border-left:2px solid var(--amber);
+  padding:16px 20px}
+.pair .src .lbl,.pair .note .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;display:block;margin-bottom:9px}
+.pair .src .lbl{color:var(--amber)}
+.pair .src p{margin:0;font-family:var(--serif);font-size:15.5px;color:var(--fg);line-height:1.7}
+.pair .src cite{display:block;font-family:var(--mono);font-style:normal;font-size:10.5px;
+  letter-spacing:.08em;color:var(--faint);margin-top:11px}
+.pair .note{padding:16px 20px;border-top:1px solid var(--line2);
+  border-left:2px solid var(--line)}
+.pair .note .lbl{color:var(--faint)}
+.pair .note p{margin:0 0 10px;font-size:14.5px}
+.pair .note p:last-child{margin-bottom:0}
+
+/* ---------- 글 머리 제원 상자 · Article parameter box ---------- */
+.params{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--line2);border:1px solid var(--line);margin:0 0 30px}
+.params div{background:rgba(255,255,255,.022);padding:14px 16px}
+.params dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 5px}
+.params dd{margin:0;font-family:var(--mono);font-size:13.5px;color:var(--fg);line-height:1.5}
+
+/* ---------- 근거 층위 배지 · Evidence-level badge ---------- */
+.lv{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;padding:3px 8px;
+  border:1px solid;white-space:nowrap;display:inline-block}
+.lv-1{color:#93D6C6;border-color:#255248;background:#12241F}
+.lv-2{color:#F2CE8A;border-color:#6B5320;background:#241D10}
+.lv-3{color:#A9C4DC;border-color:#2C4459;background:#141F29}
+
+/* ---------- 예정 목록 · Planned, not yet linked ---------- */
+.queue{border-top:1px solid var(--line);margin:0}
+.queue li{display:grid;grid-template-columns:88px 1fr auto;gap:20px;align-items:baseline;
+  padding:18px 4px;border-bottom:1px solid var(--line2);list-style:none}
+.queue .when{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em}
+.queue .what{font-size:15px;color:var(--dim)}
+.queue .what b{display:block;color:var(--fg);font-weight:600;font-size:15.5px;
+  letter-spacing:-.01em;margin-bottom:2px}
+.queue{padding-left:0}
+@media (max-width:620px){.queue li{grid-template-columns:1fr;gap:6px}}
+
+/* ---------- 데이터 페이지 · Data page ---------- */
+.schema td:first-child{font-family:var(--mono);font-size:12px;color:var(--fg);white-space:nowrap}
+.dl{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 8px}
+.dl a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-decoration:none;
+  color:var(--amber);border:1px solid var(--line);padding:11px 18px;
+  transition:border-color .16s,background .16s}
+.dl a:hover{border-color:var(--amber);background:rgba(229,169,60,.08)}
+.empty{border:1px dashed var(--line);padding:26px 24px;text-align:center;
+  color:var(--faint);font-size:14px;line-height:1.8}
+.empty b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:8px;font-weight:400}
+
+/* ---------- 인쇄 · Print ---------- */
+@media print{
+  .topbar,.skip,.pager,.hero-bg{display:none}
+  body{background:#fff;color:#000}
+  .doc,.wrap{max-width:none}
+  a{color:#000}
 }

@@ -13,27 +13,30 @@
 </head>
 <body>
 
+<a class="skip" href="#main">본문 바로가기 <span lang="en">Skip to content</span></a>
+
 <header class="topbar">
   <div class="wrap">
-    <a class="mark" href="index.html">GSS<i>O</i></a>
+    <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="engineering" aria-label="주 메뉴 Main menu">
-      <a href="index.html"       data-key="home">HOME <small>홈</small></a>
-      <a href="analysis.html"    data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
-      <a href="monitor.html"     data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+      <a href="index.html" data-key="home">HOME <small>홈</small></a>
+      <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+      <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
       <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="about.html"       data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+      <a href="data.html" data-key="data"><em>04</em>DATA <small>데이터</small></a>
+      <a href="about.html" data-key="about"><em>05</em>ABOUT <small>소개</small></a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 <div class="wrap">
   <div class="pagehead">
     <p class="crumb"><a href="index.html">HOME</a> / <span>03 ENGINEERING</span></p>
-    <h1>공학 지식<span class="en">Engineering primer</span></h1>
+    <h1>공학 지식<span class="en" lang="en">Engineering primer</span></h1>
     <p class="intro">
       이 사이트의 기록을 읽는 데 필요한 최소한의 개념을 네 편으로 나눠 정리했습니다. 순서대로 읽으면 «흔들림을 어떻게 재는가 → 구조물이 왜 무너지는가 → 무너질 확률을 어떻게 쓰는가 → 언제 회복되는가»로 이어집니다.
-      <span class="en">Four short notes, in reading order: how shaking is measured, why structures fail, how failure probability is written down, and when function returns.</span>
+      <span class="en" lang="en">Four short notes, in reading order: how shaking is measured, why structures fail, how failure probability is written down, and when function returns.</span>
     </p>
   </div>
 </div>
@@ -42,39 +45,39 @@
   <section>
     <div class="sec-head">
       <span class="idx">03</span>
-      <h2>문서 목록<span class="en">Notes</span></h2>
+      <h2>문서 목록<span class="en" lang="en">Notes</span></h2>
     </div>
 
     <div class="engrid">
       <a class="ecard" href="engineering/structural.html">
         <span class="no">3.1</span>
-        <h3>구조공학<span class="en">Structural engineering</span></h3>
+        <h3>구조공학<span class="en" lang="en">Structural engineering</span></h3>
         <p>하중이 지반까지 전달되는 경로와, 그 경로가 끊겼을 때 벌어지는 일.
-          <span class="en">How load reaches the ground, and what happens when that path is broken.</span></p>
+          <span class="en" lang="en">How load reaches the ground, and what happens when that path is broken.</span></p>
         <span class="keys">하중경로 · 부정정성 · 연성 · 연쇄붕괴</span>
         <span class="go">자세히 보기 READ →</span>
       </a>
       <a class="ecard" href="engineering/earthquake.html">
         <span class="no">3.2</span>
-        <h3>내진공학<span class="en">Earthquake engineering</span></h3>
+        <h3>내진공학<span class="en" lang="en">Earthquake engineering</span></h3>
         <p>지반운동을 수치로 정의하고, 그 값에 대한 목표 성능을 정하는 분야.
-          <span class="en">Turning ground motion into numbers, then setting a performance target against them.</span></p>
+          <span class="en" lang="en">Turning ground motion into numbers, then setting a performance target against them.</span></p>
         <span class="keys">IM · EDP · 규모와 진도 · PBEE</span>
         <span class="go">자세히 보기 READ →</span>
       </a>
       <a class="ecard" href="engineering/fragility.html">
         <span class="no">3.3</span>
-        <h3>취약도함수<span class="en">Fragility functions</span></h3>
+        <h3>취약도함수<span class="en" lang="en">Fragility functions</span></h3>
         <p>지진동 세기가 주어졌을 때 특정 손상상태를 초과할 확률.
-          <span class="en">The probability of exceeding a damage state, given a level of shaking.</span></p>
+          <span class="en" lang="en">The probability of exceeding a damage state, given a level of shaking.</span></p>
         <span class="keys">손상상태 DS · θ와 β · IDA · IM–DS 쌍</span>
         <span class="go">자세히 보기 READ →</span>
       </a>
       <a class="ecard" href="engineering/resilience.html">
         <span class="no">3.4</span>
-        <h3>회복탄력성<span class="en">Seismic resilience</span></h3>
+        <h3>회복탄력성<span class="en" lang="en">Seismic resilience</span></h3>
         <p>얼마나 손상됐는가에 더해, 기능이 언제 회복되는가까지 보는 관점.
-          <span class="en">Beyond how much was damaged: when function comes back.</span></p>
+          <span class="en" lang="en">Beyond how much was damaged: when function comes back.</span></p>
         <span class="keys">기능도 Q(t) · robustness · rapidity · 유휴기간</span>
         <span class="go">자세히 보기 READ →</span>
       </a>
@@ -87,11 +90,11 @@
     <section>
       <div class="sec-head">
         <span class="idx">03.0</span>
-        <h2>네 편이 이어지는 방식<span class="en">How the four notes connect</span></h2>
+        <h2>네 편이 이어지는 방식<span class="en" lang="en">How the four notes connect</span></h2>
       </div>
       <p class="lead-in">
         성능기반 내진설계는 «지진위험도 → 구조응답 → 손상 → 결과»의 사슬로 구성됩니다. 이 사이트의 네 문서는 각각 그 사슬의 한 칸을 맡습니다.
-        <span class="en">Performance-based earthquake engineering is a chain: hazard, response, damage, consequence. Each note takes one link.</span>
+        <span class="en" lang="en">Performance-based earthquake engineering is a chain: hazard, response, damage, consequence. Each note takes one link.</span>
       </p>
       <div class="eq">
         IM &nbsp;<b>→</b>&nbsp; EDP &nbsp;<b>→</b>&nbsp; DM &nbsp;<b>→</b>&nbsp; DV
@@ -127,7 +130,7 @@
     </div>
     <p style="margin:0;max-width:80ch">
       공학 지식 문서는 교육 목적의 요약이며, 설계 실무의 근거로 사용할 수 없습니다. 실무에는 해당 국가의 설계기준을 직접 확인하십시오.
-      <span class="en">These notes are educational summaries and are not a design authority. For practice, consult the governing code directly.</span>
+      <span class="en" lang="en">These notes are educational summaries and are not a design authority. For practice, consult the governing code directly.</span>
     </p>
     <p class="contact">
       Operated by <b>Jiseong Yoo</b> · Contact <a href="mailto:paul4831@hanyang.ac.kr">paul4831@hanyang.ac.kr</a><br>

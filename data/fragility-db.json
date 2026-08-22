@@ -1,0 +1,10 @@
+{
+  "name": "GSSO Fragility Pair Database",
+  "version": "0.1",
+  "licence": "CC BY 4.0",
+  "url": "https://saol-js.github.io/GSSO/data.html",
+  "schema": ["pair_id","event_id","country","lat","lon","taxonomy","storeys",
+             "year_built","im_type","im_value","im_unit","im_source","ds",
+             "ds_scale","ds_source","evidence_level","retrieved_at"],
+  "rows": []
+}
