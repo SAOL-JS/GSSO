@@ -6,8 +6,20 @@
 
 /* ---------- 토큰 · Design tokens ---------- */
 :root{
-  /* ▼ 배경 이미지: assets/hero.jpg 업로드 후 아래 줄의 주석을 푸세요. */
+  /* ─────────────────────────────────────────────────────────────────
+     ▼ 랜딩 배경 이미지 · Landing background image
+     1) assets/ 폴더에 hero.jpg (또는 hero.webp) 를 올립니다.
+     2) 바로 아래 줄을 감싸고 있는 주석 기호를 지워 활성화합니다.
+     권장 규격 · Recommended: 2400 × 1400 px (가로:세로 ≈ 12:7),
+     용량 400 KB 이하, JPEG 품질 70~78 또는 WebP.
+     화면 위쪽 60 %만 보이므로 «중요한 피사체는 이미지 상단»에 두세요.
+     ───────────────────────────────────────────────────────────────── */
   /* --hero-image: url("hero.jpg"); */
+
+  /* 배경 이미지의 전체 진하기 (0 = 안 보임, 1 = 원본). 기본 0.34 */
+  --hero-opacity: .34;
+  /* 이미지에서 보여줄 세로 위치. center 28% = 위에서 28 % 지점 */
+  --hero-focus: center 28%;
 
   --ink:#0B0F12; --ink2:#111A20; --panel:#141C22; --panel2:#1A242B;
   --line:#26313A; --line2:#1D262C;
@@ -67,11 +79,19 @@ a{color:inherit}
 /* ---------- 히어로 배경 · Hero backdrop (홈 전용) ---------- */
 .herowrap{position:relative;isolation:isolate;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+/* 배경 사진 · 아래로 갈수록 단계적으로 투명해집니다.
+   The photo fades out progressively towards the bottom so the text stays readable. */
 .hero-bg .photo{position:absolute;inset:0;background-image:var(--hero-image,none);
-  background-size:cover;background-position:center 28%;
-  opacity:.30;filter:grayscale(.55) contrast(1.06) brightness(.85);
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,transparent 88%);
-          mask-image:linear-gradient(180deg,#000 0%,#000 46%,transparent 88%)}
+  background-size:cover;background-position:var(--hero-focus,center 28%);
+  background-repeat:no-repeat;
+  opacity:var(--hero-opacity,.34);
+  filter:grayscale(.5) contrast(1.05) brightness(.82);
+  -webkit-mask-image:linear-gradient(180deg,
+      rgba(0,0,0,1) 0%, rgba(0,0,0,.92) 26%, rgba(0,0,0,.62) 52%,
+      rgba(0,0,0,.28) 72%, rgba(0,0,0,0) 92%);
+          mask-image:linear-gradient(180deg,
+      rgba(0,0,0,1) 0%, rgba(0,0,0,.92) 26%, rgba(0,0,0,.62) 52%,
+      rgba(0,0,0,.28) 72%, rgba(0,0,0,0) 92%)}
 .hero-bg .grid{position:absolute;inset:0;opacity:.5;
   background-image:
     repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 56px),
@@ -462,4 +482,168 @@ figure.fig figcaption .src{display:block;font-family:var(--mono);font-size:10.5p
   body{background:#fff;color:#000}
   .doc,.wrap{max-width:none}
   a{color:#000}
+}
+
+/* =====================================================================
+   ▓▓ 2026-09 추가 · GLASS + 계단식 내비게이션
+   ▓▓ Added 2026-09 · Glassmorphism layer + staircase navigation
+   이 블록은 파일 맨 끝에 있으므로, 위쪽의 기존 규칙을 덮어씁니다.
+   This block sits last, so it overrides the rules above.
+   ===================================================================== */
+
+/* ---------- 유리 토큰 · Glass tokens ---------- */
+:root{
+  --glass-bg: linear-gradient(155deg,
+      rgba(255,255,255,.085) 0%,
+      rgba(255,255,255,.028) 55%,
+      rgba(255,255,255,.055) 100%);
+  --glass-line:   rgba(255,255,255,.13);
+  --glass-inner:  inset 0 1px 0 rgba(255,255,255,.18);
+  --glass-drop:   0 12px 36px rgba(0,0,0,.36);
+  --glass-blur:   blur(18px) saturate(1.4);
+  --r: 14px;              /* 모서리 둥글기 · corner radius */
+}
+
+/* 공통 유리판 · Shared frosted panel */
+.glass{
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop), var(--glass-inner);
+}
+/* backdrop-filter 미지원 브라우저 대비 · Fallback for older browsers */
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))){
+  .glass,.heli,.strip,.stair .step{
+    background: linear-gradient(155deg, rgba(26,36,43,.95), rgba(15,21,26,.95)) !important;
+  }
+}
+
+/* ---------- 기존 패널을 유리로 · Existing panels, in glass ---------- */
+.topbar{
+  background: rgba(11,15,18,.58);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+          backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid var(--glass-line);
+}
+.heli{
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop), var(--glass-inner);
+}
+.strip{
+  background: linear-gradient(155deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
+  border: 1px solid var(--glass-line);
+  border-top: 0;
+  border-radius: 0 0 var(--r) var(--r);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop);
+}
+.hero .heli{ border-radius: var(--r) var(--r) 0 0; }
+.cell{ border-right: 1px solid rgba(255,255,255,.07); }
+
+/* ---------- 계단식 내비게이션 · Staircase navigation ---------- */
+/* 히어로를 2단으로: 왼쪽 워드마크 / 오른쪽 계단 버튼
+   Two-column hero: wordmark on the left, staircase on the right. */
+.hero-grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(310px, .98fr);
+  gap: 30px 58px;
+  align-items: start;
+}
+.hero-grid > .hero-side{ padding-top: 8px; }
+
+.stair-head{
+  font-family: var(--mono); font-size: 10px; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--hint);
+  margin: 0 0 14px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--line2);
+}
+.stair{ display: flex; flex-direction: column; gap: 10px; }
+
+.stair .step{
+  /* --i 는 HTML 쪽에서 0,1,2,3,4 로 넣습니다 → 계단처럼 밀려납니다.
+     --i is set inline (0…4); each step is indented one notch further. */
+  margin-left: calc(var(--i, 0) * clamp(0px, 2.6vw, 34px));
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 62px;                 /* 터치 목표 최소치 확보 */
+  padding: 14px 18px;
+  text-decoration: none;
+  overflow: hidden;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop), var(--glass-inner);
+  transition: transform .22s ease, border-color .22s ease, background .22s ease;
+}
+/* 왼쪽에 호박색 광택 한 줄 · Amber sheen on the left edge */
+.stair .step::before{
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg, var(--amber), transparent 82%);
+  opacity: 0; transition: opacity .22s ease;
+}
+.stair .step:hover,
+.stair .step:focus-visible{
+  transform: translateX(7px);
+  border-color: rgba(229,169,60,.55);
+  background: linear-gradient(155deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+}
+.stair .step:hover::before,
+.stair .step:focus-visible::before{ opacity: 1; }
+.stair .step:focus-visible{ outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.stair .step .n{
+  font-family: var(--mono); font-size: 13px; font-weight: 500;
+  letter-spacing: .12em; color: var(--amber); font-style: normal;
+}
+.stair .step .t{ display: block; min-width: 0; }
+.stair .step .t b{
+  display: block; font-family: var(--mono); font-weight: 500;
+  font-size: 12.5px; letter-spacing: .16em; color: var(--fg);
+}
+.stair .step .t span{
+  display: block; font-size: 12.5px; color: var(--dim);
+  letter-spacing: 0; margin-top: 2px;
+}
+.stair .step .go{
+  font-family: var(--mono); font-size: 15px; color: var(--hint);
+  font-style: normal; transition: color .22s ease, transform .22s ease;
+}
+.stair .step:hover .go{ color: var(--amber); transform: translateX(3px); }
+
+/* ---------- 반응형 · Responsive ---------- */
+@media (max-width: 980px){
+  .hero-grid{ grid-template-columns: 1fr; gap: 38px; }
+  .hero-grid > .hero-side{ padding-top: 0; }
+  /* 좁은 화면에서는 계단 들여쓰기를 줄여 가독성을 지킵니다.
+     On narrow screens the indent shrinks so nothing is pushed off-screen. */
+  .stair .step{ margin-left: calc(var(--i, 0) * 6px); }
+}
+@media (max-width: 560px){
+  .stair .step{ margin-left: 0; padding: 13px 15px; gap: 12px; }
+  .stair .step .t span{ font-size: 12px; }
+}
+
+/* ---------- 동작 최소화 설정 존중 · Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  .stair .step{ transition: none; }
+  .stair .step:hover, .stair .step:focus-visible{ transform: none; }
+  .stair .step:hover .go{ transform: none; }
+}
+
+/* ---------- 인쇄 · Print ---------- */
+@media print{
+  .stair .step{ background: none; box-shadow: none; border: 1px solid #999;
+                margin-left: 0; -webkit-backdrop-filter: none; backdrop-filter: none; }
 }

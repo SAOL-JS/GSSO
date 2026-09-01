@@ -59,8 +59,12 @@
         a.addEventListener('click', function (e) {
           var anchor = a.getAttribute('data-anchor');
 
-          if (!anchor) {                       /* HOME 탭 */
-            if (window.pageYOffset > 10) {
+          if (!anchor) {
+            /* 2026-09 수정 — 랜딩에서 요약 구역을 없앴으므로 data-anchor 가 없습니다.
+               HOME 탭만 «맨 위로» 동작하고, 나머지 탭은 곧바로 해당 페이지로 갑니다.
+               Updated 2026-09: the landing page no longer has section anchors.
+               Only the HOME tab scrolls to top; every other tab follows its href. */
+            if (a.getAttribute('data-key') === 'home' && window.pageYOffset > 10) {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }
