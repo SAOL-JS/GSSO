@@ -19,12 +19,12 @@
   <div class="wrap">
     <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="monitor" aria-label="주 메뉴 Main menu">
+      <span class="ink" aria-hidden="true"></span>
       <a href="index.html" data-key="home">HOME <small>홈</small></a>
       <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
       <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
       <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="data.html" data-key="data"><em>04</em>DATA <small>데이터</small></a>
-      <a href="about.html" data-key="about"><em>05</em>ABOUT <small>소개</small></a>
+      <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
     </nav>
   </div>
 </header>
@@ -55,35 +55,48 @@
       <h2>실시간 콘솔<span class="en" lang="en">Live console — USGS 2.5_day feed</span></h2>
     </div>
 
-    <div class="filters" role="group" aria-label="규모 필터 Magnitude filter">
-      <button data-min="0"   aria-pressed="true">ALL M2.5+</button>
-      <button data-min="4.5" aria-pressed="false">M4.5+</button>
-      <button data-min="5"   aria-pressed="false">M5.0+</button>
-      <button data-min="6"   aria-pressed="false">M6.0+</button>
-    </div>
+    <!-- ▣ 접었다 펴는 상자 · Collapsible box
+         <details> 는 브라우저에 원래 있는 «접기» 기능입니다. 자바스크립트가 없어도 동작합니다.
+         아래 <details ... open> 에서 open 이라는 글자를 지우면, 처음 들어왔을 때 «접힌 상태»로 시작합니다.
+         Remove the word `open` below if you want the console to start collapsed. -->
+    <details class="fold" id="liveConsole" open>
+      <summary>
+        <span class="fold-t">실시간 지진 표 <span class="en" lang="en">Live earthquake table — updates on every page load</span></span>
+        <span class="fold-b" aria-hidden="true"><i class="i-open">접기 −</i><i class="i-shut">펼치기 +</i></span>
+      </summary>
 
-    <div class="tablewrap">
-      <table class="eq-table">
-        <thead>
-          <tr>
-            <th>Origin time (UTC)</th>
-            <th>Magnitude · magType</th>
-            <th>Depth</th>
-            <th>Place</th>
-            <th>PAGER</th>
-            <th>Tsunami</th>
-          </tr>
-        </thead>
-        <tbody id="eqBody">
-          <tr><td colspan="6" style="padding:26px;text-align:center">피드를 불러오는 중 · Loading feed…</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="fold-body">
+        <div class="filters" role="group" aria-label="규모 필터 Magnitude filter">
+          <button data-min="0"   aria-pressed="true">ALL M2.5+</button>
+          <button data-min="4.5" aria-pressed="false">M4.5+</button>
+          <button data-min="5"   aria-pressed="false">M5.0+</button>
+          <button data-min="6"   aria-pressed="false">M6.0+</button>
+        </div>
 
-    <p class="lead-in" style="margin:20px 0 0">
-      규모 옆의 작은 글자(magType)는 USGS가 사용한 척도 코드입니다. 이 표는 그 값을 변환 없이 그대로 보여줍니다.
-      <span class="en" lang="en">The small label beside each magnitude is the USGS magType field, shown exactly as delivered — no conversion is applied.</span>
-    </p>
+        <div class="tablewrap">
+          <table class="eq-table">
+            <thead>
+              <tr>
+                <th>Origin time (UTC)</th>
+                <th>Magnitude · magType</th>
+                <th>Depth</th>
+                <th>Place</th>
+                <th>PAGER</th>
+                <th>Tsunami</th>
+              </tr>
+            </thead>
+            <tbody id="eqBody">
+              <tr><td colspan="6" style="padding:26px;text-align:center">피드를 불러오는 중 · Loading feed…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="lead-in" style="margin:20px 0 0">
+          규모 옆의 작은 글자(magType)는 USGS가 사용한 척도 코드입니다. 이 표는 그 값을 변환 없이 그대로 보여줍니다.
+          <span class="en" lang="en">The small label beside each magnitude is the USGS magType field, shown exactly as delivered — no conversion is applied.</span>
+        </p>
+      </div>
+    </details>
   </section>
 </div>
 
@@ -97,34 +110,95 @@
       </div>
       <p class="lead-in">
         규모는 발표 기관이 사용한 척도를 그대로 표기합니다. Mww는 모멘트규모(W-phase 해), MJMA는 일본 기상청 규모이며, 척도가 확인되지 않은 값은 M으로만 적고 환산하지 않습니다.
-        <span class="en" lang="en">Magnitudes carry the scale used by the reporting agency. Unverified scales are written as plain M and never converted.</span>
+        각 줄을 누르면 그 자리에서 요약이 펼쳐집니다. 연도 단추로 원하는 해만 골라 볼 수 있습니다.
+        <span class="en" lang="en">Magnitudes carry the scale used by the reporting agency and are never converted. Select a row to expand its summary in place; use the year buttons to narrow the list.</span>
       </p>
-      <div class="rows">
-        <a class="mrow" href="analysis/2026-06-24-venezuela-doublet.html">
-          <span class="d">2026-06-24</span>
-          <span class="m"><b style="color:var(--red)">7.5</b><span>Mww · 본진</span></span>
-          <span class="p"><b>베네수엘라 북부 — Yumare 남동 28 km</b>
-            <span>모멘트규모 Mww 7.5 · 심도 10 km · 22:05 UTC · San Sebastián 단층 · PAGER 적색 · USGS us6000t7zp
-              <span class="en" lang="en">M<sub>ww</sub> 7.5 · depth 10 km · San Sebastián fault · red PAGER alert</span></span></span>
-          <span class="tag t-red">PAGER Red</span>
-        </a>
-        <a class="mrow" href="analysis/2026-06-24-venezuela-doublet.html">
-          <span class="d">2026-06-24</span>
-          <span class="m"><b style="color:var(--red)">7.2</b><span>Mww · 전진</span></span>
-          <span class="p"><b>베네수엘라 북부 — Yumare 남동 23 km</b>
-            <span>모멘트규모 Mww 7.2 · 심도 20.3 km · 22:04 UTC · 본진보다 39초 앞섬 · USGS us6000t7zc
-              <span class="en" lang="en">M<sub>ww</sub> 7.2 · depth 20.3 km · 39 seconds before the mainshock</span></span></span>
-          <span class="tag t-red">PAGER Red</span>
-        </a>
-        <a class="mrow" href="analysis/2026-06-24-venezuela-doublet.html">
-          <span class="d">2026-06-24</span>
-          <span class="m"><b style="color:var(--amber)">7.8</b><span>Mw · 단일해</span></span>
-          <span class="p"><b>같은 사건에 대한 다른 해 — GEOSCOPE / INGV</b>
-            <span>GEOSCOPE는 약 2분간 이어진 하나의 파열로 Mw 7.8, INGV는 Mw 7.6으로 모형화 · 사건 수 자체가 기관별로 다름
-              <span class="en" lang="en">Modelled as one ~2-minute rupture: M<sub>w</sub> 7.8 (GEOSCOPE), M<sub>w</sub> 7.6 (INGV)</span></span></span>
-          <span class="tag t-amber">해 불일치</span>
-        </a>
+      <!-- ▣ 연도 선택 단추는 아래 목록을 읽어 «자동으로» 만들어집니다.
+           새 연도의 사건을 추가하면 단추도 저절로 생깁니다. 여기는 손댈 필요가 없습니다.
+           The year buttons are generated from the data-year attributes below. -->
+      <div class="yearbar" id="yearBar" role="group" aria-label="연도 선택 Year filter"></div>
+
+      <!-- ▣ 사건 하나 = <details> 한 덩어리.
+           <summary> 안이 «접혀 있을 때 보이는 한 줄», 그 아래 .ebody 가 «펼쳤을 때 나오는 요약»입니다.
+           data-year 에는 반드시 발생 연도를 네 자리로 적으세요. 연도 단추가 이 값을 읽습니다.
+           One event = one <details>. data-year must carry the four-digit year. -->
+      <div class="rows" id="eventLog">
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-06-24</span>
+            <span class="m"><b style="color:var(--red)">7.5</b><span>Mww · 본진</span></span>
+            <span class="p"><b>베네수엘라 북부 — Yumare 남동 28 km</b>
+              <span>모멘트규모 Mww 7.5 · 심도 10 km · 22:05 UTC · San Sebastián 단층 · PAGER 적색
+                <span class="en" lang="en">M<sub>ww</sub> 7.5 · depth 10 km · San Sebastián fault · red PAGER alert</span></span></span>
+            <span class="tag t-red">PAGER Red</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Origin time</dt><dd>2026-06-24 22:05 UTC</dd></div>
+              <div><dt>Magnitude</dt><dd>M<sub>ww</sub> 7.5</dd></div>
+              <div><dt>Depth</dt><dd>10 km</dd></div>
+              <div><dt>PAGER</dt><dd>Red</dd></div>
+              <div><dt>USGS event id</dt><dd>us6000t7zp</dd></div>
+            </dl>
+            <p>연속으로 일어난 두 지진 가운데 뒤쪽(본진)입니다. San Sebastián 단층계에서 발생했으며 심도가 얕습니다.
+              <span class="en" lang="en">The later of two consecutive events, on the San Sebastián fault system, at shallow depth.</span></p>
+            <p class="elinks"><a href="analysis/2026-06-24-venezuela-doublet.html">A-0002 분석 전문 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-06-24</span>
+            <span class="m"><b style="color:var(--red)">7.2</b><span>Mww · 전진</span></span>
+            <span class="p"><b>베네수엘라 북부 — Yumare 남동 23 km</b>
+              <span>모멘트규모 Mww 7.2 · 심도 20.3 km · 22:04 UTC · 본진보다 39초 앞섬
+                <span class="en" lang="en">M<sub>ww</sub> 7.2 · depth 20.3 km · 39 seconds before the mainshock</span></span></span>
+            <span class="tag t-red">PAGER Red</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Origin time</dt><dd>2026-06-24 22:04 UTC</dd></div>
+              <div><dt>Magnitude</dt><dd>M<sub>ww</sub> 7.2</dd></div>
+              <div><dt>Depth</dt><dd>20.3 km</dd></div>
+              <div><dt>Interval</dt><dd>본진 −39 s</dd></div>
+              <div><dt>USGS event id</dt><dd>us6000t7zc</dd></div>
+            </dl>
+            <p>앞쪽 지진입니다. 두 사건의 간격이 39초뿐이어서, 손상되지 않은 상태를 전제로 하는 표준 취약도함수를 그대로 쓰기 어렵습니다.
+              <span class="en" lang="en">The earlier event. A 39-second interval breaks the undamaged-initial-state assumption behind standard fragility functions.</span></p>
+            <p class="elinks"><a href="analysis/2026-06-24-venezuela-doublet.html">A-0002 분석 전문 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-06-24</span>
+            <span class="m"><b style="color:var(--amber)">7.8</b><span>Mw · 단일해</span></span>
+            <span class="p"><b>같은 사건에 대한 다른 해 — GEOSCOPE / INGV</b>
+              <span>하나의 파열로 모형화한 결과 · 기관별로 사건 수 자체가 다름
+                <span class="en" lang="en">Modelled as a single rupture; agencies disagree on the number of events</span></span></span>
+            <span class="tag t-amber">해 불일치</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>GEOSCOPE</dt><dd>M<sub>w</sub> 7.8</dd></div>
+              <div><dt>INGV</dt><dd>M<sub>w</sub> 7.6</dd></div>
+              <div><dt>USGS</dt><dd>7.2 + 7.5 (2건)</dd></div>
+              <div><dt>Rupture</dt><dd>약 2분 (단일해)</dd></div>
+            </dl>
+            <p>GEOSCOPE는 약 2분간 이어진 하나의 파열로, INGV는 같은 방식으로 M<sub>w</sub> 7.6으로 모형화했습니다. USGS는 두 건으로 분리해 발표했습니다. 이 사이트는 어느 쪽도 «옳다»고 판정하지 않고 세 값을 모두 남깁니다.
+              <span class="en" lang="en">This record keeps all three solutions side by side and does not adjudicate between them.</span></p>
+            <p class="elinks"><a href="analysis/2026-06-24-venezuela-doublet.html">A-0002 분석 전문 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
       </div>
+
+      <p class="noevent" id="noEvent" hidden>선택한 연도에 기록된 사건이 없습니다.
+        <span class="en" lang="en">No recorded events for the selected year.</span></p>
 
       <p class="terms" style="margin-top:34px">
         <b>magType</b> — USGS가 해당 지진의 규모를 어떤 방법으로 산정했는지 나타내는 코드 (magnitude type). 예: mww, mb, ml.<br>

@@ -21,12 +21,12 @@
   <div class="wrap">
     <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="home" aria-label="주 메뉴 Main menu">
+      <span class="ink" aria-hidden="true"></span>
       <a href="index.html" data-key="home">HOME <small>홈</small></a>
       <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
       <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
       <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="data.html" data-key="data"><em>04</em>DATA <small>데이터</small></a>
-      <a href="about.html" data-key="about"><em>05</em>ABOUT <small>소개</small></a>
+      <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
     </nav>
   </div>
 </header>
@@ -64,8 +64,8 @@
   <div class="wrap">
     <div class="hero">
 
-      <!-- 2단 구성: 왼쪽 워드마크 / 오른쪽 계단식 버튼
-           Two columns: wordmark on the left, staircase buttons on the right. -->
+      <!-- 2단 구성: 왼쪽 워드마크 / 오른쪽 최신 분석 요약
+           Two columns: wordmark on the left, latest analysis notes on the right. -->
       <div class="hero-grid">
 
         <!-- ── 왼쪽 · Left ─────────────────────────────── -->
@@ -86,37 +86,63 @@
           </p>
         </div>
 
-        <!-- ── 오른쪽 · Right : 계단식 바로가기 ──────────── -->
+        <!-- ── 오른쪽 · Right : 최신 분석 요약 ─────────────
+             ▣ 새 글을 올릴 때 이 블록만 복사해서 맨 위에 붙이면 됩니다.
+             ▣ 사진 파일 이름은 반드시  A-####-thumb.jpg  형식으로 저장하세요.
+                (#### = 아래 sn 칸에 적힌 일련번호와 같은 숫자)
+                예) 일련번호 A-0002  →  assets/analysis/A-0002-thumb.jpg
+             ▣ 사진이 아직 없으면 그 자리에 일련번호가 적힌 빈 칸이 보입니다.
+             To add a note, copy one .lcard block to the top of this list.
+             The thumbnail must be saved as assets/analysis/<serial>-thumb.jpg. -->
         <div class="hero-side">
-          <p class="stair-head">Sections · 상세 페이지 바로가기</p>
+          <p class="side-head">
+            <span>Latest analysis <b lang="ko">최신 분석</b></span>
+            <a class="more" href="analysis.html">ALL <i aria-hidden="true">→</i></a>
+          </p>
 
-          <nav class="stair" aria-label="상세 페이지 바로가기 Section shortcuts">
-            <a class="step" href="analysis.html" style="--i:0">
-              <em class="n">01</em>
-              <span class="t"><b>ANALYSIS</b><span>분석 — 사건 기록과 방법론</span></span>
-              <i class="go" aria-hidden="true">→</i>
+          <div class="latest">
+
+            <!-- ===== A-0002 ===== -->
+            <a class="lcard" href="analysis/2026-06-24-venezuela-doublet.html">
+              <span class="thumb" data-sn="A-0002">
+                <img src="assets/analysis/A-0002-thumb.jpg" alt="" loading="lazy" decoding="async"
+                     onerror="this.parentNode.classList.add('noimg');this.remove()">
+              </span>
+              <span class="lbody">
+                <span class="lmeta">
+                  <b class="sn">A-0002</b>
+                  <span class="tag t-red">CASE</span>
+                  <span class="lv lv-2">L2</span>
+                  <time datetime="2026-09-01">2026-09-01</time>
+                </span>
+                <span class="ltitle">39초 간격의 두 지진 — 베네수엘라 2026-06-24
+                  <span class="en" lang="en">Thirty-nine seconds apart: the 2026 Venezuela doublet</span></span>
+                <span class="ldesc">기관마다 «두 개»와 «하나»로 갈린 사건. 그 차이가 취약도 평가에 무엇을 남기는가.
+                  <span class="en" lang="en">Two events or one, depending on the agency.</span></span>
+              </span>
             </a>
-            <a class="step" href="monitor.html" style="--i:1">
-              <em class="n">02</em>
-              <span class="t"><b>MONITOR</b><span>모니터 — 실시간 콘솔과 기록</span></span>
-              <i class="go" aria-hidden="true">→</i>
+
+            <!-- ===== A-0001 ===== -->
+            <a class="lcard" href="analysis/2026-08-22-magnitude-scales.html">
+              <span class="thumb" data-sn="A-0001">
+                <img src="assets/analysis/A-0001-thumb.jpg" alt="" loading="lazy" decoding="async"
+                     onerror="this.parentNode.classList.add('noimg');this.remove()">
+              </span>
+              <span class="lbody">
+                <span class="lmeta">
+                  <b class="sn">A-0001</b>
+                  <span class="tag t-teal">METHOD</span>
+                  <span class="lv lv-1">L1</span>
+                  <time datetime="2026-08-22">2026-08-22</time>
+                </span>
+                <span class="ltitle">규모 척도가 다르면 무엇을 비교할 수 없는가
+                  <span class="en" lang="en">M<sub>ww</sub> and M<sub>JMA</sub>: what stops being comparable</span></span>
+                <span class="ldesc">같은 지진에 두 개의 숫자가 붙는 이유와, 이 사이트가 그 값을 환산하지 않는 이유.
+                  <span class="en" lang="en">Why one earthquake carries two numbers.</span></span>
+              </span>
             </a>
-            <a class="step" href="engineering.html" style="--i:2">
-              <em class="n">03</em>
-              <span class="t"><b>ENGINEERING</b><span>공학 지식 — 개념 정리 4편</span></span>
-              <i class="go" aria-hidden="true">→</i>
-            </a>
-            <a class="step" href="data.html" style="--i:3">
-              <em class="n">04</em>
-              <span class="t"><b>DATA</b><span>데이터 — 취약도 IM–DS 자료</span></span>
-              <i class="go" aria-hidden="true">→</i>
-            </a>
-            <a class="step" href="about.html" style="--i:4">
-              <em class="n">05</em>
-              <span class="t"><b>ABOUT</b><span>소개 — 운영 원칙과 자료원</span></span>
-              <i class="go" aria-hidden="true">→</i>
-            </a>
-          </nav>
+
+          </div>
         </div>
       </div>
 

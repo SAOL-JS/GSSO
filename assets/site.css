@@ -485,8 +485,9 @@ figure.fig figcaption .src{display:block;font-family:var(--mono);font-size:10.5p
 }
 
 /* =====================================================================
-   ▓▓ 2026-09 추가 · GLASS + 계단식 내비게이션
-   ▓▓ Added 2026-09 · Glassmorphism layer + staircase navigation
+   ▓▓ 2026-09-02 개정 · 유리(glass) 디자인 + 새 상단 메뉴 + 최신 분석 카드
+   ▓▓ Revised 2026-09-02 · Glass layer, sliding menu underline,
+      latest-analysis cards, collapsible console, expandable event log
    이 블록은 파일 맨 끝에 있으므로, 위쪽의 기존 규칙을 덮어씁니다.
    This block sits last, so it overrides the rules above.
    ===================================================================== */
@@ -515,18 +516,79 @@ figure.fig figcaption .src{display:block;font-family:var(--mono);font-size:10.5p
 }
 /* backdrop-filter 미지원 브라우저 대비 · Fallback for older browsers */
 @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))){
-  .glass,.heli,.strip,.stair .step{
+  .glass,.heli,.strip,.lcard,.fold,.erow{
     background: linear-gradient(155deg, rgba(26,36,43,.95), rgba(15,21,26,.95)) !important;
   }
 }
 
-/* ---------- 기존 패널을 유리로 · Existing panels, in glass ---------- */
+/* 숨김 처리 공통 · Make [hidden] win over display rules */
+[hidden]{ display: none !important; }
+
+
+/* =====================================================================
+   1) 상단 바 · Top bar
+   메뉴를 눌러도 «배경이 노랗게 칠해지지 않습니다».
+   대신 <span class="ink"> 라는 노란 막대 하나가 탭 아래에서 미끄러집니다.
+   The tab is no longer filled amber; a single amber bar slides underneath.
+   ===================================================================== */
 .topbar{
-  background: rgba(11,15,18,.58);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
-          backdrop-filter: blur(20px) saturate(1.5);
+  background: rgba(11,15,18,.55);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+          backdrop-filter: blur(22px) saturate(1.6);
   border-bottom: 1px solid var(--glass-line);
 }
+.menu{ position: relative; padding-bottom: 3px; }
+
+/* 탭 자체 · The tabs */
+.menu a{
+  border-radius: 9px 9px 0 0;
+  transition: color .16s ease, background .16s ease;
+}
+.menu a:hover{
+  color: var(--fg);
+  background: rgba(255,255,255,.07);
+}
+
+/* 지금 열려 있는 페이지 — 글자만 밝아지고, 배경은 칠하지 않습니다.
+   The page you are on: brighter text only, no amber fill. */
+.menu a.on,
+.menu a.on:hover{
+  background: rgba(255,255,255,.05);
+  color: var(--fg);
+  box-shadow: none;
+}
+.menu a.on em{ color: var(--amber); }
+.menu a.on small{ color: var(--dim); }
+
+/* 미끄러지는 노란 막대 · The sliding amber bar */
+.menu .ink{
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 0;
+  border-radius: 2px;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg,
+      rgba(229,169,60,.35), var(--amber) 50%, rgba(229,169,60,.35));
+  box-shadow: 0 0 10px rgba(229,169,60,.45);
+  transition: none;                    /* 첫 배치는 «순간이동» — 깜빡임 방지 */
+}
+/* 자바스크립트가 첫 위치를 잡은 다음에야 움직임을 켭니다.
+   Motion is switched on only after the first position has been set. */
+.menu.ink-ready .ink{
+  opacity: 1;
+  transition: transform .26s cubic-bezier(.22,.61,.36,1),
+              width     .26s cubic-bezier(.22,.61,.36,1),
+              opacity   .18s ease;
+}
+/* 자바스크립트가 꺼져 있어도 최소한 밑줄은 보이도록 · No-JS fallback */
+.menu a.on{ box-shadow: inset 0 -2px 0 var(--amber); }
+.menu.ink-ready a.on{ box-shadow: none; }
+
+
+/* =====================================================================
+   2) 기존 패널을 유리로 · Existing panels, in glass
+   ===================================================================== */
 .heli{
   background: var(--glass-bg);
   border: 1px solid var(--glass-line);
@@ -547,36 +609,73 @@ figure.fig figcaption .src{display:block;font-family:var(--mono);font-size:10.5p
 .hero .heli{ border-radius: var(--r) var(--r) 0 0; }
 .cell{ border-right: 1px solid rgba(255,255,255,.07); }
 
-/* ---------- 계단식 내비게이션 · Staircase navigation ---------- */
-/* 히어로를 2단으로: 왼쪽 워드마크 / 오른쪽 계단 버튼
-   Two-column hero: wordmark on the left, staircase on the right. */
+.tablewrap{
+  background: linear-gradient(155deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+}
+.filters button,
+.yearbar button{ border-radius: 999px; }
+
+/* 01 ANALYSIS · 03 ENGINEERING 카드도 같은 유리 재질로 통일합니다.
+   The cards on the Analysis and Engineering pages use the same frosted material. */
+.card{
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop), var(--glass-inner);
+}
+.card:hover{ border-color: rgba(229,169,60,.45); }
+.engrid{
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--glass-drop);
+}
+.ecard{ -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); }
+.pair, figure.fig, .eq, .params{ border-radius: 10px; }
+figure.fig, .params{ overflow: hidden; }
+
+
+/* =====================================================================
+   3) 랜딩 오른쪽 — 최신 분석 카드 · Latest-analysis cards
+   ===================================================================== */
 .hero-grid{
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(310px, .98fr);
+  grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr);
   gap: 30px 58px;
   align-items: start;
 }
 .hero-grid > .hero-side{ padding-top: 8px; }
 
-.stair-head{
+.side-head{
+  display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
   font-family: var(--mono); font-size: 10px; letter-spacing: .24em;
   text-transform: uppercase; color: var(--hint);
   margin: 0 0 14px; padding-bottom: 10px;
   border-bottom: 1px solid var(--line2);
 }
-.stair{ display: flex; flex-direction: column; gap: 10px; }
+.side-head b{ color: var(--dim); font-weight: 400; letter-spacing: .06em; }
+.side-head .more{
+  text-decoration: none; color: var(--amber); letter-spacing: .18em;
+  white-space: nowrap; border-bottom: 1px solid transparent;
+}
+.side-head .more:hover{ border-bottom-color: var(--amber); }
+.side-head .more i{ font-style: normal; }
 
-.stair .step{
-  /* --i 는 HTML 쪽에서 0,1,2,3,4 로 넣습니다 → 계단처럼 밀려납니다.
-     --i is set inline (0…4); each step is indented one notch further. */
-  margin-left: calc(var(--i, 0) * clamp(0px, 2.6vw, 34px));
+.latest{ display: flex; flex-direction: column; gap: 12px; }
+
+/* 카드 한 장 = 사진 + 글 · One card = thumbnail + text */
+.lcard{
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
+  grid-template-columns: 108px minmax(0, 1fr);
   gap: 16px;
-  min-height: 62px;                 /* 터치 목표 최소치 확보 */
-  padding: 14px 18px;
+  padding: 14px;
   text-decoration: none;
   overflow: hidden;
   background: var(--glass-bg);
@@ -587,63 +686,242 @@ figure.fig figcaption .src{display:block;font-family:var(--mono);font-size:10.5p
   box-shadow: var(--glass-drop), var(--glass-inner);
   transition: transform .22s ease, border-color .22s ease, background .22s ease;
 }
-/* 왼쪽에 호박색 광택 한 줄 · Amber sheen on the left edge */
-.stair .step::before{
+.lcard::before{
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
   background: linear-gradient(180deg, var(--amber), transparent 82%);
   opacity: 0; transition: opacity .22s ease;
 }
-.stair .step:hover,
-.stair .step:focus-visible{
-  transform: translateX(7px);
-  border-color: rgba(229,169,60,.55);
+.lcard:hover,
+.lcard:focus-visible{
+  transform: translateX(6px);
+  border-color: rgba(229,169,60,.5);
   background: linear-gradient(155deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
 }
-.stair .step:hover::before,
-.stair .step:focus-visible::before{ opacity: 1; }
-.stair .step:focus-visible{ outline: 2px solid var(--blue); outline-offset: 3px; }
+.lcard:hover::before,
+.lcard:focus-visible::before{ opacity: 1; }
+.lcard:focus-visible{ outline: 2px solid var(--blue); outline-offset: 3px; }
 
-.stair .step .n{
-  font-family: var(--mono); font-size: 13px; font-weight: 500;
-  letter-spacing: .12em; color: var(--amber); font-style: normal;
+/* 사진 자리 · Thumbnail slot */
+.lcard .thumb{
+  position: relative; display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: 9px; overflow: hidden;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--line2);
 }
-.stair .step .t{ display: block; min-width: 0; }
-.stair .step .t b{
-  display: block; font-family: var(--mono); font-weight: 500;
-  font-size: 12.5px; letter-spacing: .16em; color: var(--fg);
+.lcard .thumb img{
+  display: block; width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(.35) contrast(1.04);
+  transition: filter .22s ease, transform .3s ease;
 }
-.stair .step .t span{
-  display: block; font-size: 12.5px; color: var(--dim);
-  letter-spacing: 0; margin-top: 2px;
-}
-.stair .step .go{
-  font-family: var(--mono); font-size: 15px; color: var(--hint);
-  font-style: normal; transition: color .22s ease, transform .22s ease;
-}
-.stair .step:hover .go{ color: var(--amber); transform: translateX(3px); }
+.lcard:hover .thumb img{ filter: none; transform: scale(1.04); }
 
-/* ---------- 반응형 · Responsive ---------- */
+/* 사진 파일이 아직 없을 때 — 일련번호가 적힌 빈 칸이 보입니다.
+   When the image file is missing, the serial number is shown instead. */
+.lcard .thumb.noimg::after{
+  content: attr(data-sn);
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .16em;
+  color: var(--hint);
+  background: repeating-linear-gradient(135deg,
+      rgba(255,255,255,.03) 0 8px, transparent 8px 16px);
+}
+
+.lcard .lbody{ display: block; min-width: 0; }
+.lcard .lmeta{
+  display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
+  margin-bottom: 7px;
+}
+.lcard .lmeta time{
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--faint);
+}
+.lcard .ltitle{
+  display: block; font-size: 14.5px; font-weight: 600; line-height: 1.45;
+  letter-spacing: -.01em; color: var(--fg);
+}
+.lcard .ltitle .en{ font-size: 12px; margin-top: 2px; }
+.lcard .ldesc{
+  display: block; font-size: 12.5px; color: var(--dim); line-height: 1.62; margin-top: 6px;
+}
+.lcard .ldesc .en{ font-size: 11.5px; margin-top: 2px; }
+
+/* 일련번호 배지 · Serial-number badge (랜딩 · 01 ANALYSIS 공용) */
+.sn{
+  font-family: var(--mono); font-size: 9.5px; font-weight: 500; letter-spacing: .14em;
+  color: var(--amber); background: rgba(229,169,60,.1);
+  border: 1px solid rgba(229,169,60,.32); border-radius: 999px;
+  padding: 2px 8px; white-space: nowrap;
+}
+.card .meta .sn{ margin-right: 2px; }
+.terms code,.doc code{
+  font-family: var(--mono); font-size: 12px; color: var(--dim);
+  background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 4px;
+}
+
+
+/* =====================================================================
+   4) 접었다 펴는 상자 · Collapsible box  (02.1 실시간 콘솔)
+   ===================================================================== */
+.fold{
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop), var(--glass-inner);
+  overflow: hidden;
+}
+.fold > summary{
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+  transition: background .16s ease;
+}
+.fold > summary::-webkit-details-marker{ display: none; }
+.fold > summary:hover{ background: rgba(255,255,255,.05); }
+.fold > summary:focus-visible{ outline: 2px solid var(--blue); outline-offset: -3px; }
+.fold .fold-t{
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; color: var(--fg);
+}
+.fold .fold-t .en{ margin-top: 3px; letter-spacing: 0; font-size: 12px; }
+.fold .fold-b{
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em;
+  color: var(--amber); white-space: nowrap;
+  border: 1px solid rgba(229,169,60,.3); border-radius: 999px; padding: 6px 13px;
+}
+.fold .fold-b i{ font-style: normal; }
+.fold .i-open{ display: none; }
+.fold[open] .i-open{ display: inline; }
+.fold[open] .i-shut{ display: none; }
+.fold .fold-body{
+  padding: 4px 20px 20px;
+  border-top: 1px solid var(--line2);
+}
+.fold .fold-body .filters{ margin: 18px 0 18px; }
+
+
+/* =====================================================================
+   5) 기록된 사건 — 눌러서 펼치는 줄 · Expandable event log  (02.2)
+   ===================================================================== */
+/* 연도 선택 단추 · Year buttons */
+.yearbar{ display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+.yearbar button{
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; color: var(--dim);
+  background: transparent; border: 1px solid var(--line);
+  padding: 8px 15px; border-radius: 999px; cursor: pointer;
+  transition: color .16s, border-color .16s, background .16s;
+}
+.yearbar button small{ font-family: var(--sans); font-size: 10.5px; letter-spacing: 0; }
+.yearbar button:hover{ color: var(--fg); border-color: var(--faint); }
+.yearbar button[aria-pressed="true"]{
+  color: #0B0F12; background: var(--amber); border-color: var(--amber);
+}
+.yearbar button:focus-visible{ outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.rows{ border-top: 0; display: flex; flex-direction: column; gap: 10px; }
+
+.erow{
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop), var(--glass-inner);
+  overflow: hidden;
+  transition: border-color .2s ease;
+}
+.erow[open]{ border-color: rgba(229,169,60,.42); }
+
+.erow > summary{
+  display: grid;
+  grid-template-columns: 104px 78px minmax(0,1fr) auto 26px;
+  gap: 20px; align-items: center;
+  padding: 16px 18px;
+  cursor: pointer;
+  list-style: none;
+  transition: background .16s ease;
+}
+.erow > summary::-webkit-details-marker{ display: none; }
+.erow > summary:hover{ background: rgba(255,255,255,.05); }
+.erow > summary:focus-visible{ outline: 2px solid var(--blue); outline-offset: -3px; }
+
+.erow .d{ font-family: var(--mono); font-size: 12px; color: var(--dim); }
+.erow .m{ font-family: var(--mono); text-align: right; }
+.erow .m b{ display: block; font-size: 25px; font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }
+.erow .m span{ display: block; font-size: 9.5px; letter-spacing: .1em; color: var(--faint); margin-top: 3px; }
+.erow .p{ min-width: 0; }
+.erow .p b{ display: block; font-weight: 600; font-size: 16px; letter-spacing: -.01em; }
+.erow .p > span{ display: block; font-size: 13px; color: var(--dim); }
+
+/* 오른쪽 끝의 + / − 표시 · The + / − affordance */
+.erow .chev{
+  font-family: var(--mono); font-size: 17px; line-height: 1; color: var(--hint);
+  text-align: center; transition: transform .22s ease, color .22s ease;
+}
+.erow[open] .chev{ transform: rotate(45deg); color: var(--amber); }
+
+/* 펼쳤을 때 나오는 요약 · The panel that opens */
+.erow .ebody{
+  padding: 6px 18px 20px;
+  border-top: 1px solid var(--line2);
+}
+.erow .ebody .params{ margin: 18px 0 18px; border-radius: 10px; overflow: hidden; }
+.erow .ebody p{ margin: 0 0 12px; font-size: 14.5px; color: var(--dim); }
+.erow .ebody .elinks{ margin: 0; }
+.erow .ebody .elinks a{
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em;
+  color: var(--amber); text-decoration: none;
+  border: 1px solid rgba(229,169,60,.3); border-radius: 999px;
+  padding: 9px 16px; display: inline-block;
+  transition: background .16s, border-color .16s;
+}
+.erow .ebody .elinks a:hover{ background: rgba(229,169,60,.1); border-color: var(--amber); }
+.erow .ebody .elinks i{ font-style: normal; }
+
+.noevent{
+  border: 1px dashed var(--line); border-radius: var(--r);
+  padding: 26px; text-align: center; color: var(--faint); font-size: 14px;
+}
+
+
+/* =====================================================================
+   6) 반응형 · Responsive
+   ===================================================================== */
 @media (max-width: 980px){
   .hero-grid{ grid-template-columns: 1fr; gap: 38px; }
   .hero-grid > .hero-side{ padding-top: 0; }
-  /* 좁은 화면에서는 계단 들여쓰기를 줄여 가독성을 지킵니다.
-     On narrow screens the indent shrinks so nothing is pushed off-screen. */
-  .stair .step{ margin-left: calc(var(--i, 0) * 6px); }
+}
+@media (max-width: 720px){
+  .erow > summary{
+    grid-template-columns: 76px 62px minmax(0,1fr) 22px;
+    gap: 12px; padding: 15px 14px;
+  }
+  .erow > summary .tag{ display: none; }   /* 좁은 화면에서는 태그를 감춥니다 */
+  .erow .m b{ font-size: 20px; }
+  .fold > summary{ padding: 14px 16px; }
+  .fold .fold-body{ padding: 4px 14px 18px; }
 }
 @media (max-width: 560px){
-  .stair .step{ margin-left: 0; padding: 13px 15px; gap: 12px; }
-  .stair .step .t span{ font-size: 12px; }
+  .lcard{ grid-template-columns: 84px minmax(0, 1fr); gap: 13px; padding: 12px; }
+  .lcard .ltitle{ font-size: 13.5px; }
 }
 
 /* ---------- 동작 최소화 설정 존중 · Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce){
-  .stair .step{ transition: none; }
-  .stair .step:hover, .stair .step:focus-visible{ transform: none; }
-  .stair .step:hover .go{ transform: none; }
+  .lcard, .menu.ink-ready .ink, .erow .chev{ transition: none; }
+  .lcard:hover, .lcard:focus-visible{ transform: none; }
+  .lcard:hover .thumb img{ transform: none; }
 }
 
 /* ---------- 인쇄 · Print ---------- */
 @media print{
-  .stair .step{ background: none; box-shadow: none; border: 1px solid #999;
-                margin-left: 0; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .lcard, .fold, .erow{
+    background: none; box-shadow: none; border: 1px solid #999;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  .erow .ebody{ display: block !important; }
+  .yearbar{ display: none; }
 }
