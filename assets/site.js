@@ -27,7 +27,9 @@
   if (nav) {
     var ink     = nav.querySelector('.ink');
     var page    = nav.getAttribute('data-page') || 'home';
-    var links   = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    /* 윗줄 탭만 고릅니다. 상세메뉴(.subin) 안의 링크는 밑줄 대상이 아닙니다.
+       Only the top-level tabs; links inside a dropdown are excluded. */
+    var links   = Array.prototype.slice.call(nav.querySelectorAll('.mi > a'));
     var current = null;
 
     /* 지금 열려 있는 페이지의 탭을 찾아 표시합니다.
@@ -45,9 +47,14 @@
       /* 막대를 특정 탭 아래로 옮깁니다 · Move the bar under one tab. */
       var move = function (a) {
         if (!a) { ink.style.opacity = '0'; return; }
+        /* 탭이 .mi 상자 안에 들어가 있으므로 offsetLeft 를 그대로 쓸 수 없습니다.
+           화면에서 실제로 차지한 자리를 재서 메뉴 왼쪽 끝으로부터의 거리를 구합니다.
+           Measured from the rendered boxes, since each tab now sits inside .mi. */
+        var nr = nav.getBoundingClientRect();
+        var ar = a.getBoundingClientRect();
         ink.style.opacity   = '';
-        ink.style.width     = a.offsetWidth + 'px';
-        ink.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+        ink.style.width     = ar.width + 'px';
+        ink.style.transform = 'translateX(' + (ar.left - nr.left + nav.scrollLeft) + 'px)';
       };
 
       /* 원래 자리(현재 페이지 탭)로 되돌립니다 · Return to the active tab. */
@@ -66,7 +73,11 @@
          The bar follows the pointer on hover; it does not run on touch screens. */
       if (window.matchMedia('(hover: hover)').matches) {
         links.forEach(function (a) {
-          a.addEventListener('mouseenter', function () { move(a); });
+          /* 상세메뉴 위에 마우스가 있는 동안에도 막대가 그 탭에 머물러야 하므로,
+             탭이 아니라 «감싸는 상자(.mi)» 에 겁니다.
+             Bound to the wrapper so the bar stays put while the panel is open. */
+          var box = a.parentNode;
+          box.addEventListener('mouseenter', function () { move(a); });
         });
         nav.addEventListener('mouseleave', place);
       }
@@ -166,5 +177,124 @@
 
   var fs = document.getElementById('footStamp');
   if (fs) { fs.textContent = 'Page build ' + tx; }
+
+})();
+
+
+/* =====================================================================
+   GSSO — 분석 글 목록 자동 표시 · Analysis list, rendered from one file
+   ---------------------------------------------------------------------
+   assets/analysis-data.js 의 GSSO_ANALYSIS 목록을 읽어
+     · 랜딩 페이지  → <div class="latest">        안에 최신 카드
+     · 01 ANALYSIS → <div class="cards" data-cat="CASE"> 등에 분류별 카드
+   를 만들어 넣습니다. 두 페이지의 HTML 을 각각 고칠 필요가 없습니다.
+
+   Reads the single list in analysis-data.js and fills both the landing
+   page and the Analysis index. Neither page's HTML needs editing.
+   ===================================================================== */
+(function () {
+
+  if (typeof GSSO_ANALYSIS === 'undefined') return;   /* 목록 파일이 없으면 아무것도 하지 않습니다 */
+
+  /* 분류에 따라 딱지 색을 정합니다 · Tag colour per category */
+  var TAGCLASS = { CASE: 't-red', METHOD: 't-teal', REVIEW: 't-amber' };
+
+  /* 최신순 정렬 — 날짜가 같으면 일련번호가 큰 쪽이 먼저.
+     Newest first; ties broken by the higher serial. */
+  var list = GSSO_ANALYSIS.slice().sort(function (a, b) {
+    if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+    return a.sn < b.sn ? 1 : -1;
+  });
+
+  var esc = function (t) { return String(t == null ? '' : t); };
+  var tag = function (c) { return TAGCLASS[c] || 't-amber'; };
+  var lvl = function (l) { return 'lv-' + String(l || 'L1').replace(/[^0-9]/g, ''); };
+
+  /* ---- 링크 경로 보정 ------------------------------------------------
+     목록의 href 는 사이트 뿌리 기준("analysis/…")으로 적혀 있습니다.
+     이 스크립트가 하위 폴더의 글에서 실행될 때는 앞에 ../ 를 붙입니다.
+     The list stores root-relative paths; prefix ../ inside sub-folders. */
+  var depth = (location.pathname.replace(/\/[^\/]*$/, '/').match(/\//g) || []).length;
+  var root  = '';
+  if (document.querySelector('.mark')) {
+    var mark = document.querySelector('.mark').getAttribute('href') || '';
+    root = mark.indexOf('../') === 0 ? '../' : '';
+  }
+  var url = function (p) { return root + p; };
+
+
+  /* ==================================================================
+     1) 랜딩 페이지 · Landing page — .latest
+     ================================================================== */
+  var latest = document.querySelector('.latest');
+
+  if (latest) {
+    var n = (typeof GSSO_LATEST_COUNT === 'number') ? GSSO_LATEST_COUNT : 2;
+    var out = '';
+
+    list.slice(0, n).forEach(function (a) {
+      out +=
+      '<a class="lcard" href="' + url(a.href) + '">' +
+        '<span class="thumb" data-sn="' + esc(a.sn) + '">' +
+          '<img src="' + url('assets/analysis/' + a.sn + '-thumb.jpg') + '" alt="" loading="lazy" decoding="async"' +
+               ' onerror="this.parentNode.classList.add(\'noimg\');this.remove()">' +
+        '</span>' +
+        '<span class="lbody">' +
+          '<span class="lmeta">' +
+            '<b class="sn">' + esc(a.sn) + '</b>' +
+            '<span class="tag ' + tag(a.cat) + '">' + esc(a.cat) + '</span>' +
+            '<span class="lv ' + lvl(a.level) + '">' + esc(a.level) + '</span>' +
+            '<time datetime="' + esc(a.date) + '">' + esc(a.date) + '</time>' +
+          '</span>' +
+          '<span class="ltitle">' + esc(a.titleKo) +
+            '<span class="en" lang="en">' + esc(a.titleEn) + '</span></span>' +
+          '<span class="ldesc">' + esc(a.descKo) +
+            '<span class="en" lang="en">' + esc(a.shortEn || a.descEn) + '</span></span>' +
+        '</span>' +
+      '</a>';
+    });
+
+    latest.innerHTML = out;
+  }
+
+
+  /* ==================================================================
+     2) 01 ANALYSIS 페이지 · Analysis index — .cards[data-cat]
+     ================================================================== */
+  var boxes = document.querySelectorAll('.cards[data-cat]');
+
+  Array.prototype.forEach.call(boxes, function (box) {
+    var cat  = box.getAttribute('data-cat');
+    var rows = list.filter(function (a) { return a.cat === cat; });
+
+    /* 아직 글이 없는 분류는 «비었다»고 적습니다 — 감추지 않습니다.
+       An empty category says so, rather than disappearing. */
+    if (!rows.length) {
+      box.className = 'noevent';
+      box.innerHTML = '아직 공개된 글이 없습니다. 01.4 예정된 글에서 준비 중인 항목을 볼 수 있습니다.' +
+        '<span class="en" lang="en">Nothing published yet — see 01.4 below for what is in preparation.</span>';
+      return;
+    }
+
+    var out = '';
+    rows.forEach(function (a) {
+      out +=
+      '<a class="card" href="' + url(a.href) + '">' +
+        '<span class="meta">' +
+          '<b class="sn">' + esc(a.sn) + '</b>' +
+          '<span>' + esc(a.date) + '</span>' +
+          '<span class="tag ' + tag(a.cat) + '">' + esc(a.cat) + '</span>' +
+          '<span class="lv ' + lvl(a.level) + '">' + esc(a.level) + '</span>' +
+        '</span>' +
+        '<h3>' + esc(a.titleKo) +
+          '<span class="en" lang="en">' + esc(a.titleEn) + '</span></h3>' +
+        '<p>' + esc(a.descKo) +
+          '<span class="en" lang="en">' + esc(a.descEn) + '</span></p>' +
+        '<span class="go">READ →</span>' +
+      '</a>';
+    });
+
+    box.innerHTML = out;
+  });
 
 })();

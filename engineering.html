@@ -20,11 +20,44 @@
     <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="engineering" aria-label="주 메뉴 Main menu">
       <span class="ink" aria-hidden="true"></span>
-      <a href="index.html" data-key="home">HOME <small>홈</small></a>
-      <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
-      <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
-      <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+
+      <div class="mi">
+        <a href="index.html" data-key="home">HOME <small>홈</small></a>
+      </div>
+      <div class="mi has-sub">
+        <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+        <div class="sub"><div class="subin">
+          <a href="analysis.html#case"><b><i>1.1</i>CASE</b><span>사건 분석 <em lang="en">Event analysis</em></span></a>
+          <a href="analysis.html#method"><b><i>1.2</i>METHOD</b><span>방법 노트 <em lang="en">Method notes</em></span></a>
+          <a href="analysis.html#review"><b><i>1.3</i>REVIEW</b><span>문헌 검토 <em lang="en">Literature review</em></span></a>
+          <a href="analysis.html#queue"><b><i>1.4</i>QUEUE</b><span>예정된 글 <em lang="en">In preparation</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+        <div class="sub"><div class="subin">
+          <a href="monitor.html#live"><b><i>2.1</i>LIVE</b><span>실시간 지진 <em lang="en">Live earthquakes</em></span></a>
+          <a href="monitor.html#log"><b><i>2.2</i>LOG</b><span>기록된 사건 <em lang="en">Recorded events</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+        <div class="sub"><div class="subin">
+          <a href="engineering/structural.html"><b><i>3.1</i>STRUCTURAL</b><span>구조공학 <em lang="en">Structural engineering</em></span></a>
+          <a href="engineering/earthquake.html"><b><i>3.2</i>EARTHQUAKE</b><span>내진공학 <em lang="en">Earthquake engineering</em></span></a>
+          <a href="engineering/fragility.html"><b><i>3.3</i>FRAGILITY</b><span>취약도함수 <em lang="en">Fragility functions</em></span></a>
+          <a href="engineering/resilience.html"><b><i>3.4</i>RESILIENCE</b><span>회복탄력성 <em lang="en">Seismic resilience</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+        <div class="sub"><div class="subin">
+          <a href="about.html#principles"><b><i>4.1</i>PRINCIPLES</b><span>운영 원칙 <em lang="en">Operating principles</em></span></a>
+          <a href="about.html#sources"><b><i>4.2</i>SOURCES</b><span>자료원과 연락처 <em lang="en">Sources and contact</em></span></a>
+          <a href="about.html#workflow"><b><i>4.3</i>WORKFLOW</b><span>한 건이 올라오기까지 <em lang="en">How an entry gets published</em></span></a>
+          <a href="about.html#corrections"><b><i>4.4</i>CORRECTIONS</b><span>정정 이력 <em lang="en">Corrections log</em></span></a>
+        </div></div>
+      </div>
     </nav>
   </div>
 </header>
@@ -42,81 +75,59 @@
 </div>
 
 <div class="wrap">
-  <section>
-    <div class="sec-head">
-      <span class="idx">03</span>
-      <h2>문서 목록<span class="en" lang="en">Notes</span></h2>
-    </div>
 
-    <div class="engrid">
-      <a class="ecard" href="engineering/structural.html">
-        <span class="no">3.1</span>
+  <!-- ================= 문서 4편 · The four notes =================
+       ▣ 한 줄 = <a class="ecard"> 하나입니다. 순서를 바꾸려면 덩어리째 위아래로 옮기세요.
+       ▣ 왼쪽에서 오른쪽으로 옅어지는 그라데이션과 유리(glassmorphism) 질감은
+          assets/site.css 의 «7) 공학 지식 — 세로 목록» 부분에서 정해집니다.
+       One row = one <a class="ecard">. The left-to-right gradient and the frosted-glass
+       texture are defined in site.css, section 7. -->
+  <div class="elist">
+
+    <a class="ecard" href="engineering/structural.html">
+      <span class="no">3.1</span>
+      <div class="etxt">
         <h3>구조공학<span class="en" lang="en">Structural engineering</span></h3>
         <p>하중이 지반까지 전달되는 경로와, 그 경로가 끊겼을 때 벌어지는 일.
           <span class="en" lang="en">How load reaches the ground, and what happens when that path is broken.</span></p>
-        <span class="keys">하중경로 · 부정정성 · 연성 · 연쇄붕괴</span>
-        <span class="go">자세히 보기 READ →</span>
-      </a>
-      <a class="ecard" href="engineering/earthquake.html">
-        <span class="no">3.2</span>
+      </div>
+      <span class="keys">하중경로 · 부정정성 · 연성 · 연쇄붕괴</span>
+      <span class="go">READ <i aria-hidden="true">→</i></span>
+    </a>
+
+    <a class="ecard" href="engineering/earthquake.html">
+      <span class="no">3.2</span>
+      <div class="etxt">
         <h3>내진공학<span class="en" lang="en">Earthquake engineering</span></h3>
         <p>지반운동을 수치로 정의하고, 그 값에 대한 목표 성능을 정하는 분야.
           <span class="en" lang="en">Turning ground motion into numbers, then setting a performance target against them.</span></p>
-        <span class="keys">IM · EDP · 규모와 진도 · PBEE</span>
-        <span class="go">자세히 보기 READ →</span>
-      </a>
-      <a class="ecard" href="engineering/fragility.html">
-        <span class="no">3.3</span>
+      </div>
+      <span class="keys">IM · EDP · 규모와 진도 · PBEE</span>
+      <span class="go">READ <i aria-hidden="true">→</i></span>
+    </a>
+
+    <a class="ecard" href="engineering/fragility.html">
+      <span class="no">3.3</span>
+      <div class="etxt">
         <h3>취약도함수<span class="en" lang="en">Fragility functions</span></h3>
         <p>지진동 세기가 주어졌을 때 특정 손상상태를 초과할 확률.
           <span class="en" lang="en">The probability of exceeding a damage state, given a level of shaking.</span></p>
-        <span class="keys">손상상태 DS · θ와 β · IDA · IM–DS 쌍</span>
-        <span class="go">자세히 보기 READ →</span>
-      </a>
-      <a class="ecard" href="engineering/resilience.html">
-        <span class="no">3.4</span>
+      </div>
+      <span class="keys">손상상태 DS · θ와 β · IDA · IM–DS 쌍</span>
+      <span class="go">READ <i aria-hidden="true">→</i></span>
+    </a>
+
+    <a class="ecard" href="engineering/resilience.html">
+      <span class="no">3.4</span>
+      <div class="etxt">
         <h3>회복탄력성<span class="en" lang="en">Seismic resilience</span></h3>
         <p>얼마나 손상됐는가에 더해, 기능이 언제 회복되는가까지 보는 관점.
           <span class="en" lang="en">Beyond how much was damaged: when function comes back.</span></p>
-        <span class="keys">기능도 Q(t) · robustness · rapidity · 유휴기간</span>
-        <span class="go">자세히 보기 READ →</span>
-      </a>
-    </div>
-  </section>
-</div>
+      </div>
+      <span class="keys">기능도 Q(t) · robustness · rapidity · 유휴기간</span>
+      <span class="go">READ <i aria-hidden="true">→</i></span>
+    </a>
 
-<div class="band">
-  <div class="wrap">
-    <section>
-      <div class="sec-head">
-        <span class="idx">03.0</span>
-        <h2>네 편이 이어지는 방식<span class="en" lang="en">How the four notes connect</span></h2>
-      </div>
-      <p class="lead-in">
-        성능기반 내진설계는 «지진위험도 → 구조응답 → 손상 → 결과»의 사슬로 구성됩니다. 이 사이트의 네 문서는 각각 그 사슬의 한 칸을 맡습니다.
-        <span class="en" lang="en">Performance-based earthquake engineering is a chain: hazard, response, damage, consequence. Each note takes one link.</span>
-      </p>
-      <div class="eq">
-        IM &nbsp;<b>→</b>&nbsp; EDP &nbsp;<b>→</b>&nbsp; DM &nbsp;<b>→</b>&nbsp; DV
-      </div>
-      <p class="eqnote">
-        IM 지진동 세기지표 · EDP 공학적 수요변수 · DM 손상지표 · DV 의사결정변수.
-        3.2가 IM–EDP, 3.3이 EDP–DM, 3.4가 DM–DV 구간에 해당합니다.
-      </p>
-      <p class="terms">
-        <b>IM</b> — 지반운동의 세기를 하나의 수치로 요약한 값 (intensity measure). 예: PGA, Sa(T₁).<br>
-        <b>EDP</b> — 구조해석으로 얻는 응답량 (engineering demand parameter). 예: 층간변위비.<br>
-        <b>DM</b> — 부재·시스템의 손상 정도를 나타내는 지표 (damage measure).<br>
-        <b>DV</b> — 손상이 초래하는 결과를 나타내는 변수 (decision variable). 예: 복구비, 복구기간.
-      </p>
-      <div class="refs">
-        <b style="color:var(--dim)">참고문헌 · References</b>
-        <ol>
-          <li>Cornell, C.A. &amp; Krawinkler, H. (2000). Progress and challenges in seismic performance assessment. <i>PEER Center News</i>, 3(2).</li>
-          <li>FEMA (2018). <i>FEMA P-58-1, Seismic Performance Assessment of Buildings, Volume 1 — Methodology</i>, 2nd ed. Federal Emergency Management Agency.</li>
-        </ol>
-      </div>
-    </section>
   </div>
 </div>
 </main>

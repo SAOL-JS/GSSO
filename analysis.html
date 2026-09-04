@@ -20,11 +20,44 @@
     <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="analysis" aria-label="주 메뉴 Main menu">
       <span class="ink" aria-hidden="true"></span>
-      <a href="index.html" data-key="home">HOME <small>홈</small></a>
-      <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
-      <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
-      <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+
+      <div class="mi">
+        <a href="index.html" data-key="home">HOME <small>홈</small></a>
+      </div>
+      <div class="mi has-sub">
+        <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+        <div class="sub"><div class="subin">
+          <a href="analysis.html#case"><b><i>1.1</i>CASE</b><span>사건 분석 <em lang="en">Event analysis</em></span></a>
+          <a href="analysis.html#method"><b><i>1.2</i>METHOD</b><span>방법 노트 <em lang="en">Method notes</em></span></a>
+          <a href="analysis.html#review"><b><i>1.3</i>REVIEW</b><span>문헌 검토 <em lang="en">Literature review</em></span></a>
+          <a href="analysis.html#queue"><b><i>1.4</i>QUEUE</b><span>예정된 글 <em lang="en">In preparation</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+        <div class="sub"><div class="subin">
+          <a href="monitor.html#live"><b><i>2.1</i>LIVE</b><span>실시간 지진 <em lang="en">Live earthquakes</em></span></a>
+          <a href="monitor.html#log"><b><i>2.2</i>LOG</b><span>기록된 사건 <em lang="en">Recorded events</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+        <div class="sub"><div class="subin">
+          <a href="engineering/structural.html"><b><i>3.1</i>STRUCTURAL</b><span>구조공학 <em lang="en">Structural engineering</em></span></a>
+          <a href="engineering/earthquake.html"><b><i>3.2</i>EARTHQUAKE</b><span>내진공학 <em lang="en">Earthquake engineering</em></span></a>
+          <a href="engineering/fragility.html"><b><i>3.3</i>FRAGILITY</b><span>취약도함수 <em lang="en">Fragility functions</em></span></a>
+          <a href="engineering/resilience.html"><b><i>3.4</i>RESILIENCE</b><span>회복탄력성 <em lang="en">Seismic resilience</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+        <div class="sub"><div class="subin">
+          <a href="about.html#principles"><b><i>4.1</i>PRINCIPLES</b><span>운영 원칙 <em lang="en">Operating principles</em></span></a>
+          <a href="about.html#sources"><b><i>4.2</i>SOURCES</b><span>자료원과 연락처 <em lang="en">Sources and contact</em></span></a>
+          <a href="about.html#workflow"><b><i>4.3</i>WORKFLOW</b><span>한 건이 올라오기까지 <em lang="en">How an entry gets published</em></span></a>
+          <a href="about.html#corrections"><b><i>4.4</i>CORRECTIONS</b><span>정정 이력 <em lang="en">Corrections log</em></span></a>
+        </div></div>
+      </div>
     </nav>
   </div>
 </header>
@@ -42,60 +75,75 @@
 </div>
 
 <div class="wrap">
+
+  <!-- ================= 01.1 CASE · 사건 분석 =================
+       ▣ 아래 세 목록(CASE·METHOD·REVIEW)은 assets/analysis-data.js 를 읽어
+          «자동으로» 채워집니다. 이 파일에서 글을 추가·삭제하지 마세요.
+          analysis-data.js 에 한 덩어리를 넣으면 cat 값에 따라 알아서 들어갑니다.
+       ▣ 순서도 date 값을 보고 최신순으로 자동 정렬됩니다.
+       The three lists below are filled from assets/analysis-data.js.
+       Add entries there, not here. -->
   <section>
     <div class="sec-head">
-      <span class="idx">01.1</span>
-      <h2>공개된 글<span class="en" lang="en">Published notes</span></h2>
+      <span class="idx" id="case">01.1</span>
+      <h2>사건 분석<span class="en" lang="en">CASE — event analysis</span></h2>
     </div>
-
-    <div class="cards">
-      <a class="card" href="analysis/2026-06-24-venezuela-doublet.html">
-        <span class="meta">
-          <b class="sn">A-0002</b>
-          <span>2026-09-01</span>
-          <span class="tag t-red">CASE</span>
-          <span class="lv lv-2">L2</span>
-        </span>
-        <h3>39초 간격의 두 지진 — 베네수엘라 2026-06-24
-          <span class="en" lang="en">Thirty-nine seconds apart: the 2026 Venezuela doublet</span></h3>
-        <p>기관마다 «두 개»와 «하나»로 갈린 사건. 그 차이가 취약도 평가에 무엇을 남기는가.
-          <span class="en" lang="en">Two events or one, depending on the agency — and what that leaves for fragility assessment.</span></p>
-        <span class="go">READ →</span>
-      </a>
-      <a class="card" href="analysis/2026-08-22-magnitude-scales.html">
-        <span class="meta">
-          <b class="sn">A-0001</b>
-          <span>2026-08-22</span>
-          <span class="tag t-teal">METHOD</span>
-          <span class="lv lv-1">L1</span>
-        </span>
-        <h3>규모 척도가 다르면 무엇을 비교할 수 없는가
-          <span class="en" lang="en">M<sub>ww</sub> and M<sub>JMA</sub>: what stops being comparable</span></h3>
-        <p>같은 지진에 두 개의 숫자가 붙는 이유와, 이 사이트가 그 값을 환산하지 않는 이유.
-          <span class="en" lang="en">Why one earthquake carries two numbers, and why this record never converts between them.</span></p>
-        <span class="go">READ →</span>
-      </a>
-    </div>
-
-    <p class="terms" style="margin-top:30px">
-      <b>일련번호 Serial</b> — 공개한 순서대로 <code>A-0001</code>부터 하나씩 붙입니다. 한 번 준 번호는 바꾸지도, 다시 쓰지도 않습니다.
-      글에 들어가는 그림 파일은 이 번호를 이름 앞에 붙여 <code>assets/analysis/A-0002-fig-01.jpg</code> 처럼 저장합니다.
-      랜딩 페이지에 보이는 대표 사진은 <code>A-0002-thumb.jpg</code> 입니다.
-      <span class="en" lang="en">Serials run from A-0001 in order of publication and are never changed or reused. Figure files carry the serial as their prefix.</span>
+    <p class="lead-in">
+      실제로 일어난 지진·구조 사고 한 건을 관측 자료로 되짚습니다.
+      <span class="en" lang="en">One recorded earthquake or structural failure, retraced from the observed data.</span>
     </p>
+    <div class="cards" data-cat="CASE"></div>
   </section>
+
+
+  <!-- ================= 01.2 METHOD · 방법 노트 ================= -->
+  <section>
+    <div class="sec-head">
+      <span class="idx" id="method">01.2</span>
+      <h2>방법 노트<span class="en" lang="en">METHOD — how the record is made</span></h2>
+    </div>
+    <p class="lead-in">
+      기록을 만들고 읽는 절차 자체를 다룹니다. 무엇을 세고, 무엇을 세지 않는지에 관한 글입니다.
+      <span class="en" lang="en">On the procedures behind the record: what is counted, and what is not.</span>
+    </p>
+    <div class="cards" data-cat="METHOD"></div>
+  </section>
+
+
+  <!-- ================= 01.3 REVIEW · 문헌 검토 ================= -->
+  <section>
+    <div class="sec-head">
+      <span class="idx" id="review">01.3</span>
+      <h2>문헌 검토<span class="en" lang="en">REVIEW — standards and papers</span></h2>
+    </div>
+    <p class="lead-in">
+      해외 표준과 논문을 원문 발췌와 해설로 나란히 놓고 읽습니다.
+      <span class="en" lang="en">Standards and papers read side by side: short source extracts next to commentary.</span>
+    </p>
+    <div class="cards" data-cat="REVIEW"></div>
+  </section>
+
+  <p class="terms" style="margin-top:30px">
+    <b>분류 Categories</b> — <b>CASE</b> 사건 하나를 다루는 글, <b>METHOD</b> 기록 방법을 다루는 글,
+    <b>REVIEW</b> 표준·논문을 검토하는 글. 글 위쪽 색 딱지가 이 세 가지를 나타냅니다.
+    <span class="en" lang="en">Three categories only: CASE (one event), METHOD (how the record works), REVIEW (standards and papers). The coloured tag on each card shows which.</span><br>
+    <b>일련번호 Serial</b> — 공개한 순서대로 <code>A-0001</code>부터 하나씩 붙입니다. 한 번 준 번호는 바꾸지도, 다시 쓰지도 않습니다.
+    글에 들어가는 그림 파일은 이 번호를 이름 앞에 붙여 <code>assets/analysis/A-0002-fig-01.jpg</code> 처럼 저장합니다.
+    랜딩 페이지에 보이는 대표 사진은 <code>A-0002-thumb.jpg</code> 입니다.
+    <span class="en" lang="en">Serials run from A-0001 in order of publication and are never changed or reused. Figure files carry the serial as their prefix.</span>
+  </p>
 </div>
 
 <div class="band">
   <div class="wrap">
     <section>
       <div class="sec-head">
-        <span class="idx">01.2</span>
+        <span class="idx" id="queue">01.4</span>
         <h2>예정된 글<span class="en" lang="en">In preparation</span></h2>
       </div>
       <p class="lead-in">
         아래 항목은 아직 공개되지 않았습니다. 자료가 확보되는 대로 위 목록으로 올립니다.
-        <span class="en" lang="en">Not yet published. Each moves to the list above once its sources are secured.</span>
+        <span class="en" lang="en">Not yet published. Each moves to the lists above once its sources are secured.</span>
       </p>
       <ul class="queue">
         <li>
@@ -146,6 +194,7 @@
   </div>
 </footer>
 
+<script src="assets/analysis-data.js"></script>
 <script src="assets/site.js"></script>
 </body>
 </html>

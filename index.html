@@ -22,11 +22,44 @@
     <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="home" aria-label="주 메뉴 Main menu">
       <span class="ink" aria-hidden="true"></span>
-      <a href="index.html" data-key="home">HOME <small>홈</small></a>
-      <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
-      <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
-      <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+
+      <div class="mi">
+        <a href="index.html" data-key="home">HOME <small>홈</small></a>
+      </div>
+      <div class="mi has-sub">
+        <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+        <div class="sub"><div class="subin">
+          <a href="analysis.html#case"><b><i>1.1</i>CASE</b><span>사건 분석 <em lang="en">Event analysis</em></span></a>
+          <a href="analysis.html#method"><b><i>1.2</i>METHOD</b><span>방법 노트 <em lang="en">Method notes</em></span></a>
+          <a href="analysis.html#review"><b><i>1.3</i>REVIEW</b><span>문헌 검토 <em lang="en">Literature review</em></span></a>
+          <a href="analysis.html#queue"><b><i>1.4</i>QUEUE</b><span>예정된 글 <em lang="en">In preparation</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+        <div class="sub"><div class="subin">
+          <a href="monitor.html#live"><b><i>2.1</i>LIVE</b><span>실시간 지진 <em lang="en">Live earthquakes</em></span></a>
+          <a href="monitor.html#log"><b><i>2.2</i>LOG</b><span>기록된 사건 <em lang="en">Recorded events</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+        <div class="sub"><div class="subin">
+          <a href="engineering/structural.html"><b><i>3.1</i>STRUCTURAL</b><span>구조공학 <em lang="en">Structural engineering</em></span></a>
+          <a href="engineering/earthquake.html"><b><i>3.2</i>EARTHQUAKE</b><span>내진공학 <em lang="en">Earthquake engineering</em></span></a>
+          <a href="engineering/fragility.html"><b><i>3.3</i>FRAGILITY</b><span>취약도함수 <em lang="en">Fragility functions</em></span></a>
+          <a href="engineering/resilience.html"><b><i>3.4</i>RESILIENCE</b><span>회복탄력성 <em lang="en">Seismic resilience</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+        <div class="sub"><div class="subin">
+          <a href="about.html#principles"><b><i>4.1</i>PRINCIPLES</b><span>운영 원칙 <em lang="en">Operating principles</em></span></a>
+          <a href="about.html#sources"><b><i>4.2</i>SOURCES</b><span>자료원과 연락처 <em lang="en">Sources and contact</em></span></a>
+          <a href="about.html#workflow"><b><i>4.3</i>WORKFLOW</b><span>한 건이 올라오기까지 <em lang="en">How an entry gets published</em></span></a>
+          <a href="about.html#corrections"><b><i>4.4</i>CORRECTIONS</b><span>정정 이력 <em lang="en">Corrections log</em></span></a>
+        </div></div>
+      </div>
     </nav>
   </div>
 </header>
@@ -87,61 +120,25 @@
         </div>
 
         <!-- ── 오른쪽 · Right : 최신 분석 요약 ─────────────
-             ▣ 새 글을 올릴 때 이 블록만 복사해서 맨 위에 붙이면 됩니다.
-             ▣ 사진 파일 이름은 반드시  A-####-thumb.jpg  형식으로 저장하세요.
-                (#### = 아래 sn 칸에 적힌 일련번호와 같은 숫자)
-                예) 일련번호 A-0002  →  assets/analysis/A-0002-thumb.jpg
-             ▣ 사진이 아직 없으면 그 자리에 일련번호가 적힌 빈 칸이 보입니다.
-             To add a note, copy one .lcard block to the top of this list.
-             The thumbnail must be saved as assets/analysis/<serial>-thumb.jpg. -->
+             ▣ 이 자리의 카드는 assets/analysis-data.js 를 읽어 «자동으로» 만들어집니다.
+                새 글을 올릴 때 이 파일은 손대지 마세요.
+                analysis-data.js 맨 위에 한 덩어리만 추가하면 여기가 바뀝니다.
+             ▣ 몇 개를 보여 줄지는 analysis-data.js 맨 아래
+                GSSO_LATEST_COUNT 숫자로 정합니다.
+             These cards are generated from assets/analysis-data.js.
+             Do not edit them here. -->
         <div class="hero-side">
           <p class="side-head">
-            <span>Latest analysis <b lang="ko">최신 분석</b></span>
+            <span>LATEST ANALYSIS</span>
             <a class="more" href="analysis.html">ALL <i aria-hidden="true">→</i></a>
           </p>
 
           <div class="latest">
-
-            <!-- ===== A-0002 ===== -->
-            <a class="lcard" href="analysis/2026-06-24-venezuela-doublet.html">
-              <span class="thumb" data-sn="A-0002">
-                <img src="assets/analysis/A-0002-thumb.jpg" alt="" loading="lazy" decoding="async"
-                     onerror="this.parentNode.classList.add('noimg');this.remove()">
-              </span>
-              <span class="lbody">
-                <span class="lmeta">
-                  <b class="sn">A-0002</b>
-                  <span class="tag t-red">CASE</span>
-                  <span class="lv lv-2">L2</span>
-                  <time datetime="2026-09-01">2026-09-01</time>
-                </span>
-                <span class="ltitle">39초 간격의 두 지진 — 베네수엘라 2026-06-24
-                  <span class="en" lang="en">Thirty-nine seconds apart: the 2026 Venezuela doublet</span></span>
-                <span class="ldesc">기관마다 «두 개»와 «하나»로 갈린 사건. 그 차이가 취약도 평가에 무엇을 남기는가.
-                  <span class="en" lang="en">Two events or one, depending on the agency.</span></span>
-              </span>
-            </a>
-
-            <!-- ===== A-0001 ===== -->
-            <a class="lcard" href="analysis/2026-08-22-magnitude-scales.html">
-              <span class="thumb" data-sn="A-0001">
-                <img src="assets/analysis/A-0001-thumb.jpg" alt="" loading="lazy" decoding="async"
-                     onerror="this.parentNode.classList.add('noimg');this.remove()">
-              </span>
-              <span class="lbody">
-                <span class="lmeta">
-                  <b class="sn">A-0001</b>
-                  <span class="tag t-teal">METHOD</span>
-                  <span class="lv lv-1">L1</span>
-                  <time datetime="2026-08-22">2026-08-22</time>
-                </span>
-                <span class="ltitle">규모 척도가 다르면 무엇을 비교할 수 없는가
-                  <span class="en" lang="en">M<sub>ww</sub> and M<sub>JMA</sub>: what stops being comparable</span></span>
-                <span class="ldesc">같은 지진에 두 개의 숫자가 붙는 이유와, 이 사이트가 그 값을 환산하지 않는 이유.
-                  <span class="en" lang="en">Why one earthquake carries two numbers.</span></span>
-              </span>
-            </a>
-
+            <noscript>
+              <p class="noevent" style="margin:0">최신 분석 목록을 보려면 자바스크립트가 필요합니다.
+                <a href="analysis.html">01 ANALYSIS 페이지</a>에서 전체 목록을 볼 수 있습니다.
+                <span class="en" lang="en">JavaScript is required here; the full list is on the Analysis page.</span></p>
+            </noscript>
           </div>
         </div>
       </div>
@@ -149,11 +146,11 @@
       <!-- ── 최종 갱신 · Last updated ─────────────────── -->
       <div class="stamp">
         <div>
-          <span class="lbl">Last updated · 최종 갱신</span>
+          <span class="lbl">LAST UPDATED</span>
           <time id="lastUpdated" datetime="">— <span>KST</span></time>
         </div>
         <div>
-          <span class="lbl">Feed · 자료원</span>
+          <span class="lbl">FEED</span>
           <span class="pulse"><span class="dot" id="statusDot"></span><span id="statusText">CONNECTING</span></span>
         </div>
       </div>
@@ -161,8 +158,8 @@
       <!-- ── 24시간 기록지 · 24-hour record strip ──────── -->
       <div class="heli">
         <div class="heli-head">
-          <span>24-hour seismic record</span>
-          <b>최근 24시간 전지구 지진 기록지 · M2.5 이상</b>
+          <span>24-HOUR SEISMIC RECORD</span>
+          <b>M2.5+ · Global</b>
         </div>
         <svg id="heli" viewBox="0 0 900 246" role="img"
              aria-label="최근 24시간 전지구 지진 기록지 24-hour global seismic record strip"></svg>
@@ -218,6 +215,7 @@
   </div>
 </footer>
 
+<script src="assets/analysis-data.js"></script>
 <script src="assets/site.js"></script>
 <script src="assets/feed.js"></script>
 </body>

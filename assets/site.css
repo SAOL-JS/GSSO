@@ -925,3 +925,178 @@ figure.fig, .params{ overflow: hidden; }
   .erow .ebody{ display: block !important; }
   .yearbar{ display: none; }
 }
+
+
+/* =====================================================================
+   7) 상단 바 상세메뉴 · Top-bar dropdown menus
+   ---------------------------------------------------------------------
+   구조 · Structure
+     <nav class="menu">
+       <div class="mi has-sub">          ← 메뉴 한 칸 (감싸는 상자)
+         <a>01 ANALYSIS</a>              ← 늘 보이는 윗줄
+         <div class="sub"><div class="subin">   ← 마우스를 올렸을 때만 나오는 상자
+           <a>1.1 CASE …</a>
+         </div></div>
+       </div>
+     </nav>
+
+   .sub 은 «투명한 바깥 상자»이고 .subin 이 «실제로 보이는 유리판»입니다.
+   .sub 의 위쪽 여백(padding-top)이 메뉴와 상자 사이의 «다리» 역할을 해서,
+   마우스를 아래로 내리는 도중에 메뉴가 닫히지 않습니다.
+   The padding on .sub acts as a bridge so the panel does not close
+   while the pointer travels down to it.
+   ===================================================================== */
+
+.mi{ position: relative; display: flex; }
+
+/* .menu 에 걸려 있던 가로 스크롤이 상세메뉴를 잘라내므로,
+   마우스를 쓰는 넓은 화면에서만 넘침을 허용합니다.
+   The horizontal scroll on .menu would clip the panel, so it is
+   released only on wide, pointer-driven screens. */
+@media (hover: hover) and (min-width: 861px){
+  .menu{ overflow: visible; }
+}
+
+.sub{
+  position: absolute;
+  top: 100%; left: 0;
+  min-width: 268px;
+  padding-top: 10px;               /* ← 메뉴와 상자를 잇는 «다리» */
+  z-index: 40;
+  opacity: 0; visibility: hidden;
+  transform: translateY(-5px);
+  transition: opacity .16s ease, transform .16s ease, visibility 0s .16s;
+}
+.mi:hover > .sub,
+.mi:focus-within > .sub{
+  opacity: 1; visibility: visible;
+  transform: translateY(0);
+  transition: opacity .16s ease, transform .16s ease, visibility 0s;
+}
+
+/* 실제로 보이는 유리판 · The visible frosted panel */
+.subin{
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 9px;
+  border: 1px solid var(--glass-line);
+  border-top: 2px solid var(--amber);      /* 위쪽 노란 선 = 메뉴의 노란 밑줄과 같은 색 */
+  border-radius: 0 0 var(--r) var(--r);
+  background: linear-gradient(160deg, rgba(20,28,34,.93), rgba(13,18,22,.95));
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop), var(--glass-inner);
+}
+
+.subin a{
+  display: block;
+  padding: 9px 13px;
+  text-decoration: none;
+  border-radius: 8px;
+  border-left: 2px solid transparent;
+  transition: background .14s ease, border-color .14s ease;
+}
+.subin a b{
+  display: flex; align-items: baseline; gap: 9px;
+  font-family: var(--mono); font-weight: 500;
+  font-size: 10px; letter-spacing: .17em;
+  color: var(--dim);
+}
+.subin a b i{ font-style: normal; color: var(--amber); letter-spacing: .1em; }
+.subin a span{
+  display: block; margin-top: 3px;
+  font-size: 12.5px; line-height: 1.5; color: var(--faint);
+}
+.subin a span em{
+  display: block;
+  font-family: var(--serif); font-style: italic;
+  font-size: 11.5px; color: var(--hint);
+}
+.subin a:hover{ background: rgba(255,255,255,.065); border-left-color: var(--amber); }
+.subin a:hover b{ color: var(--fg); }
+.subin a:hover span{ color: var(--dim); }
+.subin a:focus-visible{ outline: 2px solid var(--blue); outline-offset: -2px; }
+
+/* 손가락으로 쓰는 화면·좁은 화면에서는 상세메뉴를 감춥니다.
+   윗줄(01 ANALYSIS 등)을 누르면 그 페이지로 그냥 들어갑니다.
+   On touch and narrow screens the panel is hidden; the top-level link still works. */
+@media (hover: none), (max-width: 860px){
+  .sub{ display: none; }
+}
+
+
+/* =====================================================================
+   8) 03 공학 지식 — 세로 목록 · Engineering notes, stacked vertically
+   ---------------------------------------------------------------------
+   왼쪽이 밝고 오른쪽으로 갈수록 옅어지는 가로 그라데이션 + 유리 질감입니다.
+   A left-to-right gradient over the same frosted-glass material.
+   ===================================================================== */
+.elist{ display: flex; flex-direction: column; gap: 14px; }
+
+.elist .ecard{
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 216px 76px;
+  align-items: center;
+  gap: 0 26px;
+  padding: 24px 26px;
+  border: 1px solid var(--glass-line);
+  border-radius: var(--r);
+  background: linear-gradient(90deg,
+      rgba(255,255,255,.105) 0%,
+      rgba(255,255,255,.048) 44%,
+      rgba(255,255,255,.010) 100%);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-drop), var(--glass-inner);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.elist .ecard:hover{
+  border-color: rgba(229,169,60,.45);
+  transform: translateX(4px);
+  background: linear-gradient(90deg,
+      rgba(255,255,255,.145) 0%,
+      rgba(255,255,255,.062) 44%,
+      rgba(255,255,255,.014) 100%);
+}
+.elist .ecard:hover::before{ opacity: 1; }
+.elist .ecard .no{ font-size: 13px; letter-spacing: .16em; }
+.elist .etxt{ display: block; min-width: 0; }
+.elist .etxt h3{ margin: 0 0 6px; font-size: 19px; }
+.elist .etxt h3 .en{ margin-top: 2px; font-size: 13px; }
+.elist .etxt p{ margin: 0; font-size: 14px; color: var(--dim); line-height: 1.66; }
+.elist .keys{
+  border-top: 0; padding-top: 0;
+  border-left: 1px solid rgba(255,255,255,.10);
+  padding-left: 22px;
+  line-height: 1.85;
+}
+.elist .go{ margin-top: 0; padding-top: 0; text-align: right; white-space: nowrap; }
+.elist .go i{ font-style: normal; }
+
+
+/* 02.2 기록된 사건 — 출처 줄 · Source line inside an expanded event */
+.erow .ebody .esrc{
+  margin: 14px 0 0; padding-top: 11px;
+  border-top: 1px dashed var(--line2);
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.75;
+  letter-spacing: .01em; color: var(--hint);
+}
+
+
+/* =====================================================================
+   9) 7·8번 항목의 반응형 · Responsive rules for the two blocks above
+   ===================================================================== */
+@media (max-width: 900px){
+  .elist .ecard{ grid-template-columns: 44px minmax(0,1fr) 76px; gap: 0 20px; }
+  .elist .keys{
+    grid-column: 2 / 4; border-left: 0; padding-left: 0;
+    margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid var(--line2);
+  }
+}
+@media (max-width: 560px){
+  .elist .ecard{ grid-template-columns: 40px minmax(0,1fr); padding: 20px 18px; }
+  .elist .etxt h3{ font-size: 17px; }
+  .elist .go{ grid-column: 2; text-align: left; margin-top: 12px; }
+  .elist .keys{ grid-column: 1 / 3; }
+  .erow .ebody .esrc{ font-size: 10px; }
+}

@@ -20,11 +20,44 @@
     <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="about" aria-label="주 메뉴 Main menu">
       <span class="ink" aria-hidden="true"></span>
-      <a href="index.html" data-key="home">HOME <small>홈</small></a>
-      <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
-      <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
-      <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+
+      <div class="mi">
+        <a href="index.html" data-key="home">HOME <small>홈</small></a>
+      </div>
+      <div class="mi has-sub">
+        <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+        <div class="sub"><div class="subin">
+          <a href="analysis.html#case"><b><i>1.1</i>CASE</b><span>사건 분석 <em lang="en">Event analysis</em></span></a>
+          <a href="analysis.html#method"><b><i>1.2</i>METHOD</b><span>방법 노트 <em lang="en">Method notes</em></span></a>
+          <a href="analysis.html#review"><b><i>1.3</i>REVIEW</b><span>문헌 검토 <em lang="en">Literature review</em></span></a>
+          <a href="analysis.html#queue"><b><i>1.4</i>QUEUE</b><span>예정된 글 <em lang="en">In preparation</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+        <div class="sub"><div class="subin">
+          <a href="monitor.html#live"><b><i>2.1</i>LIVE</b><span>실시간 지진 <em lang="en">Live earthquakes</em></span></a>
+          <a href="monitor.html#log"><b><i>2.2</i>LOG</b><span>기록된 사건 <em lang="en">Recorded events</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+        <div class="sub"><div class="subin">
+          <a href="engineering/structural.html"><b><i>3.1</i>STRUCTURAL</b><span>구조공학 <em lang="en">Structural engineering</em></span></a>
+          <a href="engineering/earthquake.html"><b><i>3.2</i>EARTHQUAKE</b><span>내진공학 <em lang="en">Earthquake engineering</em></span></a>
+          <a href="engineering/fragility.html"><b><i>3.3</i>FRAGILITY</b><span>취약도함수 <em lang="en">Fragility functions</em></span></a>
+          <a href="engineering/resilience.html"><b><i>3.4</i>RESILIENCE</b><span>회복탄력성 <em lang="en">Seismic resilience</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+        <div class="sub"><div class="subin">
+          <a href="about.html#principles"><b><i>4.1</i>PRINCIPLES</b><span>운영 원칙 <em lang="en">Operating principles</em></span></a>
+          <a href="about.html#sources"><b><i>4.2</i>SOURCES</b><span>자료원과 연락처 <em lang="en">Sources and contact</em></span></a>
+          <a href="about.html#workflow"><b><i>4.3</i>WORKFLOW</b><span>한 건이 올라오기까지 <em lang="en">How an entry gets published</em></span></a>
+          <a href="about.html#corrections"><b><i>4.4</i>CORRECTIONS</b><span>정정 이력 <em lang="en">Corrections log</em></span></a>
+        </div></div>
+      </div>
     </nav>
   </div>
 </header>
@@ -44,7 +77,7 @@
 <div class="wrap">
   <section>
     <div class="sec-head">
-      <span class="idx">04.1</span>
+      <span class="idx" id="principles">04.1</span>
       <h2>운영 원칙<span class="en" lang="en">Operating principles</span></h2>
     </div>
     <div class="grid4">
@@ -101,7 +134,7 @@
   <div class="wrap">
     <section>
       <div class="sec-head">
-        <span class="idx">04.2</span>
+        <span class="idx" id="sources">04.2</span>
         <h2>자료원과 연락처<span class="en" lang="en">Sources and contact</span></h2>
       </div>
 
@@ -139,7 +172,7 @@
 <div class="wrap">
   <section>
     <div class="sec-head">
-      <span class="idx">04.3</span>
+      <span class="idx" id="workflow">04.3</span>
       <h2>한 건이 올라오기까지<span class="en" lang="en">How an entry gets published</span></h2>
     </div>
     <p class="lead-in">
@@ -216,7 +249,7 @@
   <div class="wrap">
     <section>
       <div class="sec-head">
-        <span class="idx">04.4</span>
+        <span class="idx" id="corrections">04.4</span>
         <h2>정정 이력<span class="en" lang="en">Corrections log</span></h2>
       </div>
       <p class="lead-in">

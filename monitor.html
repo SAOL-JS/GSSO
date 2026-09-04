@@ -20,11 +20,44 @@
     <a class="mark" href="index.html" aria-label="GSSO 홈 Home">GSS<i>O</i></a>
     <nav class="menu" data-page="monitor" aria-label="주 메뉴 Main menu">
       <span class="ink" aria-hidden="true"></span>
-      <a href="index.html" data-key="home">HOME <small>홈</small></a>
-      <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
-      <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
-      <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
-      <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+
+      <div class="mi">
+        <a href="index.html" data-key="home">HOME <small>홈</small></a>
+      </div>
+      <div class="mi has-sub">
+        <a href="analysis.html" data-key="analysis"><em>01</em>ANALYSIS <small>분석</small></a>
+        <div class="sub"><div class="subin">
+          <a href="analysis.html#case"><b><i>1.1</i>CASE</b><span>사건 분석 <em lang="en">Event analysis</em></span></a>
+          <a href="analysis.html#method"><b><i>1.2</i>METHOD</b><span>방법 노트 <em lang="en">Method notes</em></span></a>
+          <a href="analysis.html#review"><b><i>1.3</i>REVIEW</b><span>문헌 검토 <em lang="en">Literature review</em></span></a>
+          <a href="analysis.html#queue"><b><i>1.4</i>QUEUE</b><span>예정된 글 <em lang="en">In preparation</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="monitor.html" data-key="monitor"><em>02</em>MONITOR <small>모니터</small></a>
+        <div class="sub"><div class="subin">
+          <a href="monitor.html#live"><b><i>2.1</i>LIVE</b><span>실시간 지진 <em lang="en">Live earthquakes</em></span></a>
+          <a href="monitor.html#log"><b><i>2.2</i>LOG</b><span>기록된 사건 <em lang="en">Recorded events</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="engineering.html" data-key="engineering"><em>03</em>ENGINEERING <small>공학 지식</small></a>
+        <div class="sub"><div class="subin">
+          <a href="engineering/structural.html"><b><i>3.1</i>STRUCTURAL</b><span>구조공학 <em lang="en">Structural engineering</em></span></a>
+          <a href="engineering/earthquake.html"><b><i>3.2</i>EARTHQUAKE</b><span>내진공학 <em lang="en">Earthquake engineering</em></span></a>
+          <a href="engineering/fragility.html"><b><i>3.3</i>FRAGILITY</b><span>취약도함수 <em lang="en">Fragility functions</em></span></a>
+          <a href="engineering/resilience.html"><b><i>3.4</i>RESILIENCE</b><span>회복탄력성 <em lang="en">Seismic resilience</em></span></a>
+        </div></div>
+      </div>
+      <div class="mi has-sub">
+        <a href="about.html" data-key="about"><em>04</em>ABOUT <small>소개</small></a>
+        <div class="sub"><div class="subin">
+          <a href="about.html#principles"><b><i>4.1</i>PRINCIPLES</b><span>운영 원칙 <em lang="en">Operating principles</em></span></a>
+          <a href="about.html#sources"><b><i>4.2</i>SOURCES</b><span>자료원과 연락처 <em lang="en">Sources and contact</em></span></a>
+          <a href="about.html#workflow"><b><i>4.3</i>WORKFLOW</b><span>한 건이 올라오기까지 <em lang="en">How an entry gets published</em></span></a>
+          <a href="about.html#corrections"><b><i>4.4</i>CORRECTIONS</b><span>정정 이력 <em lang="en">Corrections log</em></span></a>
+        </div></div>
+      </div>
     </nav>
   </div>
 </header>
@@ -35,7 +68,7 @@
     <p class="crumb"><a href="index.html">HOME</a> / <span>02 MONITOR</span></p>
     <h1>모니터<span class="en" lang="en">Monitor — live console and event log</span></h1>
     <p class="intro">
-      위쪽 표는 USGS 실시간 피드에서 최근 24시간의 M2.5 이상 지진을 그대로 받아 표시합니다. 아래쪽 목록은 이 사이트가 별도로 기록·검토한 사건입니다.
+      위쪽 표(02.1 실시간 지진)는 USGS 실시간 피드에서 최근 24시간의 M2.5 이상 지진을 그대로 받아 표시합니다. 아래쪽 목록은 이 사이트가 별도로 기록·검토한 사건입니다.
       <span class="en" lang="en">The table below is read live from the USGS feed (M2.5+, past 24 hours). The log further down holds the events this site has recorded and reviewed by hand.</span>
     </p>
     <div class="stamp">
@@ -47,12 +80,12 @@
   </div>
 </div>
 
-<!-- ===== 02.1 실시간 콘솔 · Live console ===== -->
+<!-- ===== 02.1 실시간 지진 · Live earthquakes ===== -->
 <div class="wrap">
   <section>
     <div class="sec-head">
-      <span class="idx">02.1</span>
-      <h2>실시간 콘솔<span class="en" lang="en">Live console — USGS 2.5_day feed</span></h2>
+      <span class="idx" id="live">02.1</span>
+      <h2>실시간 지진<span class="en" lang="en">Live earthquakes — USGS 2.5_day feed</span></h2>
     </div>
 
     <!-- ▣ 접었다 펴는 상자 · Collapsible box
@@ -105,13 +138,19 @@
   <div class="wrap">
     <section>
       <div class="sec-head">
-        <span class="idx">02.2</span>
+        <span class="idx" id="log">02.2</span>
         <h2>기록된 사건<span class="en" lang="en">Recorded events — reviewed by hand</span></h2>
       </div>
       <p class="lead-in">
         규모는 발표 기관이 사용한 척도를 그대로 표기합니다. Mww는 모멘트규모(W-phase 해), MJMA는 일본 기상청 규모이며, 척도가 확인되지 않은 값은 M으로만 적고 환산하지 않습니다.
         각 줄을 누르면 그 자리에서 요약이 펼쳐집니다. 연도 단추로 원하는 해만 골라 볼 수 있습니다.
         <span class="en" lang="en">Magnitudes carry the scale used by the reporting agency and are never converted. Select a row to expand its summary in place; use the year buttons to narrow the list.</span>
+      </p>
+      <p class="lead-in" style="margin-top:14px">
+        <b style="color:var(--amber)">수록 기준</b> — M6.0 이상 가운데 <b>구조물 피해 또는 인명 피해가 공개 자료로 확인된 사건</b>만 손으로 검토해 올립니다.
+        M6.0 이상은 전지구에서 해마다 100건 이상 일어나므로(2024년 89건, 2025년 129건 — USGS 집계) 전수를 여기에 옮기지 않습니다.
+        규모만 궁금하다면 위 02.1 실시간 지진 표와 USGS 카탈로그를 보시는 편이 정확합니다.
+        <span class="en" lang="en">Inclusion rule: M6.0+ events with documented structural or human loss, reviewed by hand. Over 100 M6.0+ events occur worldwide each year, so this log is deliberately not exhaustive.</span>
       </p>
       <!-- ▣ 연도 선택 단추는 아래 목록을 읽어 «자동으로» 만들어집니다.
            새 연도의 사건을 추가하면 단추도 저절로 생깁니다. 여기는 손댈 필요가 없습니다.
@@ -123,6 +162,54 @@
            data-year 에는 반드시 발생 연도를 네 자리로 적으세요. 연도 단추가 이 값을 읽습니다.
            One event = one <details>. data-year must carry the four-digit year. -->
       <div class="rows" id="eventLog">
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-08-15</span>
+            <span class="m"><b style="color:var(--red)">7.7</b><span>Mw · 본진</span></span>
+            <span class="p"><b>인도네시아 플로레스섬 앞바다 — Ende 북북서 68 km</b>
+              <span>모멘트규모 Mw 7.7 · 심도 10 km · 2026-08-14 21:58 UTC · 쓰나미 1 m 미만 관측
+                <span class="en" lang="en">M<sub>w</sub> 7.7 · depth 10 km · tsunami under 1 m</span></span></span>
+            <span class="tag t-red">사망 53+</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Origin time</dt><dd>2026-08-14 21:58 UTC</dd></div>
+              <div><dt>Magnitude</dt><dd>M<sub>w</sub> 7.7 (USGS)</dd></div>
+              <div><dt>Depth</dt><dd>10 km</dd></div>
+              <div><dt>Aftershocks</dt><dd>341건 (최대 M6.2)</dd></div>
+              <div><dt>Casualties</dt><dd>사망 53명 이상 (잠정)</dd></div>
+            </dl>
+            <p>여진이 341회 이어졌고 약 5,000명이 대피했습니다. 주택 피해는 심각 157동·중간 41동·경미 148동으로 집계되었습니다. 산사태로 도로가 끊겨 진앙에 가장 가까운 Nagekeo 지역 접근이 늦어졌습니다.
+              <span class="en" lang="en">About 5,000 people evacuated; 157 homes heavily, 41 moderately and 148 lightly damaged. Landslides delayed access to the area nearest the epicentre.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · Al Jazeera (2026-08-16) · NBC News (2026-08-15) · Indonesia BNPB</p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-06-25</span>
+            <span class="m"><b style="color:var(--amber)">6.9</b><span>Mww · 본진</span></span>
+            <span class="p"><b>일본 이와테현 앞바다 — 구지 동북동 35 km</b>
+              <span>모멘트규모 Mww 6.9 · 아오모리 하시카미마치 JMA 진도 6강 · 건물 피해 366동
+                <span class="en" lang="en">M<sub>ww</sub> 6.9 · JMA intensity 6+ at Hashikami · 366 buildings damaged</span></span></span>
+            <span class="tag t-amber">진도 6강</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Magnitude</dt><dd>M<sub>ww</sub> 6.9 (USGS)</dd></div>
+              <div><dt>Max intensity</dt><dd>JMA 진도 6강 (하시카미마치)</dd></div>
+              <div><dt>Damage</dt><dd>건물 366동</dd></div>
+              <div><dt>Casualties</dt><dd>부상 10명</dd></div>
+              <div><dt>USGS event id</dt><dd>us6000t7zq</dd></div>
+            </dl>
+            <p>규모에 비해 건물 피해 건수가 많은 사례입니다. 규모(에너지)와 진도(그 지점에서 실제로 흔들린 정도)는 다른 값이며, 피해는 진도 쪽을 따라갑니다.
+              <span class="en" lang="en">Damage counts here are high relative to magnitude — a reminder that damage tracks intensity at the site, not magnitude at the source.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · 総務省消防庁 재해정보 제8보 (2026-06-26) · NHK (2026-06-25)</p>
+          </div>
+        </details>
 
         <details class="erow" data-year="2026">
           <summary>
@@ -192,6 +279,333 @@
             <p>GEOSCOPE는 약 2분간 이어진 하나의 파열로, INGV는 같은 방식으로 M<sub>w</sub> 7.6으로 모형화했습니다. USGS는 두 건으로 분리해 발표했습니다. 이 사이트는 어느 쪽도 «옳다»고 판정하지 않고 세 값을 모두 남깁니다.
               <span class="en" lang="en">This record keeps all three solutions side by side and does not adjudicate between them.</span></p>
             <p class="elinks"><a href="analysis/2026-06-24-venezuela-doublet.html">A-0002 분석 전문 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-06-16</span>
+            <span class="m"><b style="color:var(--red)">6.7</b><span>Mww · 본진</span></span>
+            <span class="p"><b>인도네시아 술라웨시 — 팔루 동남동 46 km</b>
+              <span>모멘트규모 Mww 6.7 · 팔루·시기 일대 · 주택 1,652동 이상 손상
+                <span class="en" lang="en">M<sub>ww</sub> 6.7 · Palu and Sigi · at least 1,652 houses damaged</span></span></span>
+            <span class="tag t-red">사망 3</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Magnitude</dt><dd>M<sub>ww</sub> 6.7 (USGS)</dd></div>
+              <div><dt>Casualties</dt><dd>사망 3명 · 부상 108명</dd></div>
+              <div><dt>Buildings</dt><dd>주택 1,652동 (BNPB 18일 집계)</dd></div>
+              <div><dt>Infrastructure</dt><dd>팔루시 시설물 118개소</dd></div>
+              <div><dt>USGS event id</dt><dd>us7000st95</dd></div>
+            </dl>
+            <p>M6점대에서도 주택 피해가 수천 동 단위로 나올 수 있음을 보여 줍니다. 이후 집계에서 손상 주택은 3,000동, 피해 주민은 9,609명으로 늘었습니다 (Tribunnews, 2026-06-24).
+              <span class="en" lang="en">A mid-M6 event producing damage in the thousands of dwellings; later tallies raised the count to about 3,000 houses.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · BNPB (2026-06-18) · Kompas (2026-06-18) · Antara News (2026-06-23)</p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-06-08</span>
+            <span class="m"><b style="color:var(--red)">7.8</b><span>Mww · 본진</span></span>
+            <span class="p"><b>필리핀 민다나오 앞바다 — Kablalan 남서 24 km</b>
+              <span>모멘트규모 Mww 7.8 · 2026년 현재까지 최대 규모 · 쓰나미 관측
+                <span class="en" lang="en">M<sub>ww</sub> 7.8 · largest of 2026 to date · tsunami observed</span></span></span>
+            <span class="tag t-red">2026 최대</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Magnitude</dt><dd>M<sub>ww</sub> 7.8 (USGS)</dd></div>
+              <div><dt>Casualties</dt><dd>사망 100명 이상 (잠정)</dd></div>
+              <div><dt>Tsunami</dt><dd>일부 해안에서 관측</dd></div>
+              <div><dt>USGS event id</dt><dd>us7000srb1</dd></div>
+            </dl>
+            <p>2026년 들어 기록된 가장 큰 규모입니다. 사망자 수는 보도 시점에 따라 35명(6월 8일)에서 100명 이상(8월 중순 집계)까지 달라집니다. 이 기록지는 잠정치를 그대로 남기고 확정치가 나오면 정정 이력에 적습니다.
+              <span class="en" lang="en">The largest magnitude recorded in 2026 so far. Reported death tolls range from 35 (8 June) to over 100 (mid-August); provisional figures are kept as published.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · Al Jazeera (2026-08-17) · PBS News (2026-06-08)</p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-04-20</span>
+            <span class="m"><b style="color:var(--amber)">7.5</b><span>MJMA · 본진</span></span>
+            <span class="p"><b>일본 산리쿠 앞바다 — 일본해구</b>
+              <span>기상청규모 MJMA 7.5 · USGS Mw 7.4 · GCMT Mw 7.5 · 심도 35 km · 역단층
+                <span class="en" lang="en">M<sub>JMA</sub> 7.5 · USGS M<sub>w</sub> 7.4 · GCMT M<sub>w</sub> 7.5 · thrust</span></span></span>
+            <span class="tag t-amber">척도 3종</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Origin time</dt><dd>2026-04-20 07:53 UTC</dd></div>
+              <div><dt>Magnitude</dt><dd>M<sub>JMA</sub> 7.5 / M<sub>w</sub> 7.4–7.5</dd></div>
+              <div><dt>Depth</dt><dd>35 km</dd></div>
+              <div><dt>Max intensity</dt><dd>JMA 5+ (MMI VI)</dd></div>
+              <div><dt>PGA</dt><dd>0.404 g</dd></div>
+              <div><dt>Tsunami</dt><dd>80 cm</dd></div>
+              <div><dt>Damage</dt><dd>구조물 233동 · 부상 10명</dd></div>
+            </dl>
+            <p>기상청은 처음 MJMA 7.7로 발표했다가 7.5로 내렸습니다. 같은 지진에 MJMA·Mw·GCMT 값이 각각 붙는 전형적인 사례입니다. 2025-11-09 Mw 6.8이 전진으로 분류됩니다.
+              <span class="en" lang="en">JMA first announced M<sub>JMA</sub> 7.7, later revised to 7.5 — one event carrying three different agency values.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · 気象庁 (JMA) 震度データベース · Global CMT (GCMT)</p>
+            <p class="elinks"><a href="analysis/2026-08-22-magnitude-scales.html">A-0001 규모 척도 글에서 이어 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-04-01</span>
+            <span class="m"><b style="color:var(--amber)">7.4</b><span>Mww · 본진</span></span>
+            <span class="p"><b>인도네시아 북말루쿠 앞바다</b>
+              <span>모멘트규모 Mww 7.4 · 심도 35 km · 최대진도 MMI VIII
+                <span class="en" lang="en">M<sub>ww</sub> 7.4 · depth 35 km · maximum intensity MMI VIII</span></span></span>
+            <span class="tag t-amber">MMI VIII</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Magnitude</dt><dd>M<sub>ww</sub> 7.4 (USGS)</dd></div>
+              <div><dt>Depth</dt><dd>35 km</dd></div>
+              <div><dt>Max intensity</dt><dd>MMI VIII (Severe)</dd></div>
+              <div><dt>Casualties</dt><dd>사망 1명 · 부상 2명</dd></div>
+              <div><dt>USGS event id</dt><dd>us6000slss</dd></div>
+            </dl>
+            <p>최대진도 MMI VIII가 관측되었으나 인명 피해는 매우 적었습니다. 진도가 높아도 노출된 건물 재고가 적으면 피해가 작아진다는 점을 보여 줍니다.
+              <span class="en" lang="en">MMI VIII with very few casualties — high intensity does not translate into loss where little building stock is exposed.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · Wikipedia, List of earthquakes in Indonesia (USGS 인용)</p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2026">
+          <summary>
+            <span class="d">2026-03-30</span>
+            <span class="m"><b style="color:var(--amber)">7.3</b><span>Mww · 본진</span></span>
+            <span class="p"><b>바누아투 산마주 — Luganville 동북동 48 km</b>
+              <span>모멘트규모 Mww 7.3 · 심도 121.3 km · 최대진도 MMI VII · 광역 정전
+                <span class="en" lang="en">M<sub>ww</sub> 7.3 · depth 121.3 km · MMI VII · island-wide power outage</span></span></span>
+            <span class="tag t-amber">정전·구조 점검</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Magnitude</dt><dd>M<sub>ww</sub> 7.3 (USGS)</dd></div>
+              <div><dt>Depth</dt><dd>121.3 km</dd></div>
+              <div><dt>Max intensity</dt><dd>MMI VII (Very strong)</dd></div>
+              <div><dt>USGS event id</dt><dd>us7000s8q0</dd></div>
+            </dl>
+            <p>Espiritu Santo 섬에 광범위한 피해와 정전이 발생했고, 이후 건물 안전성 점검 문제가 현지에서 제기되었습니다. 심도 121 km의 중발지진이면서도 지표 피해가 컸던 사례입니다.
+              <span class="en" lang="en">Widespread damage and power loss on Espiritu Santo, followed by questions over building safety — a deep (121 km) event with significant surface damage.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · Radio New Zealand (2026-03-31) · ReliefWeb ECHO Daily Flash (2026-04-01)</p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2025">
+          <summary>
+            <span class="d">2025-10-10</span>
+            <span class="m"><b style="color:var(--red)">7.4</b><span>M · 본진</span></span>
+            <span class="p"><b>필리핀 다바오오리엔탈 앞바다 — 같은 날 2회</b>
+              <span>규모 7.4 발생 후 수 시간 뒤 규모 6.8 · 쓰나미 경보 발령
+                <span class="en" lang="en">M 7.4 followed hours later by M 6.8 · local tsunami warning</span></span></span>
+            <span class="tag t-red">연속 2회</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Event 1</dt><dd>M 7.4</dd></div>
+              <div><dt>Event 2</dt><dd>M 6.8 (수 시간 뒤)</dd></div>
+              <div><dt>Casualties</dt><dd>사망 7명 이상 (M7.4)</dd></div>
+              <div><dt>척도</dt><dd>보도 기준 · magType 미확인</dd></div>
+            </dl>
+            <p>같은 지역에서 하루 안에 큰 지진이 두 번 일어난 사례입니다. 두 번째 지진을 받는 건물은 이미 손상된 상태이므로, 손상되지 않은 초기상태를 전제하는 표준 취약도함수를 그대로 쓰기 어렵습니다.
+              <span class="en" lang="en">Two large events in one day at the same location — the second arrives at an already-damaged building stock.</span></p>
+            <p class="esrc">출처 · Source: PBS News, "A list of deadly earthquakes in the Philippines" (2026-06-08) · PHIVOLCS</p>
+            <p class="elinks"><a href="analysis/2026-06-24-venezuela-doublet.html">A-0002 연속 지진 분석에서 이어 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2025">
+          <summary>
+            <span class="d">2025-09-30</span>
+            <span class="m"><b style="color:var(--red)">6.9</b><span>M · 본진</span></span>
+            <span class="p"><b>필리핀 세부주 보고시 (Bogo City)</b>
+              <span>규모 6.9 · 400년 이상 잠잠했던 Bogo Bay 단층 · 광범위한 구조 피해
+                <span class="en" lang="en">M 6.9 · Bogo Bay fault, dormant over 400 years · widespread structural damage</span></span></span>
+            <span class="tag t-red">휴지단층</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Magnitude</dt><dd>M 6.9</dd></div>
+              <div><dt>Fault</dt><dd>Bogo Bay 단층</dd></div>
+              <div><dt>비고</dt><dd>PHIVOLCS: 400년 이상 활동 기록 없음</dd></div>
+              <div><dt>척도</dt><dd>보도 기준 · magType 미확인</dd></div>
+            </dl>
+            <p>400년 넘게 활동 기록이 없던 단층에서 일어났습니다. «과거에 지진이 없었다»는 사실이 위험이 낮다는 근거가 되지 못한다는 점을 보여 주는 사례입니다.
+              <span class="en" lang="en">On a fault with no recorded activity for over 400 years — absence of past events is not evidence of low hazard.</span></p>
+            <p class="esrc">출처 · Source: PHIVOLCS · PBS News (2026-06-08) · Türkiye Today (2025-12-30)</p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2025">
+          <summary>
+            <span class="d">2025-08-31</span>
+            <span class="m"><b style="color:var(--red)">6.0</b><span>Mw · 본진</span></span>
+            <span class="p"><b>아프가니스탄 쿠나르주 (Kunar)</b>
+              <span>모멘트규모 Mw 6.0 · 사망 2,200명 이상 · 2025년 두 번째로 많은 인명 피해
+                <span class="en" lang="en">M<sub>w</sub> 6.0 · over 2,200 deaths — second-deadliest event of 2025</span></span></span>
+            <span class="tag t-red">사망 2,200+</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Magnitude</dt><dd>M<sub>w</sub> 6.0 (USGS)</dd></div>
+              <div><dt>Casualties</dt><dd>사망 2,200명 이상</dd></div>
+              <div><dt>Region</dt><dd>Kunar · Nangarhar · Laghman · Nuristan</dd></div>
+            </dl>
+            <p>이 기록지에서 가장 중요한 한 줄입니다. 규모 6.0은 결코 «큰» 지진이 아닙니다. 그럼에도 2025년 최대 규모였던 캄차카 Mw 8.8(사망 1명)보다 2,200배 많은 사망자가 나왔습니다. 피해를 정하는 것은 규모가 아니라 그 지역의 건물이 어떻게 지어졌는가입니다.
+              <span class="en" lang="en">M 6.0 is not a large earthquake, yet it killed over 2,200 — against one death from the M 8.8 Kamchatka event the same year. Building stock, not magnitude, decides the outcome.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · Wikipedia, 2025 Kunar earthquake (USGS·UN OCHA 인용)</p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2025">
+          <summary>
+            <span class="d">2025-07-29</span>
+            <span class="m"><b style="color:var(--amber)">8.8</b><span>Mww · 본진</span></span>
+            <span class="p"><b>러시아 캄차카반도 앞바다 — 페트로파블롭스크캄차츠키 동남동 119 km</b>
+              <span>모멘트규모 Mww 8.8 · 심도 35 km · 쿠릴–캄차카 해구 · 판경계 역단층 (megathrust)
+                <span class="en" lang="en">M<sub>ww</sub> 8.8 · depth 35 km · Kuril–Kamchatka Trench megathrust</span></span></span>
+            <span class="tag t-amber">2025 최대</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Origin time</dt><dd>2025-07-29 23:24 UTC</dd></div>
+              <div><dt>Magnitude</dt><dd>M<sub>ww</sub> 8.8 (USGS) / M<sub>w</sub> 8.7 (ISC)</dd></div>
+              <div><dt>Depth</dt><dd>35 km</dd></div>
+              <div><dt>Rupture</dt><dd>약 270초</dd></div>
+              <div><dt>Max intensity</dt><dd>MMI VIII–IX</dd></div>
+              <div><dt>PAGER</dt><dd>Red</dd></div>
+              <div><dt>Tsunami</dt><dd>최대 처오름 33.1 m</dd></div>
+              <div><dt>Casualties</dt><dd>사망 1명(간접) · 부상 25명</dd></div>
+            </dl>
+            <p>2011년 도호쿠 이후 전지구 최대 규모이며, 계기 관측 이래 상위 10위 안에 듭니다. 그럼에도 직접 사망자는 없었습니다. 9일 앞선 7월 20일 Mw 7.4가 전진으로 분류됩니다.
+              <span class="en" lang="en">The largest event globally since Tohoku 2011 and in the top ten instrumentally recorded — with no direct fatalities.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat (us6000qw60) · EMSC-CSEM Special Report #386 · IISEE</p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2025">
+          <summary>
+            <span class="d">2025-03-28</span>
+            <span class="m"><b style="color:var(--red)">7.7</b><span>Mw · 본진</span></span>
+            <span class="p"><b>미얀마 사가잉 — 만달레이 북서 약 16 km</b>
+              <span>모멘트규모 Mw 7.7–7.9 (Ms 7.9 · ML 8.2) · 심도 10 km · Sagaing 주향이동단층 · supershear
+                <span class="en" lang="en">M<sub>w</sub> 7.7–7.9 (M<sub>s</sub> 7.9, M<sub>L</sub> 8.2) · Sagaing fault · supershear rupture</span></span></span>
+            <span class="tag t-red">사망 5,456</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Origin time</dt><dd>2025-03-28 06:20 UTC</dd></div>
+              <div><dt>Magnitude</dt><dd>M<sub>w</sub> 7.7–7.9 · M<sub>s</sub> 7.9 · M<sub>L</sub> 8.2</dd></div>
+              <div><dt>Depth</dt><dd>10 km</dd></div>
+              <div><dt>Rupture</dt><dd>약 80초 · supershear</dd></div>
+              <div><dt>Max intensity</dt><dd>MMI X (Extreme)</dd></div>
+              <div><dt>PGA</dt><dd>1.07 g</dd></div>
+              <div><dt>Casualties</dt><dd>사망 5,456명 · 부상 11,404명 · 실종 538명</dd></div>
+              <div><dt>Loss</dt><dd>약 US$11 billion</dd></div>
+            </dl>
+            <p>한 지진에 Mw·Ms·ML 세 값이 각각 붙어 있고, 그 폭이 7.7에서 8.2까지 벌어집니다. 이 사이트가 척도 간 환산을 하지 않는 이유를 가장 뚜렷하게 보여 주는 사례입니다. 태국에서도 103명이 사망했습니다.
+              <span class="en" lang="en">One event carrying M<sub>w</sub>, M<sub>s</sub> and M<sub>L</sub> values spread from 7.7 to 8.2 — the clearest case for never converting between scales.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · ISC event 643071319 · Wikipedia, 2025 Myanmar earthquake (USGS·ISC 인용)</p>
+            <p class="elinks"><a href="analysis/2026-08-22-magnitude-scales.html">A-0001 규모 척도 글에서 이어 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2025">
+          <summary>
+            <span class="d">2025-01-07</span>
+            <span class="m"><b style="color:var(--red)">7.1</b><span>Mw · 본진</span></span>
+            <span class="p"><b>중국 시짱자치구 딩리현 (Dingri, 시가체)</b>
+              <span>모멘트규모 Mw 7.1 (USGS) · Ms 6.8 (CENC) · 심도 10 km · 정단층
+                <span class="en" lang="en">M<sub>w</sub> 7.1 (USGS) vs M<sub>s</sub> 6.8 (CENC) · depth 10 km · normal faulting</span></span></span>
+            <span class="tag t-amber">척도 불일치</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Origin time</dt><dd>2025-01-07 01:05 UTC</dd></div>
+              <div><dt>Magnitude</dt><dd>M<sub>w</sub> 7.1 (USGS) / M<sub>s</sub> 6.8 (CENC)</dd></div>
+              <div><dt>Depth</dt><dd>10 km</dd></div>
+              <div><dt>Fault</dt><dd>Dengme Co 정단층</dd></div>
+              <div><dt>Surface rupture</dt><dd>25–32 km · 최대 수직변위 약 3 m</dd></div>
+              <div><dt>Max intensity</dt><dd>CSIS IX (≈ MMI IX)</dd></div>
+              <div><dt>PGA</dt><dd>0.419 g</dd></div>
+              <div><dt>Casualties</dt><dd>사망 126명 · 부상 188명</dd></div>
+              <div><dt>Buildings</dt><dd>붕괴 3,600동 이상</dd></div>
+            </dl>
+            <p>같은 지진에 USGS는 Mw 7.1을, 중국지진대망중심(CENC)은 Ms 6.8을 붙였습니다. 숫자 차이 0.3은 «누가 틀렸다»가 아니라 «다른 척도로 쟀다»는 뜻입니다. 얕은 심도와 강한 지반운동으로 인한 건물 붕괴가 피해의 주원인으로 보고되었습니다.
+              <span class="en" lang="en">USGS assigned M<sub>w</sub> 7.1 while CENC assigned M<sub>s</sub> 6.8 — a difference of scale, not of correctness.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · npj Natural Hazards, Dingri earthquake (2025) · Al Jazeera (2025-01-07)</p>
+            <p class="elinks"><a href="analysis/2026-08-22-magnitude-scales.html">A-0001 규모 척도 글에서 이어 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2024">
+          <summary>
+            <span class="d">2024-04-02</span>
+            <span class="m"><b style="color:var(--amber)">7.4</b><span>Mw · 본진</span></span>
+            <span class="p"><b>대만 화롄현 — 화롄시 남쪽 약 15 km (현지 4월 3일)</b>
+              <span>모멘트규모 Mw 7.4 (USGS) · ML 7.2 (CWA) · MJMA 7.7 (JMA) · 심도 40 km · 역단층
+                <span class="en" lang="en">M<sub>w</sub> 7.4 (USGS) · M<sub>L</sub> 7.2 (CWA) · M<sub>JMA</sub> 7.7 (JMA) · reverse fault</span></span></span>
+            <span class="tag t-amber">척도 3종</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Origin time</dt><dd>2024-04-02 23:58 UTC (현지 04-03 07:58)</dd></div>
+              <div><dt>Magnitude</dt><dd>M<sub>w</sub> 7.4 / M<sub>L</sub> 7.2 / M<sub>JMA</sub> 7.7</dd></div>
+              <div><dt>Depth</dt><dd>40 km</dd></div>
+              <div><dt>Max intensity</dt><dd>CWA 6− (≈ MMI VIII)</dd></div>
+              <div><dt>PGA</dt><dd>1,491 gal (1.52 g)</dd></div>
+              <div><dt>Casualties</dt><dd>사망 19명 · 부상 1,147명 · 실종 1명</dd></div>
+              <div><dt>Loss</dt><dd>NT$81.8 billion (≈ US$2.5 billion)</dd></div>
+              <div><dt>Aftershocks</dt><dd>1,746회 (2024-11-14 기준)</dd></div>
+            </dl>
+            <p>한 지진에 세 기관이 서로 다른 척도로 7.2·7.4·7.7을 붙인 사례입니다. PGA가 1.52 g에 달했는데도 사망자는 19명에 그쳤습니다. 1999년 지지지진 이후 반복 개정된 대만 내진설계기준의 효과로 평가됩니다.
+              <span class="en" lang="en">Three agencies, three scales: 7.2, 7.4 and 7.7 for one event. Despite PGA of 1.52 g the death toll stayed at 19 — attributed to Taiwan's repeatedly updated seismic code.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · 中央氣象署 (CWA) · Guy Carpenter Post Event Report (2024-04-03) · WTW Event Response (2024-04)</p>
+            <p class="elinks"><a href="analysis/2026-08-22-magnitude-scales.html">A-0001 규모 척도 글에서 이어 읽기 <i aria-hidden="true">→</i></a></p>
+          </div>
+        </details>
+
+        <details class="erow" data-year="2024">
+          <summary>
+            <span class="d">2024-01-01</span>
+            <span class="m"><b style="color:var(--red)">7.5</b><span>Mw · 본진</span></span>
+            <span class="p"><b>일본 이시카와현 노토반도</b>
+              <span>모멘트규모 Mw 7.5 · 사망 732명 · 2011년 이후 첫 «대형 쓰나미 경보»
+                <span class="en" lang="en">M<sub>w</sub> 7.5 · 732 deaths · first major tsunami warning since 2011</span></span></span>
+            <span class="tag t-red">재해관련사 504</span>
+            <span class="chev" aria-hidden="true">+</span>
+          </summary>
+          <div class="ebody">
+            <dl class="params">
+              <div><dt>Magnitude</dt><dd>M<sub>w</sub> 7.5 (USGS)</dd></div>
+              <div><dt>Fault</dt><dd>F43 (길이 약 94.2 km, 2개 분절)</dd></div>
+              <div><dt>Casualties</dt><dd>사망 732명 (직접 228명 · 재해관련사 504명)</dd></div>
+              <div><dt>비고</dt><dd>2016년 구마모토 이후 일본 최다 인명 피해</dd></div>
+            </dl>
+            <p>사망 732명 가운데 504명이 «재해관련사»입니다. 여진 공포, 단수·정전, 대피소 생활이 겹쳐 지진이 끝난 뒤에 발생한 죽음입니다. 회복탄력성(Q(t))에서 «기능이 언제 돌아오는가»가 왜 인명과 직결되는지 보여 주는 사례입니다.
+              <span class="en" lang="en">Of 732 deaths, 504 were disaster-related — occurring after the shaking stopped, through aftershock fear, loss of power and water, and prolonged sheltering.</span></p>
+            <p class="esrc">출처 · Source: USGS ANSS ComCat · 総務省消防庁 (FDMA) · Wikipedia, 2024 Noto earthquake (FDMA 인용)</p>
+            <p class="elinks"><a href="engineering/resilience.html">3.4 회복탄력성에서 이어 읽기 <i aria-hidden="true">→</i></a></p>
           </div>
         </details>
 
